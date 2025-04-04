@@ -1,0 +1,107 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "152b0fc1-fa29-4f64-bd5c-6a59f63b05cf")
+	(paper "A")
+	(title_block
+		(title "Laser Arcade Blaster")
+		(date "2025-04-04")
+		(rev "A")
+		(company "Idaho State University")
+	)
+	(lib_symbols)
+	(rectangle
+		(start 133.35 99.06)
+		(end 147.32 99.06)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid af527c1e-7499-4ad8-a568-060efd832b84)
+	)
+	(sheet
+		(at 147.32 85.09)
+		(size 40.64 29.21)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0b035578-8811-407f-9c52-5736444552f1")
+		(property "Sheetname" "Blaster"
+			(at 147.32 84.3784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Blaster.kicad_sch"
+			(at 147.32 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Project"
+				(path "/152b0fc1-fa29-4f64-bd5c-6a59f63b05cf"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 92.71 85.09)
+		(size 40.64 29.21)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "38ebd531-af64-4884-b365-257c0c7ff7c3")
+		(property "Sheetname" "Power"
+			(at 92.71 84.3784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Blaster_Power.kicad_sch"
+			(at 92.71 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Project"
+				(path "/152b0fc1-fa29-4f64-bd5c-6a59f63b05cf"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

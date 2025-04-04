@@ -1,0 +1,97 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Apr 03 15:06:36 2025
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000004    program   0x000044
+         SUBROUTINES_CODE       code   0x000026    program   0x0000f8
+          INITIALIZE_CODE       code   0x0000a2    program   0x0000e4
+.config_8007_BUILD/DEFAULT/PRODUCTION/_EXT/14       code   0x008007    program   0x000002
+.config_8008_BUILD/DEFAULT/PRODUCTION/_EXT/14       code   0x008008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x000113      
+                            0x008007    0x008008      
+            277 out of 16647 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+   CONTINUOUS_CHECK_TIMER   0x000036    program     static ..\SUBROUTINES.inc       
+                     FIRE   0x00002e    program     static ..\SUBROUTINES.inc       
+               FIRE_BURST   0x00005e    program     static ..\SUBROUTINES.inc       
+          FIRE_CONTINUOUS   0x000026    program     static ..\SUBROUTINES.inc       
+                FIRE_SEMI   0x000042    program     static ..\SUBROUTINES.inc       
+                   GOBACK   0x000012    program     static ..\Project_Gun.asm       
+               INITIALIZE   0x0000a2    program     static ..\16LF1788_SETUP.inc    
+                INTERRUPT   0x000007    program     static ..\Project_Gun.asm       
+                    LOOP1   0x00004c    program     static ..\SUBROUTINES.inc       
+                    LOOP2   0x00004d    program     static ..\SUBROUTINES.inc       
+         LOOP_AUDIO_DELAY   0x000067    program     static ..\SUBROUTINES.inc       
+                     MAIN   0x000018    program     static ..\Project_Gun.asm       
+         POLL_TMR1_BURST1   0x000070    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST2   0x000077    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST3   0x00007e    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST4   0x000085    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST5   0x00008c    program     static ..\SUBROUTINES.inc       
+     POLL_TMR1_CONTINUOUS   0x000037    program     static ..\SUBROUTINES.inc       
+           POLL_TMR1_SEMI   0x000059    program     static ..\SUBROUTINES.inc       
+                    SETUP   0x000005    program     static ..\Project_Gun.asm       
+                SET_38KHZ   0x000090    program     static ..\SUBROUTINES.inc       
+                SET_56KHZ   0x000099    program     static ..\SUBROUTINES.inc       
+              STOP_FIRING   0x00003a    program     static ..\SUBROUTINES.inc       
+                TEST_MODE   0x00000b    program     static ..\Project_Gun.asm       
+             VOLUME_LOOP1   0x000020    program     static ..\Project_Gun.asm       
+             VOLUME_LOOP2   0x000021    program     static ..\Project_Gun.asm       
+                     WAIT   0x00001e    program     static ..\Project_Gun.asm       
+                   _CLEAR   0x00001d    program     static ..\Project_Gun.asm       
+                   _RESET   0x000032    program     static ..\SUBROUTINES.inc       
+                     _SET   0x00001b    program     static ..\Project_Gun.asm       
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    SETUP   0x000005    program     static ..\Project_Gun.asm       
+                INTERRUPT   0x000007    program     static ..\Project_Gun.asm       
+                TEST_MODE   0x00000b    program     static ..\Project_Gun.asm       
+                   GOBACK   0x000012    program     static ..\Project_Gun.asm       
+                     MAIN   0x000018    program     static ..\Project_Gun.asm       
+                     _SET   0x00001b    program     static ..\Project_Gun.asm       
+                   _CLEAR   0x00001d    program     static ..\Project_Gun.asm       
+                     WAIT   0x00001e    program     static ..\Project_Gun.asm       
+             VOLUME_LOOP1   0x000020    program     static ..\Project_Gun.asm       
+             VOLUME_LOOP2   0x000021    program     static ..\Project_Gun.asm       
+          FIRE_CONTINUOUS   0x000026    program     static ..\SUBROUTINES.inc       
+                     FIRE   0x00002e    program     static ..\SUBROUTINES.inc       
+                   _RESET   0x000032    program     static ..\SUBROUTINES.inc       
+   CONTINUOUS_CHECK_TIMER   0x000036    program     static ..\SUBROUTINES.inc       
+     POLL_TMR1_CONTINUOUS   0x000037    program     static ..\SUBROUTINES.inc       
+              STOP_FIRING   0x00003a    program     static ..\SUBROUTINES.inc       
+                FIRE_SEMI   0x000042    program     static ..\SUBROUTINES.inc       
+                    LOOP1   0x00004c    program     static ..\SUBROUTINES.inc       
+                    LOOP2   0x00004d    program     static ..\SUBROUTINES.inc       
+           POLL_TMR1_SEMI   0x000059    program     static ..\SUBROUTINES.inc       
+               FIRE_BURST   0x00005e    program     static ..\SUBROUTINES.inc       
+         LOOP_AUDIO_DELAY   0x000067    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST1   0x000070    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST2   0x000077    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST3   0x00007e    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST4   0x000085    program     static ..\SUBROUTINES.inc       
+         POLL_TMR1_BURST5   0x00008c    program     static ..\SUBROUTINES.inc       
+                SET_38KHZ   0x000090    program     static ..\SUBROUTINES.inc       
+                SET_56KHZ   0x000099    program     static ..\SUBROUTINES.inc       
+               INITIALIZE   0x0000a2    program     static ..\16LF1788_SETUP.inc    
+
+

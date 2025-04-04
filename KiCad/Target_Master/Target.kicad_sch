@@ -1,0 +1,107 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "b95a4fbb-e866-40f1-8b06-3d5c3eea26d9")
+	(paper "A")
+	(title_block
+		(title "Laser Shooting Game Target Master")
+		(date "2024-12-06")
+		(rev "A")
+		(company "Idaho State University")
+	)
+	(lib_symbols)
+	(rectangle
+		(start 137.16 100.33)
+		(end 143.51 100.33)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 7a8e7888-ac1f-4676-8d6d-40d999020347)
+	)
+	(sheet
+		(at 143.51 87.63)
+		(size 34.29 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0bd2d014-6587-4062-995e-808742e2c3f8")
+		(property "Sheetname" "Master"
+			(at 143.51 86.9184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Target_Master.kicad_sch"
+			(at 143.51 113.6146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 102.87 87.63)
+		(size 34.29 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0e3f4d82-cc09-4ba7-85db-e6aa39e63df5")
+		(property "Sheetname" "Power"
+			(at 102.87 86.9184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Target_Power.kicad_sch"
+			(at 102.87 113.6146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

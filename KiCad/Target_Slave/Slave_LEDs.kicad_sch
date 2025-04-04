@@ -1,0 +1,14 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "899465f3-ad61-49a9-96b1-39d81c4c2f1e")
+	(paper "A")
+	(title_block
+		(title "Slave LEDs")
+		(date "2025-04-01")
+		(rev "A")
+		(company "Idaho State University")
+	)
+	(lib_symbols)
+)
