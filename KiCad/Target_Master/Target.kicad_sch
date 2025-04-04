@@ -6,14 +6,14 @@
 	(paper "A")
 	(title_block
 		(title "Laser Shooting Game Target Master")
-		(date "2024-12-06")
+		(date "2025-04-04")
 		(rev "A")
 		(company "Idaho State University")
 	)
 	(lib_symbols)
 	(rectangle
-		(start 137.16 100.33)
-		(end 143.51 100.33)
+		(start 110.49 101.6)
+		(end 116.84 101.6)
 		(stroke
 			(width 0)
 			(type default)
@@ -23,8 +23,20 @@
 		)
 		(uuid 7a8e7888-ac1f-4676-8d6d-40d999020347)
 	)
+	(rectangle
+		(start 151.13 101.6)
+		(end 157.48 101.6)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid ad9305f8-980b-40a7-aa1b-16ee0fad5498)
+	)
 	(sheet
-		(at 143.51 87.63)
+		(at 116.84 88.9)
 		(size 34.29 25.4)
 		(fields_autoplaced yes)
 		(stroke
@@ -36,7 +48,7 @@
 		)
 		(uuid "0bd2d014-6587-4062-995e-808742e2c3f8")
 		(property "Sheetname" "Master"
-			(at 143.51 86.9184 0)
+			(at 116.84 88.1884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -45,7 +57,7 @@
 			)
 		)
 		(property "Sheetfile" "Target_Master.kicad_sch"
-			(at 143.51 113.6146 0)
+			(at 116.84 114.8846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -62,7 +74,7 @@
 		)
 	)
 	(sheet
-		(at 102.87 87.63)
+		(at 76.2 88.9)
 		(size 34.29 25.4)
 		(fields_autoplaced yes)
 		(stroke
@@ -74,7 +86,7 @@
 		)
 		(uuid "0e3f4d82-cc09-4ba7-85db-e6aa39e63df5")
 		(property "Sheetname" "Power"
-			(at 102.87 86.9184 0)
+			(at 76.2 88.1884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -83,7 +95,7 @@
 			)
 		)
 		(property "Sheetfile" "Target_Power.kicad_sch"
-			(at 102.87 113.6146 0)
+			(at 76.2 114.8846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -95,6 +107,44 @@
 			(project "Target"
 				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 157.48 88.9)
+		(size 34.29 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "7a25075f-ac68-4e20-a244-e2abb088b838")
+		(property "Sheetname" "UART"
+			(at 157.48 88.1884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "UART.kicad_sch"
+			(at 157.48 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9"
+					(page "4")
 				)
 			)
 		)
