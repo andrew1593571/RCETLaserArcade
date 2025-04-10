@@ -28,9 +28,9 @@
 ;										    *	
 ;************************************************************************************		
 		
-		#include "p16f1788.inc"      		; processor specific variable definitions
-		#INCLUDE <16F1788_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
-		#INCLUDE <SUBROUTINES.inc>		; File containing all used subroutines
+		#include "MASTER.inc"      		; processor specific variable definitions
+		#INCLUDE <MASTER_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
+		#INCLUDE <MASTER_SUBROUTINES.inc>		; File containing all used subroutines
 		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
 							; Using default destination of 1 (file),  Found call to macro in column 1
