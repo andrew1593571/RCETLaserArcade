@@ -30,6 +30,7 @@ Partial Class ArcadeControlForm
         Me.SerialStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.COMPortTimer = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort = New System.IO.Ports.SerialPort(Me.components)
+        Me.ReceivedDataTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -74,6 +75,13 @@ Partial Class ArcadeControlForm
         '
         Me.COMPortTimer.Interval = 8000
         '
+        'SerialPort
+        '
+        '
+        'ReceivedDataTimer
+        '
+        Me.ReceivedDataTimer.Enabled = True
+        '
         'ArcadeControlForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -97,4 +105,5 @@ Partial Class ArcadeControlForm
     Friend WithEvents COMPortTimer As Timer
     Friend WithEvents ConnectDisconnectStatusStripMenuItem As ToolStripMenuItem
     Friend WithEvents SerialPort As IO.Ports.SerialPort
+    Friend WithEvents ReceivedDataTimer As Timer
 End Class

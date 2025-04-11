@@ -3,6 +3,9 @@ Option Explicit On
 Imports System.IO.Ports
 
 Public Class ArcadeControlForm
+    '######______Global Variables______######
+    Private receivedDataQueue As New Queue(Of Byte)
+    Private requestedVerification As Boolean
 
     '######______Serial COM Subroutines______######
 
@@ -78,6 +81,7 @@ Public Class ArcadeControlForm
 
                 'send device verification command
                 SerialPort.Write(verification, 0, 2)
+                requestedVerification = True
             End If
         End If
     End Sub
@@ -133,5 +137,45 @@ Public Class ArcadeControlForm
     Private Sub COMPortComboBox_TextChanged(sender As Object, e As EventArgs) Handles COMPortComboBox.TextChanged
         'update the controls when the selected COM port changes
         UpdateSerialControls(False)
+    End Sub
+
+    ''' <summary>
+    ''' When data is received at the serial port, place it in the queue
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort.DataReceived
+        Dim bytesToRead As Integer = SerialPort.BytesToRead
+        Dim readBytes(bytesToRead - 1) As Byte
+
+        SerialPort.Read(readBytes, 0, bytesToRead)
+
+        For i = 0 To bytesToRead - 1
+            receivedDataQueue.Enqueue(readBytes(i))
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' when the timer ticks, interpret received data if enough has been received
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ReceivedDataTimer_Tick(sender As Object, e As EventArgs) Handles ReceivedDataTimer.Tick
+        Dim receivedData(2) As Byte
+
+        If receivedDataQueue.Count <> 0 Then
+            receivedData(0) = receivedDataQueue.Dequeue
+        End If
+
+        If receivedData(0) = &H24 Then
+            receivedData(1) = receivedDataQueue.Dequeue
+            receivedData(2) = receivedDataQueue.Dequeue
+
+            If requestedVerification And receivedData(1) = &H4C And receivedData(2) = &H41 Then
+                COMPortTimer.Stop()
+                requestedVerification = False
+            End If
+
+        End If
     End Sub
 End Class
