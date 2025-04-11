@@ -1,0 +1,77 @@
+Message[302] ..\MASTER_SETUP.INC 73 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 75 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 84 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 85 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 86 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 87 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 88 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 89 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 90 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 91 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 105 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 107 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 109 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 111 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 134 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 135 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 142 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 145 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 147 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 149 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 151 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 154 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 156 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 163 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 166 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 168 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 170 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 172 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 175 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 178 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 180 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 187 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 190 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 192 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 194 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 196 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 202 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 205 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 206 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 208 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 210 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 213 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SETUP.INC 224 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 28 : Found label after column 1. (SEND_ENABLE)
+Message[302] ..\MASTER_SUBROUTINES.INC 31 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 32 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 36 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 38 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 46 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 48 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 52 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 54 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 55 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 62 : Found label after column 1. (READ_TARGET_STATUS)
+Message[302] ..\MASTER_SUBROUTINES.INC 67 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 68 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 72 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 74 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 78 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 80 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 82 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 85 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 88 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] ..\MASTER_SUBROUTINES.INC 89 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 96 : Found label after column 1. (TEST_RECEIVED_BYTE)
+Warning[207] ..\MASTER_SUBROUTINES.INC 107 : Found label after column 1. (PLAYER1_SCORED)
+Warning[207] ..\MASTER_SUBROUTINES.INC 113 : Found label after column 1. (PLAYER2_SCORED)
+Warning[207] ..\MASTER_SUBROUTINES.INC 120 : Found label after column 1. (I2CIDLE)
+Message[302] ..\MASTER_SUBROUTINES.INC 123 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 127 : Found label after column 1. (CHECKR_W)
+Message[302] ..\MASTER_SUBROUTINES.INC 129 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 135 : Found label after column 1. (BAD1)
+Message[302] ..\MASTER_SUBROUTINES.INC 138 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] ..\MASTER_SUBROUTINES.INC 139 : Found label after column 1. (LOOP5)
+Message[302] ..\MASTER_SUBROUTINES.INC 140 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] ..\LA_MASTER.ASM 94 : Found directive in column 1. (END)
