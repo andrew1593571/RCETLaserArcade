@@ -1,4 +1,4 @@
-23158893044963100
+23174594143758337
 AlexWheelockFootprintLibrary
 2 Screw Terminal
 
@@ -95,8 +95,8 @@ MicroUSB
 
 
 0
-0
-0
+17
+6
 AlexWheelockFootprintLibrary
 NSS60601MZ4(SOT-223-4)
 
@@ -104,6 +104,69 @@ NSS60601MZ4(SOT-223-4)
 0
 4
 3
+AlexWheelockFootprintLibrary
+Project_6.3V_220uF_Capacitor
+
+
+0
+2
+2
+AlexWheelockFootprintLibrary
+Project_16V_220uF_Capacitor
+
+
+0
+2
+2
+AlexWheelockFootprintLibrary
+Project_Audio_Board
+
+
+0
+28
+28
+AlexWheelockFootprintLibrary
+Project_Battery_Connector
+
+
+0
+4
+2
+AlexWheelockFootprintLibrary
+Project_Blaster_Battery_Connector
+
+
+0
+0
+0
+AlexWheelockFootprintLibrary
+Project_Blaster_FireSelect_Switch
+
+
+0
+6
+6
+AlexWheelockFootprintLibrary
+Project_Blaster_Freq_Switch
+
+
+0
+6
+3
+AlexWheelockFootprintLibrary
+Project_Blaster_Power_Switch
+
+
+0
+6
+3
+AlexWheelockFootprintLibrary
+Project_Locking_Output_Header
+
+
+0
+2
+2
 AlexWheelockFootprintLibrary
 QFP-44_10x10_Pitch0.8mm
 
