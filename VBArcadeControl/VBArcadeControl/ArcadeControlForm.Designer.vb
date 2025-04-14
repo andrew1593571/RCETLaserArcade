@@ -29,9 +29,16 @@ Partial Class ArcadeControlForm
         Me.ConnectDisconnectStatusStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SerialStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.COMPortTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.SerialPort = New System.IO.Ports.SerialPort(Me.components)
-        Me.ReceivedDataTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewGameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConfigurationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.StatusStrip.SuspendLayout()
+        Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
@@ -75,24 +82,78 @@ Partial Class ArcadeControlForm
         '
         Me.COMPortTimer.Interval = 8000
         '
-        'SerialPort
+        'TopMenuStrip
         '
+        Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.TopMenuStrip.Name = "TopMenuStrip"
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 24)
+        Me.TopMenuStrip.TabIndex = 1
+        Me.TopMenuStrip.Text = "MenuStrip1"
         '
-        'ReceivedDataTimer
+        'FileToolStripMenuItem
         '
-        Me.ReceivedDataTimer.Enabled = True
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewGameToolStripMenuItem, Me.ConfigurationToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "&File"
+        '
+        'NewGameToolStripMenuItem
+        '
+        Me.NewGameToolStripMenuItem.Name = "NewGameToolStripMenuItem"
+        Me.NewGameToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.NewGameToolStripMenuItem.Text = "&New Game"
+        '
+        'ConfigurationToolStripMenuItem
+        '
+        Me.ConfigurationToolStripMenuItem.Name = "ConfigurationToolStripMenuItem"
+        Me.ConfigurationToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.ConfigurationToolStripMenuItem.Text = "&Configuration"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.ExitToolStripMenuItem.Text = "E&xit"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(424, 215)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'ArcadeControlForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.StatusStrip)
+        Me.Controls.Add(Me.TopMenuStrip)
+        Me.MainMenuStrip = Me.TopMenuStrip
         Me.Name = "ArcadeControlForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RCET Laser Arcade"
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
+        Me.TopMenuStrip.ResumeLayout(False)
+        Me.TopMenuStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -104,6 +165,12 @@ Partial Class ArcadeControlForm
     Friend WithEvents SerialStatusLabel As ToolStripStatusLabel
     Friend WithEvents COMPortTimer As Timer
     Friend WithEvents ConnectDisconnectStatusStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SerialPort As IO.Ports.SerialPort
-    Friend WithEvents ReceivedDataTimer As Timer
+    Friend WithEvents TopMenuStrip As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NewGameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConfigurationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
 End Class

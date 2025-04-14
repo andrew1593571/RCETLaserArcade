@@ -6,6 +6,7 @@ Public Class ArcadeControlForm
     '######______Global Variables______######
     Private receivedDataQueue As New Queue(Of Byte)
     Private requestedVerification As Boolean
+    Private WithEvents laserArcade As New LaserArcade
 
     '######______Serial COM Subroutines______######
 
@@ -13,12 +14,12 @@ Public Class ArcadeControlForm
     ''' If not currently connected to a serial device and the COM select is not open, update the available COM ports
     ''' </summary>
     Sub UpdateAvailableCOM()
-        If Not SerialPort.IsOpen And Not COMPortComboBox.DroppedDown Then
+        If Not laserArcade.Connected And Not COMPortComboBox.DroppedDown Then
             COMPortComboBox.Items.Clear()
             For Each sp As String In My.Computer.Ports.SerialPortNames
                 COMPortComboBox.Items.Add(sp)
             Next
-            COMPortComboBox.Text = SerialPort.PortName
+            COMPortComboBox.Text = laserArcade.COMPort
         End If
     End Sub
 
@@ -29,7 +30,7 @@ Public Class ArcadeControlForm
     ''' <param name="connect"></param>
     Sub UpdateSerialControls(connect As Boolean)
         If connect Then
-            SerialStatusLabel.Text = $"Connected to {SerialPort.PortName}" 'set the status bar label
+            SerialStatusLabel.Text = $"Connected to {laserArcade.COMPort}" 'set the status bar label
             ConnectDisconnectStatusStripMenuItem.Text = "Disconnect" 'set the connect/disconnect button to disconnect
             COMPortComboBox.Enabled = False 'disable COM port selection
             COMPortTimer.Enabled = False
@@ -39,27 +40,25 @@ Public Class ArcadeControlForm
             COMPortTimer.Start()
         Else
             ConnectDisconnectStatusStripMenuItem.Text = "Connect" 'set the connect/disconnect button to connect
-            SerialStatusLabel.Text = $"Disconnected from {SerialPort.PortName}" 'set the status bar label
+            SerialStatusLabel.Text = $"Disconnected from {laserArcade.COMPort}" 'set the status bar label
             COMPortComboBox.Enabled = True 'enable COM port selection
             COMPortTimer.Start() 'starts the timer to periodically update the available COM ports
         End If
     End Sub
 
     Sub ConnectDisconnectSerial()
-        Dim verification(1) As Byte 'the Laser Arcade verification command
-        verification(0) = &H24 'handshake byte
-        verification(1) = &H56 'command byte
 
-        If SerialPort.IsOpen Then
+
+        If laserArcade.Connected Then
             'Disconnect from serial device
             Try
-                SerialPort.Close() 'close the serial port
+                laserArcade.EndConnection() 'close the serial port
 
                 'change the connect button text, serial status, and enable the COM selection
                 UpdateSerialControls(False)
 
             Catch ex As Exception 'if failed to disconnect, alert user, change all controls back to 
-                MsgBox($"Failed to disconnect from device on {SerialPort.PortName}")
+                MsgBox($"Failed to disconnect from device on {laserArcade.COMPort}")
                 UpdateSerialControls(True)
 
             End Try
@@ -67,21 +66,18 @@ Public Class ArcadeControlForm
             'connect to serial device
             If COMPortComboBox.Text.Contains("COM") Then 'verify a COM port is selected
                 'set the serial port to the selected COM port
-                SerialPort.PortName = COMPortComboBox.Text
+                laserArcade.COMPort = COMPortComboBox.Text
 
                 'open the serial port and change the controls, notify user if failed
                 Try
-                    SerialPort.Open()
+                    laserArcade.StartConnection()
                     UpdateSerialControls(True)
                 Catch ex As Exception
-                    MsgBox($"Failed to connect to device on {SerialPort.PortName}")
+                    MsgBox($"Failed to connect to device on {laserArcade.COMPort}")
                     UpdateSerialControls(False) 'set controls back to previous
                     Exit Sub 'skip the rest of the sub
                 End Try
 
-                'send device verification command
-                SerialPort.Write(verification, 0, 2)
-                requestedVerification = True
             End If
         End If
     End Sub
@@ -97,28 +93,16 @@ Public Class ArcadeControlForm
     Private Sub ArcadeControlForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateAvailableCOM() 'update the COM selection dropdown
         UpdateSerialControls(False) 'update the controls to reflect the current SerialPort COM port
+        laserArcade.NumberOfTargets = 20
     End Sub
 
     ''' <summary>
-    ''' Handles both refreshing available COM ports when not connected and connection timeout when first connected.
+    ''' Refreshes available COM ports when not connected.
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub COMPortTimer_Tick(sender As Object, e As EventArgs) Handles COMPortTimer.Tick
-        If SerialPort.IsOpen Then
-            'Laser Arcade did not respond to device verification, disconnect and notify user
-            Try
-                SerialPort.Close() 'close the serial port
-
-                'change the connect button text, serial status, and enable the COM selection
-                UpdateSerialControls(False)
-
-            Catch ex As Exception 'do nothing if errored
-            End Try
-
-            MsgBox("Device verification timed out. Please verify the COM port is correct.")
-
-        Else
+        If Not laserArcade.Connected Then
             'COM port is not connected, refresh available COM ports
             UpdateAvailableCOM()
         End If
@@ -139,43 +123,12 @@ Public Class ArcadeControlForm
         UpdateSerialControls(False)
     End Sub
 
-    ''' <summary>
-    ''' When data is received at the serial port, place it in the queue
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub SerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort.DataReceived
-        Dim bytesToRead As Integer = SerialPort.BytesToRead
-        Dim readBytes(bytesToRead - 1) As Byte
-
-        SerialPort.Read(readBytes, 0, bytesToRead)
-
-        For i = 0 To bytesToRead - 1
-            receivedDataQueue.Enqueue(readBytes(i))
-        Next
+    Private Sub laserArcadeGame_DeviceVerificationFailed(message As String) Handles laserArcade.DeviceVerificationFailed
+        UpdateSerialControls(False)
+        MsgBox(message)
     End Sub
 
-    ''' <summary>
-    ''' when the timer ticks, interpret received data if enough has been received
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub ReceivedDataTimer_Tick(sender As Object, e As EventArgs) Handles ReceivedDataTimer.Tick
-        Dim receivedData(2) As Byte
-
-        If receivedDataQueue.Count <> 0 Then
-            receivedData(0) = receivedDataQueue.Dequeue
-        End If
-
-        If receivedData(0) = &H24 Then
-            receivedData(1) = receivedDataQueue.Dequeue
-            receivedData(2) = receivedDataQueue.Dequeue
-
-            If requestedVerification And receivedData(1) = &H4C And receivedData(2) = &H41 Then
-                COMPortTimer.Stop()
-                requestedVerification = False
-            End If
-
-        End If
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        laserArcade.EnableRandomTarget()
     End Sub
 End Class
