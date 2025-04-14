@@ -94,6 +94,7 @@ Public Class ArcadeControlForm
         UpdateAvailableCOM() 'update the COM selection dropdown
         UpdateSerialControls(False) 'update the controls to reflect the current SerialPort COM port
         laserArcade.NumberOfTargets = 20
+        laserArcade.TimedDisable = True
     End Sub
 
     ''' <summary>

@@ -33,6 +33,7 @@ Public Class LaserArcade
     '######______Class Properties and variables______######
 
     Private _targets(7) As ArcadeTarget
+    Private _disableTimers(7) As Timer
 
     ''' <summary>
     ''' returns the open or closed status of the arcadePort serial connection
@@ -55,6 +56,48 @@ Public Class LaserArcade
             If Not arcadePort.IsOpen Then
                 arcadePort.PortName = value
             End If
+        End Set
+    End Property
+
+    Private _targetTimedDisable As Boolean
+    ''' <summary>
+    ''' If true, the targets will be disabled after a random amount of time in the disable range.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property TimedDisable() As Boolean
+        Get
+            Return _targetTimedDisable
+        End Get
+        Set(ByVal value As Boolean)
+            _targetTimedDisable = value
+        End Set
+    End Property
+
+    Private _disableTimeMinimum As Integer
+    ''' <summary>
+    ''' The minimum amount of time a target will remain enabled unless hit by a player in ms.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property TimedDisableMinimum() As Integer
+        Get
+            Return _disableTimeMinimum
+        End Get
+        Set(ByVal value As Integer)
+            _disableTimeMinimum = value
+        End Set
+    End Property
+
+    Private _disableTimeMaximum As Integer
+    ''' <summary>
+    ''' The maximum amount of time a target will remain enabled in ms.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property TimedDisableMaximum() As Integer
+        Get
+            Return _disableTimeMaximum
+        End Get
+        Set(ByVal value As Integer)
+            _disableTimeMaximum = value
         End Set
     End Property
 
@@ -146,24 +189,100 @@ Public Class LaserArcade
                 For i = 0 To 7
                     If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
                         arcadePort.Write(_targets(i).EnableTarget(), 0, 3)
+                        _disableTimers(i).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                        If _targetTimedDisable Then
+                            _disableTimers(i).Start()
+                        End If
                     End If
                 Next
             Case 1 'enable slot 1
                 arcadePort.Write(_targets(0).EnableTarget(), 0, 3)
+                _disableTimers(0).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(0).Start()
+                End If
             Case 2 'enable slot 2
                 arcadePort.Write(_targets(1).EnableTarget(), 0, 3)
+                _disableTimers(1).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(1).Start()
+                End If
             Case 3 'enable slot 3
                 arcadePort.Write(_targets(2).EnableTarget(), 0, 3)
+                _disableTimers(2).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(2).Start()
+                End If
             Case 4 'enable slot 4
                 arcadePort.Write(_targets(3).EnableTarget(), 0, 3)
+                _disableTimers(3).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(3).Start()
+                End If
             Case 5 'enable slot 5
                 arcadePort.Write(_targets(4).EnableTarget(), 0, 3)
+                _disableTimers(4).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(4).Start()
+                End If
             Case 6 'enable slot 6
                 arcadePort.Write(_targets(5).EnableTarget(), 0, 3)
+                _disableTimers(5).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(5).Start()
+                End If
             Case 7 'enable slot 7
                 arcadePort.Write(_targets(6).EnableTarget(), 0, 3)
+                _disableTimers(6).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(6).Start()
+                End If
             Case 8 'enable slot 8
                 arcadePort.Write(_targets(7).EnableTarget(), 0, 3)
+                _disableTimers(7).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
+                If _targetTimedDisable Then
+                    _disableTimers(7).Start()
+                End If
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' Disables specified target slot. 0 will Disable all slots.
+    ''' </summary>
+    ''' <param name="slot"></param>
+    Public Sub DisableTarget(slot As Integer)
+        Select Case slot
+            Case 0 'enable all targets
+                For i = 0 To 7
+                    If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
+                        arcadePort.Write(_targets(i).DisableTarget(), 0, 3)
+                        _disableTimers(i).Stop()
+                    End If
+                Next
+            Case 1 'enable slot 1
+                arcadePort.Write(_targets(0).DisableTarget(), 0, 3)
+                _disableTimers(0).Stop()
+            Case 2 'enable slot 2
+                arcadePort.Write(_targets(1).DisableTarget(), 0, 3)
+                _disableTimers(1).Stop()
+            Case 3 'enable slot 3
+                arcadePort.Write(_targets(2).DisableTarget(), 0, 3)
+                _disableTimers(2).Stop()
+            Case 4 'enable slot 4
+                arcadePort.Write(_targets(3).DisableTarget(), 0, 3)
+                _disableTimers(3).Stop()
+            Case 5 'enable slot 5
+                arcadePort.Write(_targets(4).DisableTarget(), 0, 3)
+                _disableTimers(4).Stop()
+            Case 6 'enable slot 6
+                arcadePort.Write(_targets(5).DisableTarget(), 0, 3)
+                _disableTimers(5).Stop()
+            Case 7 'enable slot 7
+                arcadePort.Write(_targets(6).DisableTarget(), 0, 3)
+                _disableTimers(6).Stop()
+            Case 8 'enable slot 8
+                arcadePort.Write(_targets(7).DisableTarget(), 0, 3)
+                _disableTimers(7).Stop()
         End Select
     End Sub
 
@@ -174,8 +293,8 @@ Public Class LaserArcade
         If arcadePort.IsOpen Then
             For i = 0 To 7
                 If Not _targets(i).Enabled Then
-                    arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4)
-                    EnableTarget(i + 1)
+                    arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4) 'change the target address
+                    EnableTarget(i + 1) 'enable the target
                     Exit Sub
                 End If
             Next
@@ -190,8 +309,14 @@ Public Class LaserArcade
         verificationTimer.Interval = 500
         connectionTimeoutTimer.Interval = 10000
 
+        'set the disableTime from 5 to 10 seconds as default
+        _disableTimeMaximum = 10000
+        _disableTimeMinimum = 5000
+
         For i = 0 To 7
             _targets(i) = New ArcadeTarget(i + 1)
+            _disableTimers(i) = New Timer
+            AddHandler _disableTimers(i).Tick, AddressOf DisableTimer_Tick
         Next
     End Sub
 
@@ -269,5 +394,13 @@ Public Class LaserArcade
             EndConnection()
             RaiseEvent DeviceVerificationFailed("Device verification timed out. Please check the COM port.")
         End If
+    End Sub
+
+    Private Sub DisableTimer_Tick(sender As Object, e As EventArgs)
+        For i = 0 To 7
+            If _disableTimers(i) Is sender Then
+                DisableTarget(i + 1)
+            End If
+        Next
     End Sub
 End Class

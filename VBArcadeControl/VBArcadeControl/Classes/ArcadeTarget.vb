@@ -68,7 +68,7 @@
     Public Function EnableTarget() As Byte()
         Dim _enableCommand(2) As Byte
         _enableCommand(0) = &H24
-        _enableCommand(1) = &H44
+        _enableCommand(1) = &H45
         _enableCommand(2) = _targetSlot
 
         _enabled = True
@@ -82,7 +82,7 @@
     Public Function DisableTarget() As Byte()
         Dim _disableCommand(2) As Byte
         _disableCommand(0) = &H24
-        _disableCommand(1) = &H45
+        _disableCommand(1) = &H44
         _disableCommand(2) = _targetSlot
 
         _enabled = False
