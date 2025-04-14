@@ -36,7 +36,9 @@ Partial Class ArcadeControlForm
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.StartGameButton = New System.Windows.Forms.Button()
+        Me.TargetEnableTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.GameTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -129,21 +131,29 @@ Partial Class ArcadeControlForm
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
-        'Button1
+        'StartGameButton
         '
-        Me.Button1.Location = New System.Drawing.Point(424, 215)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.StartGameButton.Location = New System.Drawing.Point(424, 215)
+        Me.StartGameButton.Name = "StartGameButton"
+        Me.StartGameButton.Size = New System.Drawing.Size(75, 23)
+        Me.StartGameButton.TabIndex = 2
+        Me.StartGameButton.Text = "Start Game"
+        Me.StartGameButton.UseVisualStyleBackColor = True
+        '
+        'TargetEnableTimer
+        '
+        Me.TargetEnableTimer.Interval = 500
+        '
+        'GameTimer
+        '
+        Me.GameTimer.Interval = 90000
         '
         'ArcadeControlForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.StartGameButton)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TopMenuStrip)
         Me.MainMenuStrip = Me.TopMenuStrip
@@ -172,5 +182,7 @@ Partial Class ArcadeControlForm
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button1 As Button
+    Friend WithEvents StartGameButton As Button
+    Friend WithEvents TargetEnableTimer As Timer
+    Friend WithEvents GameTimer As Timer
 End Class

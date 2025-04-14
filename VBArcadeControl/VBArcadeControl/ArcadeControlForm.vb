@@ -129,7 +129,20 @@ Public Class ArcadeControlForm
         MsgBox(message)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub StartGameButton_Click(sender As Object, e As EventArgs) Handles StartGameButton.Click
         laserArcade.EnableRandomTarget()
+        GameTimer.Start()
+        TargetEnableTimer.Start()
+    End Sub
+
+    Private Sub TargetEnableTimer_Tick(sender As Object, e As EventArgs) Handles TargetEnableTimer.Tick
+        laserArcade.EnableRandomTarget()
+    End Sub
+
+    Private Sub GameTimer_Tick(sender As Object, e As EventArgs) Handles GameTimer.Tick
+        TargetEnableTimer.Stop()
+        GameTimer.Stop()
+        laserArcade.DisableTarget(0)
+        MsgBox("Game Over")
     End Sub
 End Class
