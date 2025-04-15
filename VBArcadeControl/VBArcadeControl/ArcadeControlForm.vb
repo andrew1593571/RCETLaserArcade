@@ -15,9 +15,17 @@ Public Class ArcadeControlForm
     Public gameTime As Integer
 
     ''' <summary>
+    ''' Number of seconds left before end of game
+    ''' </summary>
+    Private gameCountdown As Integer
+
+    ''' <summary>
     ''' True if a game is in progress
     ''' </summary>
     Private gameInProgress As Boolean
+
+    Private playerOnePoints As Integer
+    Private playerTwoPoints As Integer
 
     ''' <summary>
     ''' stores any point overrides. If not in this array, points default to 1
@@ -97,6 +105,18 @@ Public Class ArcadeControlForm
         End If
     End Sub
 
+    '######______Subroutines______######
+
+    Private Sub UpdateCountdown()
+        Dim minutes As Integer
+        Dim seconds As Integer
+
+        minutes = gameCountdown \ 60
+        seconds = gameCountdown - (60 * minutes)
+
+        CountdownLabel.Text = $"{minutes}:{CStr(seconds).PadLeft(2, "0"c)}"
+    End Sub
+
 
     '######_____Event Handlers______######
 
@@ -160,9 +180,26 @@ Public Class ArcadeControlForm
     End Sub
 
     Private Sub StartGameButton_Click(sender As Object, e As EventArgs) Handles StartGameButton.Click
-        laserArcade.EnableRandomTarget()
-        GameTimer.Start()
-        TargetEnableTimer.Start()
+        If gameInProgress Then
+            MsgBox("Game already started!")
+        Else
+            If laserArcade.Connected And laserArcade.DeviceVerified Then
+                gameCountdown = gameTime
+                UpdateCountdown()
+
+                playerOnePoints = 0
+                playerTwoPoints = 0
+                PlayerOneScoreLabel.Text = "0"
+                PlayerTwoScoreLabel.Text = "0"
+
+                gameInProgress = True
+                laserArcade.EnableRandomTarget()
+                GameTimer.Start()
+                TargetEnableTimer.Start()
+            Else
+                MsgBox("Please connect to the Laser Arcade COM port.")
+            End If
+        End If
     End Sub
 
     Private Sub TargetEnableTimer_Tick(sender As Object, e As EventArgs) Handles TargetEnableTimer.Tick
@@ -170,10 +207,18 @@ Public Class ArcadeControlForm
     End Sub
 
     Private Sub GameTimer_Tick(sender As Object, e As EventArgs) Handles GameTimer.Tick
-        TargetEnableTimer.Stop()
-        GameTimer.Stop()
-        laserArcade.DisableTarget(0)
-        MsgBox("Game Over")
+        If gameInProgress Then
+            gameCountdown -= 1
+            UpdateCountdown()
+
+            If gameCountdown = 0 Then
+                TargetEnableTimer.Stop()
+                GameTimer.Stop()
+                laserArcade.DisableTarget(0)
+                gameInProgress = False
+                CountdownLabel.Text = "Game Over"
+            End If
+        End If
     End Sub
 
     ''' <summary>
@@ -182,7 +227,12 @@ Public Class ArcadeControlForm
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ConfigurationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfigurationToolStripMenuItem.Click
-        ArcadeConfigurationForm.Show()
+        If gameInProgress Then
+            MsgBox("Configuration cannot be changed with a game in progress.")
+        Else
+            ArcadeConfigurationForm.Show()
+            Me.Enabled = False
+        End If
     End Sub
 
     ''' <summary>
@@ -191,6 +241,42 @@ Public Class ArcadeControlForm
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ResetTopMenuItem_Click(sender As Object, e As EventArgs) Handles ResetTopMenuItem.Click
-        ArcadeControlForm_Load(sender, e)
+        If gameInProgress Then
+            MsgBox("Configuration cannot be changed with a game in progress.")
+        Else
+            ArcadeControlForm_Load(sender, e)
+        End If
+    End Sub
+
+    Private Sub laserArcade_PlayerOneScore(address As Byte) Handles laserArcade.PlayerOneScore
+        Dim addressInt As Integer = CInt(address)
+        Dim pointsScored As Integer = 1
+
+        For i = 0 To (pointOverrides.Length \ 2) - 1
+            If addressInt = pointOverrides(0, i) Then
+                pointsScored = pointOverrides(1, i)
+            End If
+        Next
+        playerOnePoints += pointsScored
+
+        PlayerOneScoreLabel.Text = CStr(playerOnePoints)
+    End Sub
+
+    Private Sub laserArcade_PlayerTwoScore(address As Byte) Handles laserArcade.PlayerTwoScore
+        Dim addressInt As Integer = CInt(address)
+        Dim pointsScored As Integer = 1
+
+        For i = 0 To (pointOverrides.Length \ 2) - 1
+            If addressInt = pointOverrides(0, i) Then
+                pointsScored = pointOverrides(1, i)
+            End If
+        Next
+        playerTwoPoints += pointsScored
+
+        PlayerTwoScoreLabel.Text = CStr(playerTwoPoints)
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
     End Sub
 End Class

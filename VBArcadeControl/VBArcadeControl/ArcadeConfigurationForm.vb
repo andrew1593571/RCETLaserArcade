@@ -1,6 +1,7 @@
 ﻿Option Strict On
 Option Explicit On
 Option Compare Text
+Imports System.ComponentModel
 Imports System.Security
 
 Public Class ArcadeConfigurationForm
@@ -247,6 +248,8 @@ Public Class ArcadeConfigurationForm
                 WriteLine(1, ArcadeControlForm.pointOverrides(1, i))
             Next
             FileClose(1)
+
+            ArcadeControlForm.ConfigurationStatusStripLabel.Text = Split(SaveFileDialog.FileName, "\").Last
         End If
     End Sub
 
@@ -281,9 +284,15 @@ Public Class ArcadeConfigurationForm
             Next
 
             ArcadeControlForm.pointOverrides = newPointOverride
+            loaded = False
+            ArcadeControlForm.ConfigurationStatusStripLabel.Text = Split(OpenFileDialog.FileName, "\").Last
 
             FileClose(1)
             ArcadeConfigurationForm_Load(sender, e)
         End If
+    End Sub
+
+    Private Sub ArcadeConfigurationForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ArcadeControlForm.Enabled = True
     End Sub
 End Class

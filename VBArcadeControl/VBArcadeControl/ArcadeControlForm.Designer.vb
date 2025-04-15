@@ -33,16 +33,24 @@ Partial Class ArcadeControlForm
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfigurationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResetTopMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileTopMenuSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StartGameButton = New System.Windows.Forms.Button()
         Me.TargetEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GameTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ResetTopMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FileTopMenuSeparator = New System.Windows.Forms.ToolStripSeparator()
+        Me.TitleLabel = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
+        Me.CountdownLabel = New System.Windows.Forms.Label()
+        Me.PlayerOneLabel = New System.Windows.Forms.Label()
+        Me.PlayerTwoLabel = New System.Windows.Forms.Label()
+        Me.PlayerTwoScoreLabel = New System.Windows.Forms.Label()
+        Me.PlayerOneScoreLabel = New System.Windows.Forms.Label()
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
+        Me.TableLayoutPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
@@ -119,6 +127,17 @@ Partial Class ArcadeControlForm
         Me.ConfigurationToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
         Me.ConfigurationToolStripMenuItem.Text = "&Change Configuration"
         '
+        'ResetTopMenuItem
+        '
+        Me.ResetTopMenuItem.Name = "ResetTopMenuItem"
+        Me.ResetTopMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.ResetTopMenuItem.Text = "&Reset to Default Configuration"
+        '
+        'FileTopMenuSeparator
+        '
+        Me.FileTopMenuSeparator.Name = "FileTopMenuSeparator"
+        Me.FileTopMenuSeparator.Size = New System.Drawing.Size(231, 6)
+        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
@@ -140,9 +159,11 @@ Partial Class ArcadeControlForm
         '
         'StartGameButton
         '
-        Me.StartGameButton.Location = New System.Drawing.Point(424, 215)
+        Me.StartGameButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.StartGameButton.Location = New System.Drawing.Point(269, 320)
         Me.StartGameButton.Name = "StartGameButton"
-        Me.StartGameButton.Size = New System.Drawing.Size(75, 23)
+        Me.StartGameButton.Padding = New System.Windows.Forms.Padding(20)
+        Me.StartGameButton.Size = New System.Drawing.Size(260, 75)
         Me.StartGameButton.TabIndex = 2
         Me.StartGameButton.Text = "Start Game"
         Me.StartGameButton.UseVisualStyleBackColor = True
@@ -153,25 +174,118 @@ Partial Class ArcadeControlForm
         '
         'GameTimer
         '
-        Me.GameTimer.Interval = 90000
+        Me.GameTimer.Interval = 1000
         '
-        'ResetTopMenuItem
+        'TitleLabel
         '
-        Me.ResetTopMenuItem.Name = "ResetTopMenuItem"
-        Me.ResetTopMenuItem.Size = New System.Drawing.Size(234, 22)
-        Me.ResetTopMenuItem.Text = "&Reset to Default Configuration"
+        Me.TitleLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TitleLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TitleLabel.Location = New System.Drawing.Point(269, 0)
+        Me.TitleLabel.Name = "TitleLabel"
+        Me.TitleLabel.Size = New System.Drawing.Size(260, 59)
+        Me.TitleLabel.TabIndex = 3
+        Me.TitleLabel.Text = "Laser Arcade"
+        Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'FileTopMenuSeparator
+        'TableLayoutPanel
         '
-        Me.FileTopMenuSeparator.Name = "FileTopMenuSeparator"
-        Me.FileTopMenuSeparator.Size = New System.Drawing.Size(231, 6)
+        Me.TableLayoutPanel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel.ColumnCount = 3
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33112!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33445!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33445!))
+        Me.TableLayoutPanel.Controls.Add(Me.TitleLabel, 1, 0)
+        Me.TableLayoutPanel.Controls.Add(Me.CountdownLabel, 1, 1)
+        Me.TableLayoutPanel.Controls.Add(Me.PlayerOneLabel, 0, 1)
+        Me.TableLayoutPanel.Controls.Add(Me.PlayerTwoLabel, 2, 1)
+        Me.TableLayoutPanel.Controls.Add(Me.StartGameButton, 1, 3)
+        Me.TableLayoutPanel.Controls.Add(Me.PlayerTwoScoreLabel, 2, 2)
+        Me.TableLayoutPanel.Controls.Add(Me.PlayerOneScoreLabel, 0, 2)
+        Me.TableLayoutPanel.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel.Name = "TableLayoutPanel"
+        Me.TableLayoutPanel.RowCount = 4
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel.Size = New System.Drawing.Size(800, 398)
+        Me.TableLayoutPanel.TabIndex = 4
+        '
+        'CountdownLabel
+        '
+        Me.CountdownLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CountdownLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 50.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CountdownLabel.Location = New System.Drawing.Point(269, 59)
+        Me.CountdownLabel.Name = "CountdownLabel"
+        Me.CountdownLabel.Size = New System.Drawing.Size(260, 159)
+        Me.CountdownLabel.TabIndex = 4
+        Me.CountdownLabel.Text = "0:00"
+        Me.CountdownLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PlayerOneLabel
+        '
+        Me.PlayerOneLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlayerOneLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlayerOneLabel.Location = New System.Drawing.Point(3, 59)
+        Me.PlayerOneLabel.Name = "PlayerOneLabel"
+        Me.PlayerOneLabel.Size = New System.Drawing.Size(260, 159)
+        Me.PlayerOneLabel.TabIndex = 5
+        Me.PlayerOneLabel.Text = "Player One"
+        Me.PlayerOneLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'PlayerTwoLabel
+        '
+        Me.PlayerTwoLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlayerTwoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlayerTwoLabel.Location = New System.Drawing.Point(535, 59)
+        Me.PlayerTwoLabel.Name = "PlayerTwoLabel"
+        Me.PlayerTwoLabel.Size = New System.Drawing.Size(262, 159)
+        Me.PlayerTwoLabel.TabIndex = 6
+        Me.PlayerTwoLabel.Text = "Player Two"
+        Me.PlayerTwoLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'PlayerTwoScoreLabel
+        '
+        Me.PlayerTwoScoreLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlayerTwoScoreLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlayerTwoScoreLabel.Location = New System.Drawing.Point(535, 218)
+        Me.PlayerTwoScoreLabel.Name = "PlayerTwoScoreLabel"
+        Me.PlayerTwoScoreLabel.Size = New System.Drawing.Size(262, 99)
+        Me.PlayerTwoScoreLabel.TabIndex = 7
+        Me.PlayerTwoScoreLabel.Text = "0"
+        Me.PlayerTwoScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'PlayerOneScoreLabel
+        '
+        Me.PlayerOneScoreLabel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlayerOneScoreLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlayerOneScoreLabel.Location = New System.Drawing.Point(3, 218)
+        Me.PlayerOneScoreLabel.Name = "PlayerOneScoreLabel"
+        Me.PlayerOneScoreLabel.Size = New System.Drawing.Size(260, 99)
+        Me.PlayerOneScoreLabel.TabIndex = 8
+        Me.PlayerOneScoreLabel.Text = "0"
+        Me.PlayerOneScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'ArcadeControlForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.StartGameButton)
+        Me.Controls.Add(Me.TableLayoutPanel)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TopMenuStrip)
         Me.MainMenuStrip = Me.TopMenuStrip
@@ -182,6 +296,7 @@ Partial Class ArcadeControlForm
         Me.StatusStrip.PerformLayout()
         Me.TopMenuStrip.ResumeLayout(False)
         Me.TopMenuStrip.PerformLayout()
+        Me.TableLayoutPanel.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -205,4 +320,11 @@ Partial Class ArcadeControlForm
     Friend WithEvents ConfigurationStatusStripLabel As ToolStripStatusLabel
     Friend WithEvents ResetTopMenuItem As ToolStripMenuItem
     Friend WithEvents FileTopMenuSeparator As ToolStripSeparator
+    Friend WithEvents TitleLabel As Label
+    Friend WithEvents TableLayoutPanel As TableLayoutPanel
+    Friend WithEvents CountdownLabel As Label
+    Friend WithEvents PlayerOneLabel As Label
+    Friend WithEvents PlayerTwoLabel As Label
+    Friend WithEvents PlayerTwoScoreLabel As Label
+    Friend WithEvents PlayerOneScoreLabel As Label
 End Class
