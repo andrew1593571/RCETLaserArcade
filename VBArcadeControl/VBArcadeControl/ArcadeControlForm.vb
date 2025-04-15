@@ -4,9 +4,26 @@ Imports System.IO.Ports
 
 Public Class ArcadeControlForm
     '######______Global Variables______######
-    Private receivedDataQueue As New Queue(Of Byte)
-    Private requestedVerification As Boolean
-    Private WithEvents laserArcade As New LaserArcade
+    ''' <summary>
+    ''' Instance of the LaserArcade class
+    ''' </summary>
+    Public WithEvents laserArcade As New LaserArcade
+
+    ''' <summary>
+    ''' Stores the game time length in seconds.
+    ''' </summary>
+    Public gameTime As Integer
+
+    ''' <summary>
+    ''' True if a game is in progress
+    ''' </summary>
+    Private gameInProgress As Boolean
+
+    ''' <summary>
+    ''' stores any point overrides. If not in this array, points default to 1
+    ''' 0,n is address. 1,n is point value
+    ''' </summary>
+    Public pointOverrides(,) As Integer
 
     '######______Serial COM Subroutines______######
 
@@ -47,8 +64,6 @@ Public Class ArcadeControlForm
     End Sub
 
     Sub ConnectDisconnectSerial()
-
-
         If laserArcade.Connected Then
             'Disconnect from serial device
             Try
@@ -91,10 +106,25 @@ Public Class ArcadeControlForm
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ArcadeControlForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        UpdateAvailableCOM() 'update the COM selection dropdown
-        UpdateSerialControls(False) 'update the controls to reflect the current SerialPort COM port
-        laserArcade.NumberOfTargets = 20
-        laserArcade.TimedDisable = True
+        Dim defaultOverrides(1, 0) As Integer
+        defaultOverrides(0, 0) = 0
+        defaultOverrides(1, 0) = 0
+
+        If Not laserArcade.Connected Then
+            UpdateAvailableCOM() 'update the COM selection dropdown
+            UpdateSerialControls(False) 'update the controls to reflect the current SerialPort COM port
+        End If
+
+        'set default configuration
+        laserArcade.NumberOfTargets = 1 'single target
+        laserArcade.TimedDisable = True 'targets turn off with timer
+        gameTime = 60 '60 second gametime
+        pointOverrides = defaultOverrides 'address 0x00 is worth 0 points
+        laserArcade.TimedDisableMinimum = 5000 '5 second minimum target enable time
+        laserArcade.TimedDisableMaximum = 10000 '10 second maximum target enable time
+        TargetEnableTimer.Interval = 500 'target enabled every 500ms
+        ConfigurationStatusStripLabel.Text = "Default Configuration"
+
     End Sub
 
     ''' <summary>
@@ -146,7 +176,21 @@ Public Class ArcadeControlForm
         MsgBox("Game Over")
     End Sub
 
+    ''' <summary>
+    ''' Opens the configuration menu
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ConfigurationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfigurationToolStripMenuItem.Click
         ArcadeConfigurationForm.Show()
+    End Sub
+
+    ''' <summary>
+    ''' Reload the form to reset the defaults
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ResetTopMenuItem_Click(sender As Object, e As EventArgs) Handles ResetTopMenuItem.Click
+        ArcadeControlForm_Load(sender, e)
     End Sub
 End Class

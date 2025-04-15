@@ -24,37 +24,37 @@ Partial Class ArcadeConfigurationForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GameTimeGroupBox = New System.Windows.Forms.GroupBox()
-        Me.GameTimeTextBox = New System.Windows.Forms.TextBox()
         Me.GameTimeSecondsLabel = New System.Windows.Forms.Label()
+        Me.GameTimeTextBox = New System.Windows.Forms.TextBox()
         Me.TargetEnableGroupBox = New System.Windows.Forms.GroupBox()
         Me.TargetEnableSecondsLabel = New System.Windows.Forms.Label()
         Me.TargetEnableTextBox = New System.Windows.Forms.TextBox()
         Me.TargetModeGroupBox = New System.Windows.Forms.GroupBox()
-        Me.TargetAutoDisableRadioButton = New System.Windows.Forms.RadioButton()
         Me.TargetRemainEnabledRadioButton = New System.Windows.Forms.RadioButton()
+        Me.TargetAutoDisableRadioButton = New System.Windows.Forms.RadioButton()
         Me.AutoDisableGroupBox = New System.Windows.Forms.GroupBox()
-        Me.AutoDisableMinSecondsLabel = New System.Windows.Forms.Label()
-        Me.AutoDisableMinimumTextBox = New System.Windows.Forms.TextBox()
-        Me.AutoDisableMinimumLabel = New System.Windows.Forms.Label()
         Me.AutoDisableMaximumLabel = New System.Windows.Forms.Label()
         Me.AutoDisableMaxSecondsLabel = New System.Windows.Forms.Label()
         Me.AutoDisableMaximumTextBox = New System.Windows.Forms.TextBox()
+        Me.AutoDisableMinimumLabel = New System.Windows.Forms.Label()
+        Me.AutoDisableMinSecondsLabel = New System.Windows.Forms.Label()
+        Me.AutoDisableMinimumTextBox = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.SaveButton = New System.Windows.Forms.Button()
         Me.OpenButton = New System.Windows.Forms.Button()
         Me.PointsGroupBox = New System.Windows.Forms.GroupBox()
-        Me.TargetPointsLabel = New System.Windows.Forms.Label()
-        Me.PointsListBox = New System.Windows.Forms.ListBox()
-        Me.RemovePointsButton = New System.Windows.Forms.Button()
-        Me.AddPointsButton = New System.Windows.Forms.Button()
-        Me.AddressLabel = New System.Windows.Forms.Label()
-        Me.AddressTextBox = New System.Windows.Forms.TextBox()
         Me.ValueTextBox = New System.Windows.Forms.TextBox()
         Me.ValueLabel = New System.Windows.Forms.Label()
+        Me.AddressTextBox = New System.Windows.Forms.TextBox()
+        Me.AddressLabel = New System.Windows.Forms.Label()
+        Me.AddPointsButton = New System.Windows.Forms.Button()
+        Me.RemovePointsButton = New System.Windows.Forms.Button()
+        Me.PointsListBox = New System.Windows.Forms.ListBox()
+        Me.TargetPointsLabel = New System.Windows.Forms.Label()
         Me.TargetsGroupBox = New System.Windows.Forms.GroupBox()
-        Me.TargetNumberTextBox = New System.Windows.Forms.TextBox()
         Me.TargetNumberLabel = New System.Windows.Forms.Label()
+        Me.TargetNumberTextBox = New System.Windows.Forms.TextBox()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.GameTimeGroupBox.SuspendLayout()
         Me.TargetEnableGroupBox.SuspendLayout()
@@ -76,15 +76,6 @@ Partial Class ArcadeConfigurationForm
         Me.GameTimeGroupBox.Text = "Game Time"
         Me.ToolTip.SetToolTip(Me.GameTimeGroupBox, "Length of game in seconds")
         '
-        'GameTimeTextBox
-        '
-        Me.GameTimeTextBox.Location = New System.Drawing.Point(6, 19)
-        Me.GameTimeTextBox.Name = "GameTimeTextBox"
-        Me.GameTimeTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.GameTimeTextBox.TabIndex = 1
-        Me.GameTimeTextBox.Text = "90"
-        Me.ToolTip.SetToolTip(Me.GameTimeTextBox, "Length of game in seconds")
-        '
         'GameTimeSecondsLabel
         '
         Me.GameTimeSecondsLabel.AutoSize = True
@@ -94,6 +85,14 @@ Partial Class ArcadeConfigurationForm
         Me.GameTimeSecondsLabel.TabIndex = 2
         Me.GameTimeSecondsLabel.Text = "Seconds"
         Me.ToolTip.SetToolTip(Me.GameTimeSecondsLabel, "Length of game in seconds")
+        '
+        'GameTimeTextBox
+        '
+        Me.GameTimeTextBox.Location = New System.Drawing.Point(6, 19)
+        Me.GameTimeTextBox.Name = "GameTimeTextBox"
+        Me.GameTimeTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.GameTimeTextBox.TabIndex = 1
+        Me.ToolTip.SetToolTip(Me.GameTimeTextBox, "Length of game in seconds")
         '
         'TargetEnableGroupBox
         '
@@ -125,7 +124,6 @@ Partial Class ArcadeConfigurationForm
         Me.TargetEnableTextBox.Name = "TargetEnableTextBox"
         Me.TargetEnableTextBox.Size = New System.Drawing.Size(100, 20)
         Me.TargetEnableTextBox.TabIndex = 1
-        Me.TargetEnableTextBox.Text = "500"
         Me.ToolTip.SetToolTip(Me.TargetEnableTextBox, "A new target will be enabled every X milliseconds (Maximum of 8 targets at a time" &
         ").")
         '
@@ -140,6 +138,18 @@ Partial Class ArcadeConfigurationForm
         Me.TargetModeGroupBox.TabStop = False
         Me.TargetModeGroupBox.Text = "Target Mode"
         '
+        'TargetRemainEnabledRadioButton
+        '
+        Me.TargetRemainEnabledRadioButton.AutoSize = True
+        Me.TargetRemainEnabledRadioButton.Location = New System.Drawing.Point(6, 42)
+        Me.TargetRemainEnabledRadioButton.Name = "TargetRemainEnabledRadioButton"
+        Me.TargetRemainEnabledRadioButton.Size = New System.Drawing.Size(143, 17)
+        Me.TargetRemainEnabledRadioButton.TabIndex = 4
+        Me.TargetRemainEnabledRadioButton.TabStop = True
+        Me.TargetRemainEnabledRadioButton.Text = "Remain Enabled Until Hit"
+        Me.ToolTip.SetToolTip(Me.TargetRemainEnabledRadioButton, "Targets will remain enabled until hit by a player.")
+        Me.TargetRemainEnabledRadioButton.UseVisualStyleBackColor = True
+        '
         'TargetAutoDisableRadioButton
         '
         Me.TargetAutoDisableRadioButton.AutoSize = True
@@ -152,18 +162,6 @@ Partial Class ArcadeConfigurationForm
         Me.TargetAutoDisableRadioButton.Text = "Automatically Disable"
         Me.ToolTip.SetToolTip(Me.TargetAutoDisableRadioButton, "Targets will disable at a random time interval between the minimum and maximum")
         Me.TargetAutoDisableRadioButton.UseVisualStyleBackColor = True
-        '
-        'TargetRemainEnabledRadioButton
-        '
-        Me.TargetRemainEnabledRadioButton.AutoSize = True
-        Me.TargetRemainEnabledRadioButton.Location = New System.Drawing.Point(6, 42)
-        Me.TargetRemainEnabledRadioButton.Name = "TargetRemainEnabledRadioButton"
-        Me.TargetRemainEnabledRadioButton.Size = New System.Drawing.Size(143, 17)
-        Me.TargetRemainEnabledRadioButton.TabIndex = 4
-        Me.TargetRemainEnabledRadioButton.TabStop = True
-        Me.TargetRemainEnabledRadioButton.Text = "Remain Enabled Until Hit"
-        Me.ToolTip.SetToolTip(Me.TargetRemainEnabledRadioButton, "Targets will remain enabled until hit by a player.")
-        Me.TargetRemainEnabledRadioButton.UseVisualStyleBackColor = True
         '
         'AutoDisableGroupBox
         '
@@ -179,33 +177,6 @@ Partial Class ArcadeConfigurationForm
         Me.AutoDisableGroupBox.TabIndex = 3
         Me.AutoDisableGroupBox.TabStop = False
         Me.AutoDisableGroupBox.Text = "Automatic Target Disable Time"
-        '
-        'AutoDisableMinSecondsLabel
-        '
-        Me.AutoDisableMinSecondsLabel.AutoSize = True
-        Me.AutoDisableMinSecondsLabel.Location = New System.Drawing.Point(112, 35)
-        Me.AutoDisableMinSecondsLabel.Name = "AutoDisableMinSecondsLabel"
-        Me.AutoDisableMinSecondsLabel.Size = New System.Drawing.Size(64, 13)
-        Me.AutoDisableMinSecondsLabel.TabIndex = 4
-        Me.AutoDisableMinSecondsLabel.Text = "Milliseconds"
-        '
-        'AutoDisableMinimumTextBox
-        '
-        Me.AutoDisableMinimumTextBox.Location = New System.Drawing.Point(6, 32)
-        Me.AutoDisableMinimumTextBox.Name = "AutoDisableMinimumTextBox"
-        Me.AutoDisableMinimumTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.AutoDisableMinimumTextBox.TabIndex = 3
-        Me.AutoDisableMinimumTextBox.Text = "5000"
-        Me.ToolTip.SetToolTip(Me.AutoDisableMinimumTextBox, "The minimum length of time a target will remain enabled")
-        '
-        'AutoDisableMinimumLabel
-        '
-        Me.AutoDisableMinimumLabel.AutoSize = True
-        Me.AutoDisableMinimumLabel.Location = New System.Drawing.Point(6, 16)
-        Me.AutoDisableMinimumLabel.Name = "AutoDisableMinimumLabel"
-        Me.AutoDisableMinimumLabel.Size = New System.Drawing.Size(48, 13)
-        Me.AutoDisableMinimumLabel.TabIndex = 3
-        Me.AutoDisableMinimumLabel.Text = "Minimum"
         '
         'AutoDisableMaximumLabel
         '
@@ -231,8 +202,33 @@ Partial Class ArcadeConfigurationForm
         Me.AutoDisableMaximumTextBox.Name = "AutoDisableMaximumTextBox"
         Me.AutoDisableMaximumTextBox.Size = New System.Drawing.Size(100, 20)
         Me.AutoDisableMaximumTextBox.TabIndex = 6
-        Me.AutoDisableMaximumTextBox.Text = "10000"
         Me.ToolTip.SetToolTip(Me.AutoDisableMaximumTextBox, "The maximum length of time a target will remain enabled")
+        '
+        'AutoDisableMinimumLabel
+        '
+        Me.AutoDisableMinimumLabel.AutoSize = True
+        Me.AutoDisableMinimumLabel.Location = New System.Drawing.Point(6, 16)
+        Me.AutoDisableMinimumLabel.Name = "AutoDisableMinimumLabel"
+        Me.AutoDisableMinimumLabel.Size = New System.Drawing.Size(48, 13)
+        Me.AutoDisableMinimumLabel.TabIndex = 3
+        Me.AutoDisableMinimumLabel.Text = "Minimum"
+        '
+        'AutoDisableMinSecondsLabel
+        '
+        Me.AutoDisableMinSecondsLabel.AutoSize = True
+        Me.AutoDisableMinSecondsLabel.Location = New System.Drawing.Point(112, 35)
+        Me.AutoDisableMinSecondsLabel.Name = "AutoDisableMinSecondsLabel"
+        Me.AutoDisableMinSecondsLabel.Size = New System.Drawing.Size(64, 13)
+        Me.AutoDisableMinSecondsLabel.TabIndex = 4
+        Me.AutoDisableMinSecondsLabel.Text = "Milliseconds"
+        '
+        'AutoDisableMinimumTextBox
+        '
+        Me.AutoDisableMinimumTextBox.Location = New System.Drawing.Point(6, 32)
+        Me.AutoDisableMinimumTextBox.Name = "AutoDisableMinimumTextBox"
+        Me.AutoDisableMinimumTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.AutoDisableMinimumTextBox.TabIndex = 3
+        Me.ToolTip.SetToolTip(Me.AutoDisableMinimumTextBox, "The minimum length of time a target will remain enabled")
         '
         'OpenFileDialog
         '
@@ -275,62 +271,6 @@ Partial Class ArcadeConfigurationForm
         Me.PointsGroupBox.TabStop = False
         Me.PointsGroupBox.Text = "Target Points"
         '
-        'TargetPointsLabel
-        '
-        Me.TargetPointsLabel.Location = New System.Drawing.Point(6, 16)
-        Me.TargetPointsLabel.Name = "TargetPointsLabel"
-        Me.TargetPointsLabel.Size = New System.Drawing.Size(168, 32)
-        Me.TargetPointsLabel.TabIndex = 4
-        Me.TargetPointsLabel.Text = "Unless listed below, all targets are worth 1 point."
-        Me.TargetPointsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'PointsListBox
-        '
-        Me.PointsListBox.FormattingEnabled = True
-        Me.PointsListBox.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.PointsListBox.Location = New System.Drawing.Point(6, 51)
-        Me.PointsListBox.Name = "PointsListBox"
-        Me.PointsListBox.Size = New System.Drawing.Size(168, 160)
-        Me.PointsListBox.TabIndex = 7
-        Me.ToolTip.SetToolTip(Me.PointsListBox, "All current point overrides")
-        '
-        'RemovePointsButton
-        '
-        Me.RemovePointsButton.Location = New System.Drawing.Point(94, 217)
-        Me.RemovePointsButton.Name = "RemovePointsButton"
-        Me.RemovePointsButton.Size = New System.Drawing.Size(80, 39)
-        Me.RemovePointsButton.TabIndex = 7
-        Me.RemovePointsButton.Text = "Remove Selected"
-        Me.ToolTip.SetToolTip(Me.RemovePointsButton, "Removes the above selected point override")
-        Me.RemovePointsButton.UseVisualStyleBackColor = True
-        '
-        'AddPointsButton
-        '
-        Me.AddPointsButton.Location = New System.Drawing.Point(6, 217)
-        Me.AddPointsButton.Name = "AddPointsButton"
-        Me.AddPointsButton.Size = New System.Drawing.Size(80, 39)
-        Me.AddPointsButton.TabIndex = 7
-        Me.AddPointsButton.Text = "Add Below"
-        Me.ToolTip.SetToolTip(Me.AddPointsButton, "Adds the below point override")
-        Me.AddPointsButton.UseVisualStyleBackColor = True
-        '
-        'AddressLabel
-        '
-        Me.AddressLabel.AutoSize = True
-        Me.AddressLabel.Location = New System.Drawing.Point(6, 259)
-        Me.AddressLabel.Name = "AddressLabel"
-        Me.AddressLabel.Size = New System.Drawing.Size(64, 13)
-        Me.AddressLabel.TabIndex = 8
-        Me.AddressLabel.Text = "I2C Address"
-        '
-        'AddressTextBox
-        '
-        Me.AddressTextBox.Location = New System.Drawing.Point(6, 275)
-        Me.AddressTextBox.Name = "AddressTextBox"
-        Me.AddressTextBox.Size = New System.Drawing.Size(80, 20)
-        Me.AddressTextBox.TabIndex = 9
-        Me.ToolTip.SetToolTip(Me.AddressTextBox, "Address of points override")
-        '
         'ValueTextBox
         '
         Me.ValueTextBox.Location = New System.Drawing.Point(94, 275)
@@ -348,6 +288,62 @@ Partial Class ArcadeConfigurationForm
         Me.ValueLabel.TabIndex = 10
         Me.ValueLabel.Text = "Point Value"
         '
+        'AddressTextBox
+        '
+        Me.AddressTextBox.Location = New System.Drawing.Point(6, 275)
+        Me.AddressTextBox.Name = "AddressTextBox"
+        Me.AddressTextBox.Size = New System.Drawing.Size(80, 20)
+        Me.AddressTextBox.TabIndex = 9
+        Me.ToolTip.SetToolTip(Me.AddressTextBox, "Address of points override")
+        '
+        'AddressLabel
+        '
+        Me.AddressLabel.AutoSize = True
+        Me.AddressLabel.Location = New System.Drawing.Point(6, 259)
+        Me.AddressLabel.Name = "AddressLabel"
+        Me.AddressLabel.Size = New System.Drawing.Size(64, 13)
+        Me.AddressLabel.TabIndex = 8
+        Me.AddressLabel.Text = "I2C Address"
+        '
+        'AddPointsButton
+        '
+        Me.AddPointsButton.Location = New System.Drawing.Point(6, 217)
+        Me.AddPointsButton.Name = "AddPointsButton"
+        Me.AddPointsButton.Size = New System.Drawing.Size(80, 39)
+        Me.AddPointsButton.TabIndex = 7
+        Me.AddPointsButton.Text = "Add Below"
+        Me.ToolTip.SetToolTip(Me.AddPointsButton, "Adds the below point override")
+        Me.AddPointsButton.UseVisualStyleBackColor = True
+        '
+        'RemovePointsButton
+        '
+        Me.RemovePointsButton.Location = New System.Drawing.Point(94, 217)
+        Me.RemovePointsButton.Name = "RemovePointsButton"
+        Me.RemovePointsButton.Size = New System.Drawing.Size(80, 39)
+        Me.RemovePointsButton.TabIndex = 7
+        Me.RemovePointsButton.Text = "Remove Selected"
+        Me.ToolTip.SetToolTip(Me.RemovePointsButton, "Removes the above selected point override")
+        Me.RemovePointsButton.UseVisualStyleBackColor = True
+        '
+        'PointsListBox
+        '
+        Me.PointsListBox.FormattingEnabled = True
+        Me.PointsListBox.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PointsListBox.Location = New System.Drawing.Point(6, 51)
+        Me.PointsListBox.Name = "PointsListBox"
+        Me.PointsListBox.Size = New System.Drawing.Size(168, 160)
+        Me.PointsListBox.TabIndex = 7
+        Me.ToolTip.SetToolTip(Me.PointsListBox, "All current point overrides")
+        '
+        'TargetPointsLabel
+        '
+        Me.TargetPointsLabel.Location = New System.Drawing.Point(6, 16)
+        Me.TargetPointsLabel.Name = "TargetPointsLabel"
+        Me.TargetPointsLabel.Size = New System.Drawing.Size(168, 32)
+        Me.TargetPointsLabel.TabIndex = 4
+        Me.TargetPointsLabel.Text = "Unless listed below, all targets are worth 1 point."
+        Me.TargetPointsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'TargetsGroupBox
         '
         Me.TargetsGroupBox.Controls.Add(Me.TargetNumberLabel)
@@ -360,15 +356,6 @@ Partial Class ArcadeConfigurationForm
         Me.TargetsGroupBox.Text = "Number of Targets"
         Me.ToolTip.SetToolTip(Me.TargetsGroupBox, "Number of total targets. Minimum is 1.")
         '
-        'TargetNumberTextBox
-        '
-        Me.TargetNumberTextBox.Location = New System.Drawing.Point(6, 19)
-        Me.TargetNumberTextBox.Name = "TargetNumberTextBox"
-        Me.TargetNumberTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.TargetNumberTextBox.TabIndex = 1
-        Me.TargetNumberTextBox.Text = "10"
-        Me.ToolTip.SetToolTip(Me.TargetNumberTextBox, "Number of total targets. Minimum is 1.")
-        '
         'TargetNumberLabel
         '
         Me.TargetNumberLabel.AutoSize = True
@@ -378,6 +365,14 @@ Partial Class ArcadeConfigurationForm
         Me.TargetNumberLabel.TabIndex = 2
         Me.TargetNumberLabel.Text = "Targets"
         Me.ToolTip.SetToolTip(Me.TargetNumberLabel, "Number of total targets. Minimum is 1.")
+        '
+        'TargetNumberTextBox
+        '
+        Me.TargetNumberTextBox.Location = New System.Drawing.Point(6, 19)
+        Me.TargetNumberTextBox.Name = "TargetNumberTextBox"
+        Me.TargetNumberTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.TargetNumberTextBox.TabIndex = 1
+        Me.ToolTip.SetToolTip(Me.TargetNumberTextBox, "Number of total targets. Minimum is 1.")
         '
         'ArcadeConfigurationForm
         '
