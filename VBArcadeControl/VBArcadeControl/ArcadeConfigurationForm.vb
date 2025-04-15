@@ -220,4 +220,70 @@ Public Class ArcadeConfigurationForm
             ArcadeControlForm.ConfigurationStatusStripLabel.Text = "Modified Configuration"
         End If
     End Sub
+
+    ''' <summary>
+    ''' Saves the current configuration to file
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+        'default file path for save dialog
+        SaveFileDialog.DefaultExt = ".config"
+        SaveFileDialog.Title = "Save Configuration"
+        SaveFileDialog.Filter = "Config files (*.config)|*.config|All files (*.*)|*.*"
+        SaveFileDialog.FileName = $"LaserArcadeConfig_{DateTime.Today.Now.ToString("yyyy-MM-dd-hhmm")}.config"
+        SaveFileDialog.InitialDirectory = "../"
+
+        If SaveFileDialog().ShowDialog = DialogResult.OK Then
+            FileOpen(1, SaveFileDialog.FileName, OpenMode.Output)
+            Write(1, ArcadeControlForm.gameTime)
+            Write(1, ArcadeControlForm.laserArcade.NumberOfTargets)
+            Write(1, ArcadeControlForm.TargetEnableTimer.Interval)
+            Write(1, ArcadeControlForm.laserArcade.TimedDisable)
+            Write(1, ArcadeControlForm.laserArcade.TimedDisableMinimum)
+            WriteLine(1, ArcadeControlForm.laserArcade.TimedDisableMaximum)
+            For i = 0 To (ArcadeControlForm.pointOverrides.Length \ 2) - 1
+                Write(1, ArcadeControlForm.pointOverrides(0, i))
+                WriteLine(1, ArcadeControlForm.pointOverrides(1, i))
+            Next
+            FileClose(1)
+        End If
+    End Sub
+
+    Private Sub OpenButton_Click(sender As Object, e As EventArgs) Handles OpenButton.Click
+        Dim currentLine As String
+        Dim addressQueue As New Queue(Of Integer)
+        Dim pointQueue As New Queue(Of Integer)
+
+        OpenFileDialog.Title = "Open Configuration"
+        OpenFileDialog.Filter = "Config files (*.config)|*.config|All files (*.*)|*.*"
+        OpenFileDialog.InitialDirectory = "../"
+
+        If OpenFileDialog.ShowDialog = DialogResult.OK Then
+            FileOpen(1, OpenFileDialog.FileName, OpenMode.Input)
+            Input(1, ArcadeControlForm.gameTime)
+            Input(1, ArcadeControlForm.laserArcade.NumberOfTargets)
+            Input(1, ArcadeControlForm.TargetEnableTimer.Interval)
+            Input(1, ArcadeControlForm.laserArcade.TimedDisable)
+            Input(1, ArcadeControlForm.laserArcade.TimedDisableMinimum)
+            Input(1, ArcadeControlForm.laserArcade.TimedDisableMaximum)
+            Do Until EOF(1)
+                currentLine = LineInput(1)
+                addressQueue.Enqueue(CInt(Split(currentLine, ",")(0)))
+                pointQueue.Enqueue(CInt(Split(currentLine, ",")(1)))
+            Loop
+
+            Dim newPointOverride(1, addressQueue.Count - 1) As Integer
+
+            For i = 0 To addressQueue.Count - 1
+                newPointOverride(0, i) = addressQueue.Dequeue
+                newPointOverride(1, i) = pointQueue.Dequeue
+            Next
+
+            ArcadeControlForm.pointOverrides = newPointOverride
+
+            FileClose(1)
+            ArcadeConfigurationForm_Load(sender, e)
+        End If
+    End Sub
 End Class
