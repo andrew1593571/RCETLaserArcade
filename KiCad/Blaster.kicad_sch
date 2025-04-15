@@ -6096,7 +6096,7 @@
 				)
 			)
 		)
-		(property "Footprint" "AlexWheelockFootprintLibrary:Project_Blaster_FireSelect_Switch"
+		(property "Footprint" "AlexWheelockFootprintLibrary:Project_Locking_Header_1x06"
 			(at 44.45 96.52 0)
 			(effects
 				(font
