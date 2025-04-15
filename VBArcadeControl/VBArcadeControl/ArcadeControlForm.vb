@@ -145,4 +145,8 @@ Public Class ArcadeControlForm
         laserArcade.DisableTarget(0)
         MsgBox("Game Over")
     End Sub
+
+    Private Sub ConfigurationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfigurationToolStripMenuItem.Click
+        ArcadeConfigurationForm.Show()
+    End Sub
 End Class

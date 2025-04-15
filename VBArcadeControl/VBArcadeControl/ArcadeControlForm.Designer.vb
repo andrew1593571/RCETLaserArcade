@@ -24,9 +24,6 @@ Partial Class ArcadeControlForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
-        Me.SerialStatusStripSplitButton = New System.Windows.Forms.ToolStripSplitButton()
-        Me.COMPortComboBox = New System.Windows.Forms.ToolStripComboBox()
-        Me.ConnectDisconnectStatusStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SerialStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.COMPortTimer = New System.Windows.Forms.Timer(Me.components)
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
@@ -39,6 +36,9 @@ Partial Class ArcadeControlForm
         Me.StartGameButton = New System.Windows.Forms.Button()
         Me.TargetEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GameTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.SerialStatusStripSplitButton = New System.Windows.Forms.ToolStripSplitButton()
+        Me.COMPortComboBox = New System.Windows.Forms.ToolStripComboBox()
+        Me.ConnectDisconnectStatusStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -51,28 +51,6 @@ Partial Class ArcadeControlForm
         Me.StatusStrip.Size = New System.Drawing.Size(800, 22)
         Me.StatusStrip.TabIndex = 0
         Me.StatusStrip.Text = "StatusStrip1"
-        '
-        'SerialStatusStripSplitButton
-        '
-        Me.SerialStatusStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SerialStatusStripSplitButton.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.COMPortComboBox, Me.ConnectDisconnectStatusStripMenuItem})
-        Me.SerialStatusStripSplitButton.Image = Global.VBArcadeControl.My.Resources.Resources.serial_port
-        Me.SerialStatusStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SerialStatusStripSplitButton.Name = "SerialStatusStripSplitButton"
-        Me.SerialStatusStripSplitButton.Size = New System.Drawing.Size(32, 20)
-        Me.SerialStatusStripSplitButton.Text = "ToolStripSplitButton1"
-        '
-        'COMPortComboBox
-        '
-        Me.COMPortComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.COMPortComboBox.Name = "COMPortComboBox"
-        Me.COMPortComboBox.Size = New System.Drawing.Size(121, 23)
-        '
-        'ConnectDisconnectStatusStripMenuItem
-        '
-        Me.ConnectDisconnectStatusStripMenuItem.Name = "ConnectDisconnectStatusStripMenuItem"
-        Me.ConnectDisconnectStatusStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.ConnectDisconnectStatusStripMenuItem.Text = "Connect"
         '
         'SerialStatusLabel
         '
@@ -103,19 +81,19 @@ Partial Class ArcadeControlForm
         'NewGameToolStripMenuItem
         '
         Me.NewGameToolStripMenuItem.Name = "NewGameToolStripMenuItem"
-        Me.NewGameToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.NewGameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NewGameToolStripMenuItem.Text = "&New Game"
         '
         'ConfigurationToolStripMenuItem
         '
         Me.ConfigurationToolStripMenuItem.Name = "ConfigurationToolStripMenuItem"
-        Me.ConfigurationToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.ConfigurationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ConfigurationToolStripMenuItem.Text = "&Configuration"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'HelpToolStripMenuItem
@@ -147,6 +125,28 @@ Partial Class ArcadeControlForm
         'GameTimer
         '
         Me.GameTimer.Interval = 90000
+        '
+        'SerialStatusStripSplitButton
+        '
+        Me.SerialStatusStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SerialStatusStripSplitButton.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.COMPortComboBox, Me.ConnectDisconnectStatusStripMenuItem})
+        Me.SerialStatusStripSplitButton.Image = Global.VBArcadeControl.My.Resources.Resources.serial_port
+        Me.SerialStatusStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SerialStatusStripSplitButton.Name = "SerialStatusStripSplitButton"
+        Me.SerialStatusStripSplitButton.Size = New System.Drawing.Size(32, 20)
+        Me.SerialStatusStripSplitButton.Text = "ToolStripSplitButton1"
+        '
+        'COMPortComboBox
+        '
+        Me.COMPortComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.COMPortComboBox.Name = "COMPortComboBox"
+        Me.COMPortComboBox.Size = New System.Drawing.Size(121, 23)
+        '
+        'ConnectDisconnectStatusStripMenuItem
+        '
+        Me.ConnectDisconnectStatusStripMenuItem.Name = "ConnectDisconnectStatusStripMenuItem"
+        Me.ConnectDisconnectStatusStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.ConnectDisconnectStatusStripMenuItem.Text = "Connect"
         '
         'ArcadeControlForm
         '
