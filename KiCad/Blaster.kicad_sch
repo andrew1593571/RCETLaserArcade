@@ -479,295 +479,6 @@
 				)
 			)
 		)
-		(symbol "Device:D_Laser_1A3C"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "LD"
-				(at -1.27 4.445 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D_Laser_1A3C"
-				(at -1.27 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at -2.54 -0.635 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0.762 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Laser diode, cathode on pin 3, anode on pin 1"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "opto laserdiode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*LaserDiode*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_Laser_1A3C_0_1"
-				(polyline
-					(pts
-						(xy -4.064 1.27) (xy -2.54 2.794)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -4.064 1.778) (xy -2.54 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -4.064 2.286) (xy -2.54 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -4.064 2.794) (xy -2.54 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.556 2.794) (xy -3.048 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.302 2.032) (xy -3.302 1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.302 2.032) (xy -3.302 3.048)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.048 2.794) (xy -3.556 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 2.032) (xy -4.318 2.032)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 1.27) (xy -1.524 -1.27)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 3.048) (xy 0.762 3.048)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy -5.08 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.254 1.524) (xy 1.27 3.048) (xy 1.27 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 1.27) (xy 1.016 -1.27) (xy -1.524 0) (xy 1.016 1.27)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 1.524) (xy 0 3.048) (xy 0 2.54) (xy 0 3.048) (xy -0.508 3.048)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_Laser_1A3C_1_1"
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Libraries:+5V"
 			(power)
 			(pin_numbers hide)
@@ -1598,6 +1309,264 @@
 						)
 					)
 					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Libraries:Laser_Diode"
+			(pin_numbers hide)
+			(pin_names hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "LD"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Laser_Diode_0_1"
+				(polyline
+					(pts
+						(xy -4.064 -6.35) (xy -2.54 -4.826)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.064 -5.842) (xy -2.54 -5.334)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.064 -5.334) (xy -2.54 -5.842)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.064 -4.826) (xy -2.54 -6.35)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.556 -4.826) (xy -3.048 -6.35)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.302 -5.588) (xy -3.302 -6.604)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.302 -5.588) (xy -3.302 -4.572)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.048 -4.826) (xy -3.556 -6.35)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -5.588) (xy -4.318 -5.588)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -6.35) (xy -1.524 -8.89)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -4.572) (xy 0.762 -4.572)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 -6.096) (xy 1.27 -4.572) (xy 1.27 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -6.096) (xy 0 -4.572) (xy 0 -5.08) (xy 0 -4.572) (xy -0.508 -4.572)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Laser_Diode_1_1"
+				(polyline
+					(pts
+						(xy 1.016 -6.35) (xy 1.016 -8.89) (xy -1.524 -7.62) (xy 1.016 -6.35)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(pin passive line
+					(at 3.81 -7.62 180)
+					(length 3.81)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -7.62 0)
+					(length 3.81)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4472,6 +4441,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 53.34) (xy 205.74 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d207d9be-a942-4d13-a730-23553739b280")
+	)
+	(wire
+		(pts
 			(xy 198.12 100.33) (xy 198.12 102.87)
 		)
 		(stroke
@@ -5531,8 +5510,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Laser_1A3C")
-		(at 205.74 46.99 90)
+		(lib_id "Libraries:Laser_Diode")
+		(at 198.12 48.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5541,7 +5520,7 @@
 		(fields_autoplaced yes)
 		(uuid "0f0497c7-5d4a-4cab-b6d5-951f8d99fbec")
 		(property "Reference" "LD1"
-			(at 208.28 46.9899 90)
+			(at 208.28 48.5139 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5550,7 +5529,7 @@
 			)
 		)
 		(property "Value" "Laser Diode"
-			(at 208.28 49.5299 90)
+			(at 208.28 51.0539 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5559,7 +5538,7 @@
 			)
 		)
 		(property "Footprint" "AlexWheelockFootprintLibrary:Project_Locking_Output_Header"
-			(at 206.375 49.53 0)
+			(at 198.12 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5568,7 +5547,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 210.82 46.228 0)
+			(at 198.12 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5577,7 +5556,7 @@
 			)
 		)
 		(property "Description" "Laser diode, cathode on pin 3, anode on pin 1"
-			(at 205.74 46.99 0)
+			(at 198.12 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5588,7 +5567,7 @@
 		(pin "1"
 			(uuid "6f583be5-2610-4d0f-8b0d-1958595df542")
 		)
-		(pin "3"
+		(pin "2"
 			(uuid "c68c7d87-ad2e-4230-b2f9-22eca62e6da5")
 		)
 		(instances
@@ -8421,7 +8400,7 @@
 	)
 	(symbol
 		(lib_id "Libraries:+5V")
-		(at 205.74 40.64 0)
+		(at 205.74 43.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -8430,7 +8409,7 @@
 		(fields_autoplaced yes)
 		(uuid "f72a9308-82ce-45b9-94fc-9533cee84588")
 		(property "Reference" "#+5V03"
-			(at 205.74 36.83 0)
+			(at 205.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8439,7 +8418,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 205.74 36.83 0)
+			(at 205.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8448,7 +8427,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 205.74 36.83 0)
+			(at 205.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8457,7 +8436,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 205.74 36.83 0)
+			(at 205.74 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8466,7 +8445,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 205.74 40.64 0)
+			(at 205.74 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
