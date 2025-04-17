@@ -625,7 +625,11 @@
     ],
     [
       "0b035578-8811-407f-9c52-5736444552f1",
-      "Blaster"
+      "Blaster_Bottom"
+    ],
+    [
+      "8de4a48b-32ba-4a48-af33-2fd68ed0db63",
+      "Blaster Top"
     ]
   ],
   "text_variables": {}
