@@ -251,11 +251,15 @@ Public Class LaserArcade
     ''' </summary>
     ''' <param name="slot"></param>
     Public Sub DisableTarget(slot As Integer)
+        Dim disableAllCommand(1) As Byte
+        disableAllCommand(0) = &H24
+        disableAllCommand(1) = &H43
+
         Select Case slot
             Case 0 'enable all targets
+                arcadePort.Write(disableAllCommand, 0, 2)
                 For i = 0 To 7
                     If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
-                        arcadePort.Write(_targets(i).DisableTarget(), 0, 3)
                         _disableTimers(i).Stop()
                     End If
                 Next
@@ -313,6 +317,7 @@ Public Class LaserArcade
         _disableTimeMaximum = 10000
         _disableTimeMinimum = 5000
 
+        'initialize all targets and disable timers
         For i = 0 To 7
             _targets(i) = New ArcadeTarget(i + 1)
             _disableTimers(i) = New Timer

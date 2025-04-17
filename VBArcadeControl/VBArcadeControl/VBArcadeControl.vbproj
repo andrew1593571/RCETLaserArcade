@@ -73,6 +73,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArcadeConfigurationForm.Designer.vb">
+      <DependentUpon>ArcadeConfigurationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ArcadeConfigurationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ArcadeControlForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ArcadeConfigurationForm.resx">
+      <DependentUpon>ArcadeConfigurationForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ArcadeControlForm.resx">
       <DependentUpon>ArcadeControlForm.vb</DependentUpon>
     </EmbeddedResource>
