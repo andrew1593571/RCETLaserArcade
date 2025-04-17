@@ -60,7 +60,6 @@
       ],
       "drc_exclusions": [
         "lib_footprint_mismatch|157150000|65062500|a12c621a-01ad-4468-a735-ed7cb363267b|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|157480000|55880000|d84104f0-4faf-4071-a44b-ece771d8289f|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|162560000|79777500|8559f140-8836-400a-95b5-4b29ac866246|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|163830000|70252500|8a856f86-db7a-4225-9cbd-e3f6e700acbb|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|167005000|79777500|2621aa75-1ca4-4cf1-b9d6-635279db76e9|00000000-0000-0000-0000-000000000000",
@@ -70,8 +69,7 @@
         "lib_footprint_mismatch|177800000|63902500|9d4dfc17-777a-433d-9f92-6ef8f19d074c|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|196850000|81280000|03abd4cf-2a23-4de7-a981-4f0df02b1329|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|210820000|80010000|f0b040e4-289d-4295-94ea-f795eaada810|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|215900000|57382500|55ed083c-1c53-49fb-98b5-80e01f424fdb|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|223520000|55880000|b762d898-b843-48a5-8cba-b19ccb3e85c0|00000000-0000-0000-0000-000000000000"
+        "lib_footprint_mismatch|215900000|57382500|55ed083c-1c53-49fb-98b5-80e01f424fdb|00000000-0000-0000-0000-000000000000"
       ],
       "meta": {
         "version": 2
@@ -496,7 +494,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Master_Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
@@ -617,7 +615,7 @@
       "version": 1
     },
     "net_format_name": "",
-    "page_layout_descr_file": "G:\\My Drive\\KiCad\\ISU_TITLEBLOCK_A.kicad_wks",
+    "page_layout_descr_file": "C:\\Users\\andre\\GitRepos\\Laser-Arcade-Project\\KiCad\\ISU_TITLEBLOCK_A.kicad_wks",
     "plot_directory": "",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",

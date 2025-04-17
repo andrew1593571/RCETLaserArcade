@@ -5,8 +5,8 @@
 	(uuid "a076ecc9-254e-48ac-a005-0c131c6baa3c")
 	(paper "A")
 	(title_block
-		(title "UART")
-		(date "2025-04-04")
+		(title "Laser Arcade Master")
+		(date "2025-04-17")
 		(rev "A")
 		(company "Idaho State University")
 	)
