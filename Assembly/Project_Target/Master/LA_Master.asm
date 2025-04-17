@@ -30,14 +30,15 @@
 		
 		#include "MASTER.inc"      		; processor specific variable definitions
 		#INCLUDE <MASTER_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
-		#INCLUDE <MASTER_SUBROUTINES.inc>	; File containing all used subroutines
+		#INCLUDE <MASTER_SUBROUTINES.inc>		; File containing all used subroutines
+
 		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
 							; Using default destination of 1 (file),  Found call to macro in column 1
 
 		; CONFIG1
 ; __config 0xC9A4
- __CONFIG _CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOREN_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
+ __CONFIG _CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_OFF & _MCLRE_ON & _CP_OFF & _CPD_OFF & _BOREN_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
 ; CONFIG2
 ; __config 0xDFFF
  __CONFIG _CONFIG2, _WRT_OFF & _PLLEN_OFF & _STVREN_ON & _BORV_LO & _LPBOR_OFF & _LVP_OFF
@@ -64,12 +65,22 @@ SETUP
 ;******************************************
 INTERRUPT
 		BANKSEL	    PIR1
+		BTFSC	    PIR1, RCIF
+		GOTO	    UARTRECEIVE
+		BTFSC	    PIR1, TXIF
+		GOTO	    UARTTRANSMIT
 		BTFSS	    PIR1,0
 		GOTO	    GOBACK
 		BANKSEL	    PORTA
 		BTFSC	    ACTIVE_TARGET,0
 		GOTO	    READ
 		GOTO	    WRITE
+	UARTRECEIVE
+		CALL	    UARTRX
+		GOTO	    GOBACK
+	UARTTRANSMIT
+		CALL	    UARTTX
+		GOTO	    GOBACK
 	READ	
 		CALL	    READ_TARGET_STATUS
 		GOTO	    GOBACK
