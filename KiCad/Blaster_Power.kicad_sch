@@ -1523,6 +1523,12 @@
 		(uuid "dfee9d94-3000-470d-9995-86d38b4da18d")
 	)
 	(junction
+		(at 210.82 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e3f9bddd-e65d-4d3a-bb78-aedf77e416fa")
+	)
+	(junction
 		(at 151.13 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1553,6 +1559,16 @@
 			(type default)
 		)
 		(uuid "0a64a8ef-2ae5-4e41-a2e5-866ee8bf0e3a")
+	)
+	(wire
+		(pts
+			(xy 210.82 81.28) (xy 213.36 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10328600-31d2-4443-9523-df34bc5f6f1d")
 	)
 	(wire
 		(pts
@@ -1736,7 +1752,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 83.82) (xy 210.82 82.55)
+			(xy 210.82 83.82) (xy 210.82 81.28)
 		)
 		(stroke
 			(width 0)
@@ -1793,6 +1809,16 @@
 			(type default)
 		)
 		(uuid "ea6d223c-7fdd-4abe-89b1-e4994ac301b3")
+	)
+	(wire
+		(pts
+			(xy 210.82 81.28) (xy 210.82 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f23431e1-022d-48a4-a55f-3fb9c37ea41d")
 	)
 	(rectangle
 		(start 57.15 68.58)
@@ -1851,6 +1877,28 @@
 		(uuid "0da0788c-dd88-4bb4-ada8-13efa1ee6ca7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 94.1832 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+5V"
+		(shape output)
+		(at 213.36 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dae7badd-783b-46ce-aaf3-62f15cc2a137")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 220.2157 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2589,7 +2637,7 @@
 	)
 	(symbol
 		(lib_id "Libraries:+5V")
-		(at 210.82 81.28 0)
+		(at 210.82 78.74 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -2598,7 +2646,7 @@
 		(fields_autoplaced yes)
 		(uuid "76d8dde9-1d7d-4cb5-827f-b3155cc3d264")
 		(property "Reference" "#+5V01"
-			(at 210.82 77.47 0)
+			(at 210.82 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2607,7 +2655,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 210.82 77.47 0)
+			(at 210.82 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2616,7 +2664,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 210.82 77.47 0)
+			(at 210.82 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2625,7 +2673,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 210.82 77.47 0)
+			(at 210.82 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2634,7 +2682,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 210.82 81.28 0)
+			(at 210.82 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
