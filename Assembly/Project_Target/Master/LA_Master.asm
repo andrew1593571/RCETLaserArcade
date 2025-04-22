@@ -1,21 +1,15 @@
 ;************************************************************************************
 ;										    *
 ;   Filename:	    LA_Master.asm						    *
-;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
+;   Date:	    April 22, 2025						    *
+;   File Version:   2								    *
 ;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Assembly file for Laser Shooting Game gun. A gun that can fire  *
-;		    a laser at two frequencies (38kHz & 56kHz), with firing mode    *
-;		    select (single-shot, three round burst, continuous). Different  *
-;		    frequencies will be used to determine between player 1 (38kHz)  *
-;		    and 2 (56kHz) for scoring. Gun will use 12V (with solenoid), or *
-;		    5V (without solenoid), can also use 3.3V if using the LF PIC,   *
-;		    with the adjustment of some resistors for the solenoid current. *
-;										    *
-;		    Uses CCP1 (RC2) for laser PWM, RC3 for solenoid control. RB0 for*
-;		    trigger, RB1 for frequency select and RB3:2 used to select from *
-;		    the firing modes.						    *
+;   Description:    Assembly file for the master controller for a laser shooting    *
+;		    arcade. Includes the ability to communicate with a computer	    *
+;		    via UART. Can control up to 8 targets simultaneously with	    *
+;		    various target slots. Each slot can be changed to a different   *
+;		    I2C address using UART commands.				    *
 ;										    *
 ;************************************************************************************
 
@@ -24,15 +18,15 @@
 ;   Revision History:								    *
 ;										    *
 ;   1:	  Got everything for the gun working the way that I think it should with    *
-;	  base features.
-;		
-;   2:	  Added UART functionality
+;	  base features.							    *
+;										    *
+;   2:	  Added UART functionality, I2C capability to control up to 8 targets	    *
 ;										    *	
 ;************************************************************************************		
 		
 		#include "MASTER.inc"      		; processor specific variable definitions
 		#INCLUDE <MASTER_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
-		#INCLUDE <MASTER_SUBROUTINES.inc>		; File containing all used subroutines
+		#INCLUDE <MASTER_SUBROUTINES.inc>	; File containing all used subroutines
 
 		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
@@ -67,45 +61,27 @@ SETUP
 ;******************************************
 INTERRUPT
 		BANKSEL	    PIR1
-		BTFSC	    PIR1, RCIF
+		BTFSC	    PIR1, RCIF			;IF INTERRUPTED BY UART RECEIVE, GOTO UARTRECEIVE
 		GOTO	    UARTRECEIVE
-		BTFSC	    PIR1, TXIF
+		BTFSC	    PIR1, TXIF			;IF INTERRUPTED BY UART TRANSMIT, GOTO UARTTRANSMIT
 		GOTO	    UARTTRANSMIT
-;		BTFSS	    PIR1,0
-;		GOTO	    GOBACK
-		GOTO	    GOBACK
-;		BANKSEL	    PORTA
-;		BTFSC	    ACTIVE_TARGET,0
-;		GOTO	    READ
-;		GOTO	    WRITE
+		GOTO	    GOBACK			;ELSE GOBACK
 	UARTRECEIVE
-		CALL	    UARTRX
+		CALL	    UARTRX			;CALL THE UARTRX SUBROUTINE
 		GOTO	    GOBACK
 	UARTTRANSMIT
-		CALL	    UARTTX
+		CALL	    UARTTX			;CALL THE UARTTX SUBROUTINE
 		GOTO	    GOBACK
-;	READ	
-;		CALL	    READ_TARGET_STATUS
-;		GOTO	    GOBACK
-;	WRITE
-;		CALL	    SEND_ENABLE
 	GOBACK
 		BANKSEL	    PIR1
-		CLRF	    PIR1
+		CLRF	    PIR1			;CLEAR ALL PIR1 FLAGS
 		RETFIE					;RETURN TO MAIN, RE-ENABLE GIE
 		
 ;******************************************
 ;Main Code
 ;******************************************
 MAIN	
-;		BANKSEL	    PORTA
-;		INCF	    RANDOM_ADDRESS,1		;INCREMENT THE RANDOM SLAVE ADDRESS TO ACTIVATE NEXT
-;		MOVLW	    0x03			;\(CHANGE THIS NUMBER IF THE NUMBER OF SLAVE DEVICES HAS CHANGED, TO: # OF SLAVES + 1)
-;		SUBWF	    RANDOM_ADDRESS,0		;-DETERMINE IF THE RANDOM_ADDRESS VALUE EXCEEDS THE NUMBER OF SLAVES
-;		BTFSC	    STATUS,2			;/
-;		CLRF	    RANDOM_ADDRESS		;MAX NUMBER OF SLAVE ADDRESSES EXCEEDED, RESET RANDOM_ADDRESS
-;		CALL	    READ_TARGET_STATUS
-		CALL	    UPDATETARGETONE
+		CALL	    UPDATETARGETONE		;UPDATE EACH TARGET INDIVIDUALLY
 		CALL	    UPDATETARGETTWO
 		GOTO	    MAIN		
 END

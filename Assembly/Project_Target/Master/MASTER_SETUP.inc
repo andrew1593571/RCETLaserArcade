@@ -1,11 +1,11 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    16LF1788_SETUP.inc						    *
-;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
-;   Author:	    Alex Wheelock						    *
+;   Filename:	    MASTER_SETUP.inc						    *
+;   Date:	    April 22, 2025						    *
+;   File Version:   2								    *
+;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Firmware for setting up a PIC16LF1788 for the laser gun of the  *
+;   Description:    Firmware for setting up a PIC16LF1788 for the master of the	    *
 ;		    Laser Shooting Game project.				    *
 ;										    *
 ;************************************************************************************
@@ -16,6 +16,8 @@
 ;										    *
 ;   1:	Iniitialize file, setup how I think it should be setup for the project.	    *
 ;										    *
+;   2:	  Added UART functionality, I2C capability to control up to 8 targets	    *
+;										    *
 ;************************************************************************************
 		
 ;===============================================================================================================================*
@@ -25,7 +27,7 @@
 ;	7	|	6	|	5	|	4	|	3	|	2	|	1	|	0	*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*	
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
-;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
+;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
 ;UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED	 	|UNUSED		|UNUSED		*
 ;		|		|		|		|		|	 	|		|		*
@@ -40,12 +42,12 @@
 ;	7	|	6	|	5	|	4	|	3	|	2	|	1	|	0	*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*	
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
-;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
+;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	*
-;		|		|		|		|BURST-FIRE	|CONTINUOUS/	|THE FREQUENCY	|TRIGGER BUTTON	*
-;		|		|		|		|MODE SELECT	|FULL-AUTO MODE	|SELECT SWITCH	|		*
-;		|		|		|		|		|SELECT		|		|		*		
+;UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
 		
 ;===============================================================================================================================*
@@ -57,9 +59,9 @@
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
 ;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|OUTPUT USED TO	|OUTPUT USED TO	|UNUSED		|UNUSED		*
-    ;		|		|		|		|CONTROL THE	|CONTROL THE	|		|		*
-;		|		|		|		|SOLENOID	|LASER	    	|		|		*
+;UNUSED	(UART)	|UNUSED	(UART)	|UNUSED		|UNUSED (I2C)	|UNUSED (I2C)	|UNUSED		|UNUSED		|UNUSED		*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*			
 		
@@ -101,8 +103,8 @@ INITIALIZE
 ;*** SET PIE1-4 REG: *****
 		
 		BANKSEL	    PIE1
-		MOVLW	    B'00101001'
-		MOVWF	    PIE1			;DISABLE ALL PIE1 INTERUPTS, EXCEPT SSP1IE, TMR1IE, RCIE
+		MOVLW	    B'00101000'
+		MOVWF	    PIE1			;DISABLE ALL PIE1 INTERUPTS, EXCEPT SSP1IE, RCIE
 		BANKSEL	    PIE2
 		CLRF	    PIE2			;DISABLE ALL PIE2 INTERUPTS
 		BANKSEL	    PIE3
@@ -120,13 +122,6 @@ INITIALIZE
 		CLRF	    PIR3			;CLEAR ALL PIR3 INTERUPT FLAGS
 		BANKSEL	    PIR4
 		CLRF	    PIR4			;CLEAR ALL PIR4 INTERUPT FLAGS
-		
-;*** TIMER 1 SETUP *****
-		
-		BANKSEL	    T1CON
-		MOVLW	    0xA8			;ENABLE & SELECT TMR1 LP OSCILLATOR, SET PRESCALE TO 1:4, DISABLE TMR1 AT THIS POINT
-		BANKSEL	    T1GCON
-		CLRF	    T1GCON			;DISABLE TMR1 GATE		
 		
 ;*** ALTERNATE PIN FUNCTION *****
 		
@@ -150,20 +145,19 @@ INITIALIZE
 		BANKSEL	    SLRCONA
 		CLRF	    SLRCONA			;SET THE SLEW RATE FOR PORT A TO MAXIMUM
 		BANKSEL	    IOCAP
-		MOVLW	    0x00
-		MOVWF	    IOCAP
+		CLRF	    IOCAP			;DISABLE PORTA INTERRUPT ON RISING EDGE
 		BANKSEL	    IOCAN
-		CLRF	    IOCAN
+		CLRF	    IOCAN			;DISABLE PORTA INTERRUPT ON FALLING EDGE
 		
-;*** PORT B SETUP **** PORT B USED AS LOGIC INPUT
+;*** PORT B SETUP **** PORT B SET AS LOGIC OUTPUT (NOT USED)
 		
 		BANKSEL	    PORTB
 		CLRF	    PORTB			;CLEAR PORTB	
 		BANKSEL	    LATB
 		CLRF	    LATB			;CLEAR LATB
 		BANKSEL	    TRISB
-		MOVLW	    0xFF				
-		MOVWF	    TRISB			;SET PORTB ALL AS INPUTS
+		MOVLW	    0x00				
+		MOVWF	    TRISB			;SET PORTB ALL AS OUTPUTS
 		BANKSEL	    ODCONB
 		CLRF	    ODCONB			;DISABLE PORTB OPEN-DRAIN
 		BANKSEL	    ANSELB
@@ -171,23 +165,21 @@ INITIALIZE
 		BANKSEL	    SLRCONB
 		CLRF	    SLRCONB			;SET THE SLEW RATE FOR PORT B TO MAXIMUM
 		BANKSEL	    IOCBP
-		MOVLW	    0x00			;ENABLE PORTB IOC FOR POSITIVE EDGES ON RB3:0
-		MOVWF	    IOCBP
+		CLRF	    IOCBP			;DISABLE PORTB INTERRUPT ON RISING EDGE
 		BANKSEL	    IOCBN
-		MOVLW	    0x00			;ENABLE PORTB IOC FOR NEGATIVE EDGES ON RB3:1
-		MOVWF	    IOCBN
+		CLRF	    IOCBN			;DISABLE PORTB INTERRUPT ON FALLING EDGE
 		BANKSEL	    INLVLB
 		CLRF	    INLVLB			;SET PORTB INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)	    	    
 		
-;*** PORT C SETUP **** 
+;*** PORT C SETUP ****  PORT C SET AS LOGIC OUTPUT (USED FOR I2C AND UART)
 		
 		BANKSEL	    PORTC
 		CLRF	    PORTC			;CLEAR PORTC
 		BANKSEL	    LATC
 		CLRF	    LATC			;CLEAR LATC
 		BANKSEL	    TRISC
-		MOVLW	    0xFF				
-		MOVWF	    TRISC			;SET PORTC ALL AS INPUTS
+		MOVLW	    0x00				
+		MOVWF	    TRISC			;SET PORTC ALL AS OUTPUTS
 		BANKSEL	    ODCONC
 		CLRF	    ODCONC			;DISABLE PORTC OPEN-DRAIN
 		BANKSEL	    ANSELC
@@ -232,19 +224,11 @@ INITIALIZE
 		
 ;*** BOOT CODE ****
 		
-		BANKSEL	    PORTA
-		CLRF	    ACTIVE_TARGET
 		BANKSEL	    INTCON
 		BCF	    INTCON,0
-		;BANKSEL	    SSPCON1
-		;BSF	    SSPCON1,5
-		BANKSEL	    IOCAF
-		CLRF	    IOCAF
 		BCF	    INTCON,IOCIF		;CLEAR IOCIF
-		;BANKSEL	    T1CON
-		;BSF	    T1CON,0			;ENABLE TIMER 1
 		
-		
+		;CLEAR GENERAL REGISTERS
 		BANKSEL	    PORTA
 		CLRF	    ENABLE_TARGET
 		CLRF	    CURRENT_ADDRESS
