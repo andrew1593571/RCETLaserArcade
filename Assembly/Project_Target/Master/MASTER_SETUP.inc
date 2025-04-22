@@ -5,7 +5,7 @@
 ;   File Version:   2								    *
 ;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Firmware for setting up a PIC16LF1788 for the master of the	    *
+;   Description:    Firmware for setting up a PIC16F1788 for the master of the	    *
 ;		    Laser Shooting Game project.				    *
 ;										    *
 ;************************************************************************************
@@ -60,7 +60,7 @@
 ;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
 ;UNUSED	(UART)	|UNUSED	(UART)	|UNUSED		|UNUSED (I2C)	|UNUSED (I2C)	|UNUSED		|UNUSED		|UNUSED		*
-;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*		
 ;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*			
@@ -171,15 +171,15 @@ INITIALIZE
 		BANKSEL	    INLVLB
 		CLRF	    INLVLB			;SET PORTB INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)	    	    
 		
-;*** PORT C SETUP ****  PORT C SET AS LOGIC OUTPUT (USED FOR I2C AND UART)
+;*** PORT C SETUP ****  PORT C SET AS LOGIC INPUT (USED FOR I2C AND UART)
 		
 		BANKSEL	    PORTC
 		CLRF	    PORTC			;CLEAR PORTC
 		BANKSEL	    LATC
 		CLRF	    LATC			;CLEAR LATC
 		BANKSEL	    TRISC
-		MOVLW	    0x00				
-		MOVWF	    TRISC			;SET PORTC ALL AS OUTPUTS
+		MOVLW	    0xFF				
+		MOVWF	    TRISC			;SET PORTC ALL AS INPUTS
 		BANKSEL	    ODCONC
 		CLRF	    ODCONC			;DISABLE PORTC OPEN-DRAIN
 		BANKSEL	    ANSELC
