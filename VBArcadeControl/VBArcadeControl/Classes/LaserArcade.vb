@@ -262,6 +262,7 @@ Public Class LaserArcade
                     If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
                         _disableTimers(i).Stop()
                     End If
+                    _targets(i).Enabled = False
                 Next
             Case 1 'enable slot 1
                 arcadePort.Write(_targets(0).DisableTarget(), 0, 3)
@@ -294,8 +295,16 @@ Public Class LaserArcade
     ''' sets the address for and enables a random target
     ''' </summary>
     Sub EnableRandomTarget()
+        Dim targetSlots As Integer
+
+        If _numberOfTargets < 8 Then
+            targetSlots = _numberOfTargets - 1
+        Else
+            targetSlots = 7
+        End If
+
         If arcadePort.IsOpen Then
-            For i = 0 To 7
+            For i = 0 To targetSlots
                 If Not _targets(i).Enabled Then
                     arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4) 'change the target address
                     EnableTarget(i + 1) 'enable the target
@@ -346,14 +355,14 @@ Public Class LaserArcade
             'based on the scoring player, raise the associated event
             Select Case readBytes(2)
                 Case &H_01
-                    RaiseEvent PlayerOneScore(readBytes(3))
+                    RaiseEvent PlayerOneScore(readBytes(1))
                 Case &H_02
-                    RaiseEvent PlayerTwoScore(readBytes(3))
+                    RaiseEvent PlayerTwoScore(readBytes(1))
             End Select
 
             'if a hit target is in one of the target slots, set the target to disabled (slave automatically disabled it)
             For i = 0 To 7
-                If _targets(i).I2CAddress = readBytes(3) Then
+                If _targets(i).I2CAddress = readBytes(1) Then
                     _targets(i).Enabled = False
                 End If
             Next
