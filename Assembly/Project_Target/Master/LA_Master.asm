@@ -1,9 +1,9 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    Project_Gun.asm						    *
+;   Filename:	    LA_Master.asm						    *
 ;   Date:	    November 5, 2024						    *
 ;   File Version:   1								    *
-;   Author:	    Alex Wheelock						    *
+;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
 ;   Description:    Assembly file for Laser Shooting Game gun. A gun that can fire  *
 ;		    a laser at two frequencies (38kHz & 56kHz), with firing mode    *
@@ -25,6 +25,8 @@
 ;										    *
 ;   1:	  Got everything for the gun working the way that I think it should with    *
 ;	  base features.
+;		
+;   2:	  Added UART functionality
 ;										    *	
 ;************************************************************************************		
 		
@@ -69,23 +71,24 @@ INTERRUPT
 		GOTO	    UARTRECEIVE
 		BTFSC	    PIR1, TXIF
 		GOTO	    UARTTRANSMIT
-		BTFSS	    PIR1,0
+;		BTFSS	    PIR1,0
+;		GOTO	    GOBACK
 		GOTO	    GOBACK
-		BANKSEL	    PORTA
-		BTFSC	    ACTIVE_TARGET,0
-		GOTO	    READ
-		GOTO	    WRITE
+;		BANKSEL	    PORTA
+;		BTFSC	    ACTIVE_TARGET,0
+;		GOTO	    READ
+;		GOTO	    WRITE
 	UARTRECEIVE
 		CALL	    UARTRX
 		GOTO	    GOBACK
 	UARTTRANSMIT
 		CALL	    UARTTX
 		GOTO	    GOBACK
-	READ	
-		CALL	    READ_TARGET_STATUS
-		GOTO	    GOBACK
-	WRITE
-		CALL	    SEND_ENABLE
+;	READ	
+;		CALL	    READ_TARGET_STATUS
+;		GOTO	    GOBACK
+;	WRITE
+;		CALL	    SEND_ENABLE
 	GOBACK
 		BANKSEL	    PIR1
 		CLRF	    PIR1
@@ -95,12 +98,14 @@ INTERRUPT
 ;Main Code
 ;******************************************
 MAIN	
-		BANKSEL	    PORTA
-		INCF	    RANDOM_ADDRESS,1		;INCREMENT THE RANDOM SLAVE ADDRESS TO ACTIVATE NEXT
-		MOVLW	    0x03			;\(CHANGE THIS NUMBER IF THE NUMBER OF SLAVE DEVICES HAS CHANGED, TO: # OF SLAVES + 1)
-		SUBWF	    RANDOM_ADDRESS,0		;-DETERMINE IF THE RANDOM_ADDRESS VALUE EXCEEDS THE NUMBER OF SLAVES
-		BTFSC	    STATUS,2			;/
-		CLRF	    RANDOM_ADDRESS		;MAX NUMBER OF SLAVE ADDRESSES EXCEEDED, RESET RANDOM_ADDRESS
+;		BANKSEL	    PORTA
+;		INCF	    RANDOM_ADDRESS,1		;INCREMENT THE RANDOM SLAVE ADDRESS TO ACTIVATE NEXT
+;		MOVLW	    0x03			;\(CHANGE THIS NUMBER IF THE NUMBER OF SLAVE DEVICES HAS CHANGED, TO: # OF SLAVES + 1)
+;		SUBWF	    RANDOM_ADDRESS,0		;-DETERMINE IF THE RANDOM_ADDRESS VALUE EXCEEDS THE NUMBER OF SLAVES
+;		BTFSC	    STATUS,2			;/
+;		CLRF	    RANDOM_ADDRESS		;MAX NUMBER OF SLAVE ADDRESSES EXCEEDED, RESET RANDOM_ADDRESS
+;		CALL	    READ_TARGET_STATUS
+		CALL	    UPDATETARGETONE
 		GOTO	    MAIN		
 END
 		
