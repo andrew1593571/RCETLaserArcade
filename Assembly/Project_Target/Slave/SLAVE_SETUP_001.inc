@@ -27,8 +27,8 @@
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
 ;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED	 	|UNUSED		|UNUSED		*
-;		|		|		|		|		|	 	|		|		*
+;I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	*
+;Switch		|Switch		|Switch		|Switch		|Switch		|Switch		|Switch		|Switch		*
 ;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
@@ -40,12 +40,12 @@
 ;	7	|	6	|	5	|	4	|	3	|	2	|	1	|	0	*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*	
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
-;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
+;INPUT		|INPUT		|INPUT		|OUTPUT		|OUTPUT		|OUTPUT		|INPUT		|INPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	*
-;		|		|		|		|BURST-FIRE	|CONTINUOUS/	|THE FREQUENCY	|TRIGGER BUTTON	*
-;		|		|		|		|MODE SELECT	|FULL-AUTO MODE	|SELECT SWITCH	|		*
-;		|		|		|		|		|SELECT		|		|		*		
+;UNUSED		|UNUSED		|UNUSED		|RGB LEDS BLUE	|RGB LEDS RED	|RGB LEDS GREEN	|56kHz IR Input	|38kHz IR Input	*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
 		
 ;===============================================================================================================================*
@@ -57,11 +57,11 @@
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
 ;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|OUTPUT USED TO	|OUTPUT USED TO	|UNUSED		|UNUSED		*
-    ;		|		|		|		|CONTROL THE	|CONTROL THE	|		|		*
-;		|		|		|		|SOLENOID	|LASER	    	|		|		*
+;UNUSED		|UNUSED		|UNUSED		|I2C SDA	|I2C SCL	|UNUSED		|UNUSED		|UNUSED		*
+;		|		|		|		|		|		|		|		*
+;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*		
-;-------------------------------------------------------------------------------------------------------------------------------*			
+;-------------------------------------------------------------------------------------------------------------------------------*		
 		
 INITIALIZE_CODE	CODE		
 INITIALIZE	
@@ -134,7 +134,7 @@ INITIALIZE
 		BANKSEL	    T1GCON
 		CLRF	    T1GCON			;DISABLE TMR1 GATE
  
-;*** PORT A SETUP **** PORT A SET AS LOGIC OUTPUT (NOT USED)
+;*** PORT A SETUP **** PORT A SET AS LOGIC INPUT (I2C ADDRESS)
 
 		BANKSEL	    PORTA
 		MOVLW	    0xFF
@@ -143,8 +143,8 @@ INITIALIZE
 		MOVLW	    0xFF			;CLEAR LATA
 		MOVWF	    LATA
 		BANKSEL	    TRISA
-		MOVLW	    0x00  
-		MOVWF	    TRISA			;SET PORTA ALL AS OUTPUTS
+		MOVLW	    0xFF  
+		MOVWF	    TRISA			;SET PORTA ALL AS INPUTS
 		BANKSEL	    ODCONA
 		CLRF	    ODCONA			;DISABLE PORTA OPEN-DRAIN		
 		BANKSEL	    ANSELA			
@@ -157,15 +157,16 @@ INITIALIZE
 		BANKSEL	    IOCAN
 		CLRF	    IOCAN
 		
-;*** PORT B SETUP **** PORT B USED AS LOGIC INPUT
+;*** PORT B SETUP **** PORT B USED AS LOGIC INPUT AND OUTPUT
 		
 		BANKSEL	    PORTB
-		CLRF	    PORTB			;CLEAR PORTB	
+		MOVLW	    B'00011100'
+		MOVWF	    PORTB			;CLEAR PORTB	
 		BANKSEL	    LATB
 		CLRF	    LATB			;CLEAR LATB
 		BANKSEL	    TRISB
-		MOVLW	    0xFF				
-		MOVWF	    TRISB			;SET PORTB ALL AS INPUTS
+		MOVLW	    B'00000011'				
+		MOVWF	    TRISB			;SET PORTB ACCORDING TO BITMAP
 		BANKSEL	    ODCONB
 		CLRF	    ODCONB			;DISABLE PORTB OPEN-DRAIN
 		BANKSEL	    ANSELB
@@ -173,10 +174,10 @@ INITIALIZE
 		BANKSEL	    SLRCONB
 		CLRF	    SLRCONB			;SET THE SLEW RATE FOR PORT B TO MAXIMUM
 		BANKSEL	    IOCBP
-		MOVLW	    0x00			;ENABLE PORTB IOC FOR POSITIVE EDGES ON RB3:0
+		MOVLW	    0x00			;DISABLE PORTB IOC FOR POSITIVE EDGES
 		MOVWF	    IOCBP
 		BANKSEL	    IOCBN
-		MOVLW	    0x03			;ENABLE PORTB IOC FOR NEGATIVE EDGES ON RB3:1
+		MOVLW	    0x03			;ENABLE PORTB IOC FOR NEGATIVE EDGES ON RB0 AND RB1
 		MOVWF	    IOCBN
 		BANKSEL	    INLVLB
 		CLRF	    INLVLB			;SET PORTB INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)	    	    
@@ -200,7 +201,7 @@ INITIALIZE
 		MOVLW	    0x00			;DISALBE PORTC IOC FOR POSITIVE EDGES
 		MOVWF	    IOCCP
 		BANKSEL	    IOCCN
-		MOVLW	    0x00			;ENABLE PORTC IOC FOR NEGATIVE EDGES ON RC1:0
+		MOVLW	    0x00			;DISABLE PORTC IOC FOR NEGATIVE EDGES
 		MOVWF	    IOCCN
 		BANKSEL	    INLVLC
 		CLRF	    INLVLC			;SET PORTC INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)
@@ -233,6 +234,9 @@ INITIALIZE
 		BANKSEL	    IOCAF
 		CLRF	    IOCAF
 		BCF	    INTCON,IOCIF		;CLEAR IOCIF
+		BANKSEL	    PORTA
+		CLRF	    ACTIVE
+		CLRF	    TARGET_STATUS
 		
 		
 		RETURN					;RETURN TO .asm FILE

@@ -1,9 +1,9 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    Project_Gun.asm						    *
+;   Filename:	    LA_Slave.asm						    *
 ;   Date:	    November 5, 2024						    *
 ;   File Version:   1								    *
-;   Author:	    Alex Wheelock						    *
+;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
 ;   Description:    Assembly file for Laser Shooting Game gun. A gun that can fire  *
 ;		    a laser at two frequencies (38kHz & 56kHz), with firing mode    *
@@ -28,9 +28,9 @@
 ;										    *	
 ;************************************************************************************		
 		
-		#include "p16f1788.inc"      		; processor specific variable definitions
-		#INCLUDE <16F1788_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
-		#INCLUDE <SUBROUTINES.inc>		; File containing all used subroutines
+		#include "SLAVE.inc"      		; processor specific variable definitions
+		#INCLUDE <SLAVE_SETUP_001.inc>		; Custom setup file for the PIC16F883 micro-controller
+		#INCLUDE <SLAVE_SUBROUTINES.inc>		; File containing all used subroutines
 		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
 							; Using default destination of 1 (file),  Found call to macro in column 1
@@ -66,23 +66,25 @@ INTERRUPT
 		BANKSEL	    PIR1
 		BTFSC	    PIR1,3			;CHECK SSPIF FLAG TO SEE IF DATA WAS RECIEVED FROM MASTER
 		CALL	    RECEIVE
-		BTFSS	    ACTIVE,0
-		GOTO	    GOBACK
-		BTFSS	    PORTB,1
+		BANKSEL	    PORTA
+		BANKSEL	    IOCBF
+		BTFSC	    IOCBF,1
 		GOTO	    RECORD_PLAYER2_HIT
-		BTFSS	    PORTB,0
+		BTFSC	    IOCBF,0
 		GOTO	    RECORD_PLAYER1_HIT
-		MOVLW	    0x00
-		MOVWF	    TARGET_STATUS
 	GOBACK
 		BANKSEL	    PIR1
 		BCF	    PIR1,3			;CLEAR SSP1IF
-		BCF	    INTCON,IOCIF
 		RETFIE					;RETURN TO MAIN, RE-ENABLE GIE
 ;Main Code
 ;******************************************
 		
 MAIN	
+		BANKSEL	    PORTA
+		BTFSS	    ACTIVE, 0			;IF THE TARGET IS NOT ACTIVE, TURN OFF THE LEDS
+		CALL	    TURN_OFF_LEDS
+		BTFSC	    ACTIVE, 0			;IF THE TARGET IS ACTIVE, TURN ON THE LEDS
+		CALL	    TURN_ON_LEDS		
 		GOTO	    MAIN			
 END
 		
