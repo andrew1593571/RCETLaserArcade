@@ -1,16 +1,16 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    SUBROUTINES.inc						    *
-;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
-;   Author:	    Alex Wheelock						    *
+;   Filename:	    SLAVE_SUBROUTINES.inc					    *
+;   Date:	    April 23, 2025						    *
+;   File Version:   2								    *
+;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
 ;   Description:    Contains all subroutines needed for the Laser Shooting Game     *
-;		    project. Subroutines include the ability to swap between the    *
-;		    two player PWM frequencies of 56kHz and 38kHz, and the ability  *
-;		    to shoot in three different modes (single-shot, burst,	    *
-;		    & continuous), to move a solenoid and shoot	the laser with the  *
-;		    press of a button.						    *
+;		    target slave. Subroutines include I2C communications, recording *
+;		    player hits, and enabling/disabling the target. The I2C	    *
+;		    communications includes the ability to both receive data from   *
+;		    the master as well as the ability to respond to read requests   *
+;		    from the master. When a hit is detected, the LED is flashed.    *
 ;										    *
 ;************************************************************************************
 
@@ -19,29 +19,34 @@
 ;   Revision History:								    *
 ;										    *
 ;   1:	Initialize file, get everything working the way that I thought it should    *
-;	work.									    *								    *
+;	work.									    *
+;										    *
+;   2:	  I2C communications for enabling/disabling the target as well as reporting *
+;          any player hits to the target when the target is enabled.		    *
 ;										    *
 ;************************************************************************************		
 	    
 SUBROUTINES_CODE CODE
-  
-   RECEIVE 
+    
+    ;RECEIVES AND INTERPRETS I2C DATA, RESPONDS TO I2C READ REQUESTS
+    RECEIVE: 
 	    BANKSEL	PIR1
 	    BCF		PIR1, SSP1IF		;IMMEDIATELY CLEAR INTERRUPT FLAG
 	    BANKSEL	SSP1BUF			;\READ BYTE FROM MASTER
 	    MOVFW	SSP1BUF			;/
 	    MOVWF	RECEIVED_DATA
-	    BANKSEL	SSP1STAT			;DETERMINE IF THE RECEIVED BYTE WAS DATA OR ADDRESS
+	    BANKSEL	SSP1STAT		;DETERMINE IF THE RECEIVED BYTE WAS DATA OR ADDRESS
 	    BTFSS	SSP1STAT,5		;1=DATA, 0=ADDRESS
 	    GOTO	CHECK_READ_OR_WRITE	;BYTE RECEIVED WAS ADDRESS, CHECK IF R/W
 	    GOTO	SAVE_DATA		;BYTE RECEIVED WAS DATA, SAVE BYTE
 	    
-    CHECK_READ_OR_WRITE	
+	CHECK_READ_OR_WRITE	
 	    BTFSS	SSP1STAT,2		;TEST IF ADDRESS BYTE WAS R/W: R = 1, W = 0
-	    GOTO	SAVE_DATA		;MASTER WRITE: SAVE DATA OR INDICATE THAT THE SLAVE IS READY TO SAVE THE NEXT BYTE
+	    GOTO	SAVE_DATA		;MASTER WRITE: SAVE DATA
 	    GOTO	TRANSMIT_STATUS		;MASTER READ: TRANSMIT THE TARGET STATUS
 	
-    SAVE_DATA
+	;TESTS THE RECEIVED DATA AGAINST THE KNOWN ENABLE AND DISABLE COMMANDS
+	SAVE_DATA
 	    BANKSEL	PORTA
 	    MOVWF	RECEIVED_DATA
 	    XORLW	0X45
@@ -53,107 +58,113 @@ SUBROUTINES_CODE CODE
 	    BCF		ACTIVE, 0
 	    RETURN
     
-    TRANSMIT_STATUS
+	;TRANSMIT THE CURRENT TARGET STATUS BACK TO THE MASTER IF A READ WAS RECEIVED
+	TRANSMIT_STATUS
 	    BANKSEL	PORTA
-	    MOVFW	TARGET_STATUS
+	    MOVFW	TARGET_STATUS	    ;RETREIVE THE CURRENT TARGET STATUS
 	    BANKSEL	SSP1BUF
-	    MOVWF	SSP1BUF
+	    MOVWF	SSP1BUF		    ;MOVE THE TARGET STATUS INTO THE I2C BUFFER
 	    BANKSEL	SSP1CON1
-	    BSF		SSP1CON1, CKP
+	    BSF		SSP1CON1, CKP	    ;START THE CLOCK TO BEGIN DATA TRANSMISSION
 	    BANKSEL	PORTA
-	    BTFSC	TARGET_STATUS,3
+	    BTFSC	TARGET_STATUS,3	    ;IF THE TARGET_STATUS IS 0X0F, RESET THE TARGET
 	    CALL	RESET_TARGET
-	    BTFSC	TARGET_STATUS,7
+	    BTFSC	TARGET_STATUS,7	    ;IF THE TARGET_STATUS IS 0XF0, RESET THE TARGET
 	    CALL	RESET_TARGET
-	    
 	    RETURN
 	    
+	;CLEARS THE ACTIVE FLAG AND THE TARGET_STATUS REGISTER
+	;PREPARES THE TARGET TO BE ENABLED AGAIN
 	RESET_TARGET
 	    CLRF	ACTIVE
 	    CLRF	TARGET_STATUS
 	    RETURN
 	    
-    RECORD_PLAYER1_HIT
+    ;WHEN PLAYER ONE'S IR RECEIVER RECEIVES A HIT 
+    ;IF THE TARGET IS ACTIVE, FLASH THE LEDS FOR PLAYER ONE AND MOVE 0X0F INTO TARGET_STATUS 
+    RECORD_PLAYER1_HIT:
 	    BANKSEL	PORTB
-	    BTFSS	ACTIVE, 0
+	    BTFSS	ACTIVE, 0	    ;IF THE TARGET IS NOT ACTIVE, RETURNFROMHIT
 	    GOTO	RETURNFROMHIT
-	    BSF		PORTB,2
+	    BSF		PORTB,2		    ;CHANGE LEDS
 	    BCF		PORTB,3
 	    BSF		PORTB,4
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BCF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BCF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    BCF		ACTIVE,0
-	    MOVLW	0x0F
-	    MOVWF	TARGET_STATUS
+	    BCF		ACTIVE,0	    ;DISABLE THE TARGET
+	    MOVLW	0x0F		
+	    MOVWF	TARGET_STATUS	    ;MOVE 0X0F INTO TARGET_STATUS
 	    GOTO	RETURNFROMHIT
 	    
-	    
-    RECORD_PLAYER2_HIT
+    ;WHEN PLAYER TWO'S IR RECEIVER RECEIVES A HIT 
+    ;IF THE TARGET IS ACTIVE, FLASH THE LEDS FOR PLAYER TWO AND MOVE 0XF0 INTO TARGET_STATUS 
+    RECORD_PLAYER2_HIT:
 	    BANKSEL	PORTB
-	    BTFSS	ACTIVE, 0
+	    BTFSS	ACTIVE, 0	    ;IF THE TARGET IS NOT ACTIVE, RETURNFROMHIT
 	    GOTO	RETURNFROMHIT
-	    BSF		PORTB,2
+	    BSF		PORTB,2		    ;CHANGE LEDS
 	    BCF		PORTB,3
 	    BSF		PORTB,4
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BCF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BCF		PORTB,2
-	    CALL	WAIT_FOR_TMR1
+	    CALL	WAIT_FOR_TMR1	    ;WAIT FOR A MOMENT
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    CALL	WAIT_FOR_TMR1
 	    BSF		PORTB,2
-	    BCF		ACTIVE,0
+	    BCF		ACTIVE,0	    ;DISABLE THE TARGET
 	    MOVLW	0xF0
-	    MOVWF	TARGET_STATUS
+	    MOVWF	TARGET_STATUS	    ;MOVE 0XF0 INTO TARGET_STATUS
 	    GOTO	RETURNFROMHIT
 	    
-    RETURNFROMHIT
+	RETURNFROMHIT
 	    BANKSEL	IOCBF
 	    CLRF	IOCBF			;CLEAR THE INTERRUPT ON CHANGE PORTB FLAGS
 	    RETFIE
 	    
-    WAIT_FOR_TMR1
+    ;LOOPS UNTIL TMR1 OVERFLOW
+    WAIT_FOR_TMR1:
 	    BCF		PIR1,0			;CLEAR TMR1IF
 	    BANKSEL	T1CON
 	    BSF		T1CON,0			;ENABLE TIMER 1
@@ -164,10 +175,10 @@ SUBROUTINES_CODE CODE
 	    BTFSS	PIR1,0			;POLL TMR1IF UNTIL COMPLETE
 	    GOTO	$-1			;TMR1 NOT DONE
 	    BANKSEL	T1CON
-	    BCF		T1CON,0			;ENABLE TIMER 1
+	    BCF		T1CON,0			;DISABLE TIMER 1
 	    RETURN
 	    
-	    
+    ;TURNS OFF ALL LEDS ON THE TARGET
     TURN_OFF_LEDS:
 	    BANKSEL	PORTB
 	    BSF		PORTB, RB2
@@ -175,6 +186,7 @@ SUBROUTINES_CODE CODE
 	    BSF		PORTB, RB4
 	    RETURN
 	    
+    ;TURNS ON THE LEDS ASSOCIATED WITH AN ACTIVE TARGET
     TURN_ON_LEDS:
 	    BANKSEL	PORTB
 	    BCF		PORTB, RB2

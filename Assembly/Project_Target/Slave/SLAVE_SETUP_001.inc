@@ -1,12 +1,12 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    16LF1788_SETUP.inc						    *
-;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
-;   Author:	    Alex Wheelock						    *
+;   Filename:	    SLAVE_SETUP.inc						    *
+;   Date:	    April 23, 2025						    *
+;   File Version:   2								    *
+;   Author:	    Alex Wheelock and Andrew Keller				    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Firmware for setting up a PIC16LF1788 for the laser gun of the  *
-;		    Laser Shooting Game project.				    *
+;   Description:    Firmware for setting up a PIC16F1788 for the target slave of    *
+;		    the Laser Shooting Game project.				    *
 ;										    *
 ;************************************************************************************
 
@@ -15,6 +15,9 @@
 ;   Revision History:								    *
 ;										    *
 ;   1:	Iniitialize file, setup how I think it should be setup for the project.	    *
+;										    *
+;   2:	I2C communications for enabling/disabling the target as well as reporting   *
+;       any player hits to the target when the target is enabled.		    *
 ;										    *
 ;************************************************************************************
 		
@@ -29,8 +32,8 @@
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
 ;I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	|I2C Address	*
 ;Switch		|Switch		|Switch		|Switch		|Switch		|Switch		|Switch		|Switch		*
-;		|		|		|		|		|		|		|		*
-;		|		|		|		|		|		|		|		*		
+;		|		|		|		|		|		|		|(Ignored in	*
+;		|		|		|		|		|		|		|7-bit address)	*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
 		
 ;===============================================================================================================================*
@@ -73,10 +76,6 @@ INITIALIZE
 		MOVWF	    OSCCON
 		BANKSEL	    CLKRCON
 		CLRF	    CLKRCON			;DISABLE CLOCK REFERENCE
-	
-		
-;*** SFR SETUP **********
- 
 		
 ;*** SET OPTION_REG: ****
 		
@@ -228,9 +227,9 @@ INITIALIZE
 ;*** BOOT CODE ****
 		
 		BANKSEL	    PORTA
-		CLRF	    TARGET_STATUS
-		CLRF	    ACTIVE
-		BANKSEL	    INTCON
+		CLRF	    TARGET_STATUS		;CLEAR TARGET_STATUS TO PREVENT INACCURATE SCORE
+		CLRF	    ACTIVE			;ENSURE TARGET STARTS DISABLED	    
+		BANKSEL	    INTCON  
 		BCF	    INTCON,0
 		BANKSEL	    IOCAF
 		CLRF	    IOCAF
