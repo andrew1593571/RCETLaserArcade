@@ -398,6 +398,6 @@ Public Class ArcadeControlForm
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-
+        AboutForm.Show()
     End Sub
 End Class

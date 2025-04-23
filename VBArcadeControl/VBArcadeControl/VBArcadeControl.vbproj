@@ -112,6 +112,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ArcadeConfigurationForm.resx">
       <DependentUpon>ArcadeConfigurationForm.vb</DependentUpon>
     </EmbeddedResource>
