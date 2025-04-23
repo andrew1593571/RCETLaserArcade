@@ -27,7 +27,7 @@
 ;************************************************************************************
 		
 		#include "SLAVE.inc"      		; processor specific variable definitions
-		#INCLUDE <SLAVE_SETUP_001.inc>		; Custom setup file for the PIC16F883 micro-controller
+		#INCLUDE <SLAVE_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
 		#INCLUDE <SLAVE_SUBROUTINES.inc>	; File containing all used subroutines
 		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
