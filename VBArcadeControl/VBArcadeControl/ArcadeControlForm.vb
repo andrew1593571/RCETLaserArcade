@@ -1,5 +1,6 @@
 ﻿Option Strict On
 Option Explicit On
+Imports System.ComponentModel
 Imports System.IO.Ports
 
 Public Class ArcadeControlForm
@@ -181,7 +182,12 @@ Public Class ArcadeControlForm
 
     Private Sub StartGameButton_Click(sender As Object, e As EventArgs) Handles StartGameButton.Click
         If gameInProgress Then
-            MsgBox("Game already started!")
+            TargetEnableTimer.Stop()
+            GameTimer.Stop()
+            laserArcade.DisableTarget(0)
+            gameInProgress = False
+            CountdownLabel.Text = "Game Over"
+            StartGameButton.Text = "Start Game"
         Else
             If laserArcade.Connected And laserArcade.DeviceVerified Then
                 gameCountdown = gameTime
@@ -196,6 +202,7 @@ Public Class ArcadeControlForm
                 laserArcade.EnableRandomTarget()
                 GameTimer.Start()
                 TargetEnableTimer.Start()
+                StartGameButton.Text = "Stop Game"
             Else
                 MsgBox("Please connect to the Laser Arcade COM port.")
             End If
@@ -278,5 +285,11 @@ Public Class ArcadeControlForm
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
+    End Sub
+
+    Private Sub ArcadeControlForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If gameInProgress Then
+            laserArcade.DisableTarget(0)
+        End If
     End Sub
 End Class
