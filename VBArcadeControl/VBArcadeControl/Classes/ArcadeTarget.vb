@@ -54,7 +54,7 @@
         _command(0) = &H24
         _command(1) = &H41
         _command(2) = _targetSlot
-        _command(3) = CByte(newAddress)
+        _command(3) = CByte(newAddress * 2) 'multiply by two to shift the address left by one bit
 
         _ready = True
 

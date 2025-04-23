@@ -210,6 +210,8 @@ Public Class ArcadeControlForm
         If gameInProgress Then
             gameCountdown -= 1
             UpdateCountdown()
+            PlayerTwoScoreLabel.Text = CStr(playerTwoPoints)
+            PlayerOneScoreLabel.Text = CStr(playerOnePoints)
 
             If gameCountdown = 0 Then
                 TargetEnableTimer.Stop()
@@ -259,7 +261,6 @@ Public Class ArcadeControlForm
         Next
         playerOnePoints += pointsScored
 
-        PlayerOneScoreLabel.Text = CStr(playerOnePoints)
     End Sub
 
     Private Sub laserArcade_PlayerTwoScore(address As Byte) Handles laserArcade.PlayerTwoScore
@@ -273,7 +274,6 @@ Public Class ArcadeControlForm
         Next
         playerTwoPoints += pointsScored
 
-        PlayerTwoScoreLabel.Text = CStr(playerTwoPoints)
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click

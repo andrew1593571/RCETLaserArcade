@@ -80,10 +80,8 @@ TMR2             EQU  H'001A'
 PR2              EQU  H'001B'
 T2CON            EQU  H'001C'
 RECEIVED_DATA	 EQU  H'0020'
-NEW_DATA	 EQU  H'0021'
-TARGET_STATUS	 EQU  H'0022'
-ADDRESS_RECEIVED EQU  H'0023'
-ACTIVE		 EQU  H'0024'
+TARGET_STATUS	 EQU  H'0021'
+ACTIVE		 EQU  H'0022'
 	    
 ;-----Bank1------------------
 TRISA            EQU  H'008C'
