@@ -2,6 +2,11 @@
 Option Strict On
 Imports System.IO.Ports
 
+'Laser Arcade Project
+'Andrew Keller
+'Spring 2025
+'https://github.com/AlexWheelock/Laser-Arcade-Project.git
+
 Public Class LaserArcade
 
     '######______Event Declarations______######
@@ -127,6 +132,31 @@ Public Class LaserArcade
     '######______Subroutines and Functions______######
 
     ''' <summary>
+    ''' Configures the Laser Arcade class defaults for each instance.
+    ''' </summary>
+    Sub New()
+        'set the COM port Baudrate to 9600 with 8 bits and no parity
+        arcadePort.BaudRate = 9600
+        arcadePort.DataBits = 8
+        arcadePort.Parity = Parity.None
+
+        'sets default timer intervals
+        verificationTimer.Interval = 500
+        connectionTimeoutTimer.Interval = 10000
+
+        'set the disableTime from 5 to 10 seconds as default
+        _disableTimeMaximum = 10000
+        _disableTimeMinimum = 5000
+
+        'initialize all targets and respective disable timers
+        For i = 0 To 7
+            _targets(i) = New ArcadeTarget(i + 1)
+            _disableTimers(i) = New Timer
+            AddHandler _disableTimers(i).Tick, AddressOf DisableTimer_Tick
+        Next
+    End Sub
+
+    ''' <summary>
     ''' returns a random number between the max and min
     ''' </summary>
     ''' <param name="max"></param>
@@ -143,7 +173,7 @@ Public Class LaserArcade
     End Function
 
     ''' <summary>
-    ''' requests verification from the connected device that it is the laser arcade master
+    ''' requests verification from the connected device that it is the laser arcade master board
     ''' </summary>
     Private Sub RequestVerification()
         Dim verification(1) As Byte 'the Laser Arcade verification command
@@ -151,7 +181,7 @@ Public Class LaserArcade
         verification(1) = &H56 'command byte
 
         If arcadePort.IsOpen Then
-            arcadePort.Write(verification, 0, 2)
+            arcadePort.Write(verification, 0, 2) 'send the verification request
         End If
     End Sub
 
@@ -159,12 +189,12 @@ Public Class LaserArcade
     ''' opens the Laser arcade serial port connection and starts the device verification process
     ''' </summary>
     Public Sub StartConnection()
-        If Not arcadePort.IsOpen Then
-            arcadePort.Open()
-            RequestVerification()
+        If Not arcadePort.IsOpen Then 'if the serial port is not already open
+            arcadePort.Open() 'open the port
+            RequestVerification() 'request verification
 
-            verificationTimer.Start()
-            connectionTimeoutTimer.Start()
+            verificationTimer.Start() 'start a timer for the verification
+            connectionTimeoutTimer.Start() 'start a connection timeout
         End If
     End Sub
 
@@ -173,9 +203,9 @@ Public Class LaserArcade
     ''' </summary>
     Public Sub EndConnection()
         If arcadePort.IsOpen Then
-            connectionTimeoutTimer.Stop()
-            verificationTimer.Stop()
-            arcadePort.Close()
+            connectionTimeoutTimer.Stop() 'stop the timeout timer
+            verificationTimer.Stop() 'stop the verification timer
+            arcadePort.Close() 'close the serial port
         End If
     End Sub
 
@@ -297,41 +327,22 @@ Public Class LaserArcade
     Sub EnableRandomTarget()
         Dim targetSlots As Integer
 
+        'only use up to 7 target slots
         If _numberOfTargets < 8 Then
-            targetSlots = _numberOfTargets - 1
+            targetSlots = _numberOfTargets - 1 'if the number of targets is less than 7, use that many slots
         Else
             targetSlots = 7
         End If
 
         If arcadePort.IsOpen Then
             For i = 0 To targetSlots
-                If Not _targets(i).Enabled Then
+                If Not _targets(i).Enabled Then 'only attempt changing the address if the target is not enabled
                     arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4) 'change the target address
                     EnableTarget(i + 1) 'enable the target
                     Exit Sub
                 End If
             Next
         End If
-    End Sub
-
-    Sub New()
-        arcadePort.BaudRate = 9600
-        arcadePort.DataBits = 8
-        arcadePort.Parity = Parity.None
-
-        verificationTimer.Interval = 500
-        connectionTimeoutTimer.Interval = 10000
-
-        'set the disableTime from 5 to 10 seconds as default
-        _disableTimeMaximum = 10000
-        _disableTimeMinimum = 5000
-
-        'initialize all targets and disable timers
-        For i = 0 To 7
-            _targets(i) = New ArcadeTarget(i + 1)
-            _disableTimers(i) = New Timer
-            AddHandler _disableTimers(i).Tick, AddressOf DisableTimer_Tick
-        Next
     End Sub
 
     '######_____Event Handlers______######
@@ -390,9 +401,9 @@ Public Class LaserArcade
     ''' <param name="e"></param>
     Private Sub verificationTimer_Tick(sender As Object, e As EventArgs) Handles verificationTimer.Tick
         If _verified Then
-            verificationTimer.Stop()
+            verificationTimer.Stop() 'if the master board COM has been verified, stop the verification timer.
         Else
-            RequestVerification()
+            RequestVerification() 'send the request verification command
         End If
     End Sub
 
@@ -403,17 +414,23 @@ Public Class LaserArcade
     ''' <param name="e"></param>
     Private Sub connectionTimeoutTimer_Tick(sender As Object, e As EventArgs) Handles connectionTimeoutTimer.Tick
         If _verified Then
-            connectionTimeoutTimer.Stop()
+            connectionTimeoutTimer.Stop() 'if the master board COM was verified, stop the timeout
         Else
-            EndConnection()
-            RaiseEvent DeviceVerificationFailed("Device verification timed out. Please check the COM port.")
+            EndConnection() 'end the connection, incorrect device
+            RaiseEvent DeviceVerificationFailed("Device verification timed out. Please check the COM port.") 'raise the DeviceVerificationFailed event
         End If
     End Sub
 
+    ''' <summary>
+    ''' Disables a target when its disableTimer goes off.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DisableTimer_Tick(sender As Object, e As EventArgs)
-        For i = 0 To 7
-            If _disableTimers(i) Is sender Then
-                DisableTarget(i + 1)
+        For i = 0 To 7 'scan through each target/timer
+            If _disableTimers(i) Is sender Then 'if the current scan timer sent the tick
+                DisableTarget(i + 1) 'disable the current scan timer
+                Exit Sub
             End If
         Next
     End Sub

@@ -38,7 +38,7 @@ Partial Class ArcadeControlForm
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StartGameButton = New System.Windows.Forms.Button()
+        Me.StartStopGameButton = New System.Windows.Forms.Button()
         Me.TargetEnableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GameTimer = New System.Windows.Forms.Timer(Me.components)
         Me.TitleLabel = New System.Windows.Forms.Label()
@@ -48,6 +48,7 @@ Partial Class ArcadeControlForm
         Me.PlayerTwoLabel = New System.Windows.Forms.Label()
         Me.PlayerTwoScoreLabel = New System.Windows.Forms.Label()
         Me.PlayerOneScoreLabel = New System.Windows.Forms.Label()
+        Me.ScoreUpdateTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         Me.TableLayoutPanel.SuspendLayout()
@@ -154,19 +155,19 @@ Partial Class ArcadeControlForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
-        'StartGameButton
+        'StartStopGameButton
         '
-        Me.StartGameButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.StartGameButton.Location = New System.Drawing.Point(269, 320)
-        Me.StartGameButton.Name = "StartGameButton"
-        Me.StartGameButton.Padding = New System.Windows.Forms.Padding(20)
-        Me.StartGameButton.Size = New System.Drawing.Size(260, 75)
-        Me.StartGameButton.TabIndex = 2
-        Me.StartGameButton.Text = "Start Game"
-        Me.StartGameButton.UseVisualStyleBackColor = True
+        Me.StartStopGameButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.StartStopGameButton.Location = New System.Drawing.Point(269, 320)
+        Me.StartStopGameButton.Name = "StartStopGameButton"
+        Me.StartStopGameButton.Padding = New System.Windows.Forms.Padding(20)
+        Me.StartStopGameButton.Size = New System.Drawing.Size(260, 75)
+        Me.StartStopGameButton.TabIndex = 2
+        Me.StartStopGameButton.Text = "Start Game"
+        Me.StartStopGameButton.UseVisualStyleBackColor = True
         '
         'TargetEnableTimer
         '
@@ -202,7 +203,7 @@ Partial Class ArcadeControlForm
         Me.TableLayoutPanel.Controls.Add(Me.CountdownLabel, 1, 1)
         Me.TableLayoutPanel.Controls.Add(Me.PlayerOneLabel, 0, 1)
         Me.TableLayoutPanel.Controls.Add(Me.PlayerTwoLabel, 2, 1)
-        Me.TableLayoutPanel.Controls.Add(Me.StartGameButton, 1, 3)
+        Me.TableLayoutPanel.Controls.Add(Me.StartStopGameButton, 1, 3)
         Me.TableLayoutPanel.Controls.Add(Me.PlayerTwoScoreLabel, 2, 2)
         Me.TableLayoutPanel.Controls.Add(Me.PlayerOneScoreLabel, 0, 2)
         Me.TableLayoutPanel.Location = New System.Drawing.Point(0, 27)
@@ -280,8 +281,12 @@ Partial Class ArcadeControlForm
         Me.PlayerOneScoreLabel.Text = "0"
         Me.PlayerOneScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'ScoreUpdateTimer
+        '
+        '
         'ArcadeControlForm
         '
+        Me.AcceptButton = Me.StartStopGameButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
@@ -314,7 +319,7 @@ Partial Class ArcadeControlForm
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents StartGameButton As Button
+    Friend WithEvents StartStopGameButton As Button
     Friend WithEvents TargetEnableTimer As Timer
     Friend WithEvents GameTimer As Timer
     Friend WithEvents ConfigurationStatusStripLabel As ToolStripStatusLabel
@@ -327,4 +332,5 @@ Partial Class ArcadeControlForm
     Friend WithEvents PlayerTwoLabel As Label
     Friend WithEvents PlayerTwoScoreLabel As Label
     Friend WithEvents PlayerOneScoreLabel As Label
+    Friend WithEvents ScoreUpdateTimer As Timer
 End Class
