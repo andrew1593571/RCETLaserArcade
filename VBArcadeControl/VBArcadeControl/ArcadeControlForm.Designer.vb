@@ -48,6 +48,7 @@ Partial Class ArcadeControlForm
         Me.PlayerTwoLabel = New System.Windows.Forms.Label()
         Me.PlayerTwoScoreLabel = New System.Windows.Forms.Label()
         Me.PlayerOneScoreLabel = New System.Windows.Forms.Label()
+        Me.ScoreUpdateTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         Me.TableLayoutPanel.SuspendLayout()
@@ -280,6 +281,9 @@ Partial Class ArcadeControlForm
         Me.PlayerOneScoreLabel.Text = "0"
         Me.PlayerOneScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'ScoreUpdateTimer
+        '
+        '
         'ArcadeControlForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -327,4 +331,5 @@ Partial Class ArcadeControlForm
     Friend WithEvents PlayerTwoLabel As Label
     Friend WithEvents PlayerTwoScoreLabel As Label
     Friend WithEvents PlayerOneScoreLabel As Label
+    Friend WithEvents ScoreUpdateTimer As Timer
 End Class

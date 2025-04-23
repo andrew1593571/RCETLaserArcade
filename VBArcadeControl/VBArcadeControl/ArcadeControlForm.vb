@@ -146,6 +146,8 @@ Public Class ArcadeControlForm
         TargetEnableTimer.Interval = 500 'target enabled every 500ms
         ConfigurationStatusStripLabel.Text = "Default Configuration"
 
+        ScoreUpdateTimer.Start()
+
     End Sub
 
     ''' <summary>
@@ -217,8 +219,6 @@ Public Class ArcadeControlForm
         If gameInProgress Then
             gameCountdown -= 1
             UpdateCountdown()
-            PlayerTwoScoreLabel.Text = CStr(playerTwoPoints)
-            PlayerOneScoreLabel.Text = CStr(playerOnePoints)
 
             If gameCountdown = 0 Then
                 TargetEnableTimer.Stop()
@@ -291,5 +291,10 @@ Public Class ArcadeControlForm
         If gameInProgress Then
             laserArcade.DisableTarget(0)
         End If
+    End Sub
+
+    Private Sub ScoreUpdateTimer_Tick(sender As Object, e As EventArgs) Handles ScoreUpdateTimer.Tick
+        PlayerTwoScoreLabel.Text = CStr(playerTwoPoints)
+        PlayerOneScoreLabel.Text = CStr(playerOnePoints)
     End Sub
 End Class
