@@ -278,8 +278,12 @@ Public Class ArcadeControlForm
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ConnectDisconnectStatusStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectDisconnectStatusStripMenuItem.Click
-        'connect or disconnect from the laser arcade
-        ConnectDisconnectSerial()
+        If Not gameInProgress Then 'prevent changes in connection during game
+            'connect or disconnect from the laser arcade
+            ConnectDisconnectSerial()
+        Else
+            MsgBox("Connection cannot be changed with a game in progress.")
+        End If
     End Sub
 
     ''' <summary>

@@ -206,6 +206,7 @@ Public Class LaserArcade
             connectionTimeoutTimer.Stop() 'stop the timeout timer
             verificationTimer.Stop() 'stop the verification timer
             arcadePort.Close() 'close the serial port
+            _verified = False
         End If
     End Sub
 
