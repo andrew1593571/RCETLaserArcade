@@ -240,7 +240,7 @@ Partial Class ArcadeConfigurationForm
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(85, 39)
         Me.SaveButton.TabIndex = 4
-        Me.SaveButton.Text = "Save"
+        Me.SaveButton.Text = "&Save to File"
         Me.ToolTip.SetToolTip(Me.SaveButton, "Save the current configuration to file.")
         Me.SaveButton.UseVisualStyleBackColor = True
         '
@@ -250,7 +250,7 @@ Partial Class ArcadeConfigurationForm
         Me.OpenButton.Name = "OpenButton"
         Me.OpenButton.Size = New System.Drawing.Size(85, 39)
         Me.OpenButton.TabIndex = 5
-        Me.OpenButton.Text = "Open"
+        Me.OpenButton.Text = "&Open File"
         Me.ToolTip.SetToolTip(Me.OpenButton, "Open a configuration from file")
         Me.OpenButton.UseVisualStyleBackColor = True
         '
@@ -294,7 +294,7 @@ Partial Class ArcadeConfigurationForm
         Me.AddressTextBox.Name = "AddressTextBox"
         Me.AddressTextBox.Size = New System.Drawing.Size(80, 20)
         Me.AddressTextBox.TabIndex = 9
-        Me.ToolTip.SetToolTip(Me.AddressTextBox, "Address of points override")
+        Me.ToolTip.SetToolTip(Me.AddressTextBox, "7-bit I2C Address of points override. Include 8th bit as 0.")
         '
         'AddressLabel
         '
@@ -354,7 +354,7 @@ Partial Class ArcadeConfigurationForm
         Me.TargetsGroupBox.TabIndex = 7
         Me.TargetsGroupBox.TabStop = False
         Me.TargetsGroupBox.Text = "Number of Targets"
-        Me.ToolTip.SetToolTip(Me.TargetsGroupBox, "Number of total targets. Minimum is 1.")
+        Me.ToolTip.SetToolTip(Me.TargetsGroupBox, "Number of total targets. Minimum is 1. Maximum is 127.")
         '
         'TargetNumberLabel
         '
@@ -364,7 +364,7 @@ Partial Class ArcadeConfigurationForm
         Me.TargetNumberLabel.Size = New System.Drawing.Size(43, 13)
         Me.TargetNumberLabel.TabIndex = 2
         Me.TargetNumberLabel.Text = "Targets"
-        Me.ToolTip.SetToolTip(Me.TargetNumberLabel, "Number of total targets. Minimum is 1.")
+        Me.ToolTip.SetToolTip(Me.TargetNumberLabel, "Number of total targets. Minimum is 1. Maximum is 127.")
         '
         'TargetNumberTextBox
         '
@@ -372,7 +372,7 @@ Partial Class ArcadeConfigurationForm
         Me.TargetNumberTextBox.Name = "TargetNumberTextBox"
         Me.TargetNumberTextBox.Size = New System.Drawing.Size(100, 20)
         Me.TargetNumberTextBox.TabIndex = 1
-        Me.ToolTip.SetToolTip(Me.TargetNumberTextBox, "Number of total targets. Minimum is 1.")
+        Me.ToolTip.SetToolTip(Me.TargetNumberTextBox, "Number of total targets. Minimum is 1. Maximum is 127.")
         '
         'ArcadeConfigurationForm
         '
