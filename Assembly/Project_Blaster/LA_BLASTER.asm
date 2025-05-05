@@ -1,12 +1,12 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    Project_Gun.asm						    *
+;   Filename:	    LA_BLASTER.asm						    *
 ;   Date:	    November 5, 2024						    *
 ;   File Version:   2								    *
 ;   Author:	    Alex Wheelock						    *
 ;   Company:	    Idaho State University					    *
 ;										    *
-;   Description:    Assembly file for Laser Shooting Game gun. A gun that can fire  *
+;   Description:    Assembly file for Laser Arcade blaster. A gun that can fire     *
 ;		    a laser at two frequencies (38kHz & 56kHz), with firing mode    *
 ;		    select (single-shot, three round burst, continuous). Different  *
 ;		    frequencies will be used to determine between player 1 (38kHz)  *
@@ -40,10 +40,10 @@
 ;										    *	
 ;************************************************************************************		
 		
-		#include "p16lf1788.inc"      		; processor specific variable definitions
-		#INCLUDE <16LF1788_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
-		#INCLUDE <SUBROUTINES.inc>		; File containing all used subroutines
-		LIST      p=16lf1788		  	; list directive to define processor
+		#include "BLASTER.inc"      		; processor specific variable definitions
+		#INCLUDE <BLASTER_SETUP.inc>		; Custom setup file for the PIC16F883 micro-controller
+		#INCLUDE <BLASTER_SUBROUTINES.inc>		; File containing all used subroutines
+		LIST      p=16f1788		  	; list directive to define processor
 		errorlevel -302,-207,-305,-206,-203	; suppress "not in bank 0" message,  Found label after column 1,
 							; Using default destination of 1 (file),  Found call to macro in column 1
 
@@ -86,7 +86,7 @@ INTERRUPT
 		GOTO	    FIRE_CONTINUOUS		;GUN IS IN CONTINOUS/FULL-AUTO MODE, CHECK IF READY TO FIRE
 		BTFSC	    PORTB,3			;GUN IS NOT IN CONTINUOUS/FULL-AUTO MODE, TEST IF IT IS IN BURST-FIRE MODE
 		GOTO	    FIRE_BURST			;GUN IS IN BURST-FIRE MODE, CHECK IF READY TO FIRE
-		BTFSC	    PORTB,4
+		BTFSC	    PORTB,4			;GUN IS IN NEITHER FULL-AUTO OR BURST-FIRE MODES, DETERMINE IF IT IS IN SEMI-AUTO MODE
 		GOTO	    FIRE_SEMI			;GUN IS NOT IN CONTINUOUS OR BURST-FIRE MODE, DEFAULT TO SEMI-AUTO MODE, TEST IF READY TO FIRE
 	GOBACK
 		BANKSEL	    IOCBF
@@ -99,26 +99,26 @@ INTERRUPT
 ;******************************************
 ;Main Code
 ;******************************************
-MAIN	
+MAIN							;CONSTANTLY PULSE THE VOL+ WHILE IN MAIN TO ENSURE THE VOLUME IS MAXED OUT
 		BANKSEL	    PORTC
-		BTFSC	    PORTC,7
-		GOTO	    _CLEAR
-	_SET
-		BSF	    PORTC,7
+		BTFSC	    PORTC,7			;DETERMINE IF THE VOL+ OUTPUT IS HIGH OR LOW
+		GOTO	    _CLEAR			;OUTPUT IS HIGH
+	_SET						;OUTPUT IS LOW
+		BSF	    PORTC,7			;OUTPUT IS LOW, SET VOL+
 		GOTO	    WAIT
 	_CLEAR
-		BCF	    PORTC,7	
-	WAIT
-		MOVLW	    0x7F	    
-		MOVWF	    VOLUME_COUNT
-	    VOLUME_LOOP1
-		CLRF	    VOLUME_COUNT2
-	    VOLUME_LOOP2
-		DECFSZ	    VOLUME_COUNT2
-		GOTO	    VOLUME_LOOP2
-		DECFSZ	    VOLUME_COUNT
-		GOTO	    VOLUME_LOOP1
-		GOTO	    MAIN			;ENDLESS LOOP, NOTHING HAPPENS (WAITING FOR INTERRUPT)
+		BCF	    PORTC,7			;OUTPUT IS HIGH, CLEAR VOL+
+	WAIT						;\
+		MOVLW	    0x7F			;\\
+		MOVWF	    VOLUME_COUNT		;\\\
+	    VOLUME_LOOP1				;\\\\
+		CLRF	    VOLUME_COUNT2		;\\\\\ GIVE A DELAY ON THE PW/PS TO ENSURE THAT THE AUDIO BOARD HAS TIME
+	    VOLUME_LOOP2				;///// TO TRIGGER OFF OF IT, BECAUSE IT IS VERY SLOW.
+		DECFSZ	    VOLUME_COUNT2		;////
+		GOTO	    VOLUME_LOOP2		;///
+		DECFSZ	    VOLUME_COUNT		;//
+		GOTO	    VOLUME_LOOP1		;/
+		GOTO	    MAIN		
 END
 		
 ;******************************************		

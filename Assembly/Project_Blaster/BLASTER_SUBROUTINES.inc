@@ -1,16 +1,15 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    SUBROUTINES.inc						    *
+;   Filename:	    BLASTER_SUBROUTINES.inc						    *
 ;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
+;   File Version:   2								    *
 ;   Author:	    Alex Wheelock						    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Contains all subroutines needed for the Laser Shooting Game     *
-;		    project. Subroutines include the ability to swap between the    *
-;		    two player PWM frequencies of 56kHz and 38kHz, and the ability  *
-;		    to shoot in three different modes (single-shot, burst,	    *
-;		    & continuous), to move a solenoid and shoot	the laser with the  *
-;		    press of a button.						    *
+;   Description:    Contains all subroutines needed for the Laser Arcade project.   *
+;		    Subroutines include the ability to swap between the two player  *
+;		    PWM frequencies of 56kHz and 38kHz, and the ability to shoot in *
+;		    three different modes (single-shot, burst, & continuous), to    *
+;		    move a solenoid and shoot the laser with the press of a button. *
 ;										    *
 ;************************************************************************************
 
@@ -18,10 +17,18 @@
 ;										    *
 ;   Revision History:								    *
 ;										    *
-;   1:	Initialize file, get everything working the way that I thought it should    *
-;	work.									    *								    *
+;   1:	  (NOV 2024) Got everything for the gun working the way that I think it     *
+;	  should with base features.						    *
+;										    *		
+;   2:	  (APRIL 3, 2025) Added an audio board, and connected all of PORTA, and	    *
+;	  RC7,6,1, & 0 as triggers for the audio board, only RA0 & RA1 are being    *
+;	  used as triggers currently, RC7 toggles in MAIN to ensure the volume is   *
+;	  maxed out.								    *
 ;										    *
-;************************************************************************************		
+;	  Code was also updated to work properly with the fire select switch that   *
+;	  will be used in the final product.					    *
+;										    *	
+;************************************************************************************	
 	    
 SUBROUTINES_CODE CODE
   
@@ -29,18 +36,19 @@ SUBROUTINES_CODE CODE
 		BANKSEL	    PORTB
 		BTFSS	    PORTB,0			;TEST IF THE TRIGGER IS BEING HELD DOWN
 		GOTO	    STOP_FIRING			;TRIGGER IS NOT BEING HELD DOWN, STOP FIRING
-		BCF	    PORTA,0
+		BCF	    PORTA,0			;ENABLE TRIGGER1 TO PLAY SOUND FROM THE AUDIO BOARD
 		BANKSEL	    TRISC
 		BTFSC	    TRISC,2			;TEST IF OUTPUT DRIVER FOR PWM IS SET OR NOT (FOR ALTERNATING BETWEEN SET/RESET)
 		GOTO	    FIRE			;OUTPUT DRIVER WAS NOT ENABLED, ENABLE IT
 		GOTO	    _RESET			;OUTPUT DRIVER WAS ENABLED, DISABLE IT
 			
-	FIRE	
+	FIRE
 		BCF	    TRISC,2			;ENABLE OUTPUT DRIVER FOR PWM
 		BANKSEL	    PORTC
 		BSF	    PORTC,3			;ENERGIZE THE SOLENOID
 		GOTO	    CONTINUOUS_CHECK_TIMER	;POLL TIMER 1 FOR TIMING
-	_RESET
+		
+	_RESET ;SETS
 		BSF	    TRISC,2			;DISABLE OUTPUT DRIVER FOR PWM
 		BANKSEL	    PORTC
 		BCF	    PORTC,3			;DE-ENERGIZE THE SOLENOID
@@ -58,8 +66,12 @@ SUBROUTINES_CODE CODE
 		BSF	    TRISC,2			;OUTPUT DRIVER NOT DISABLED, DISABLE OUTPUT DRIVER
 		BANKSEL	    PORTC
 		BCF	    PORTC,3			;NO MATTER WHAT, VERIFY THAT THE SOLENOID IS DE-ENERGIZED
-		BSF	    PORTA,0
-		BSF	    PORTA,1
+		;BSF	    PORTA,0			;RESET TRIG0 OF THE AUDIO BOARD
+		;BSF	    PORTA,1			;RESET TRIG1 OF THE AUDIO BOARD
+		MOVLW	    0xFF			;\
+		MOVWF	    PORTA			;\\ SET ALL TRIG PINS LOW
+		MOVLW	    0xF1			;// ENSURE NO FALSE TRIGGERS
+		MOVWF	    PORTC			;/
 		GOTO	    GOBACK			;LEAVE ISR
  
     FIRE_SEMI
@@ -70,20 +82,19 @@ SUBROUTINES_CODE CODE
 		BTFSS	    PORTB,0			;VERIFY THAT THE BUTTON WAS PRESSED, AND THAT THE INTERRUPT WAS NOT FROM A TRIGGER RELEASE
 		GOTO	    STOP_FIRING			;TRIGGER WAS BEING RELEASED FOR THE INTERRUPT, CANCEL EVERYTHING
 		BANKSEL	    PORTC
-		BCF	    PORTA,0
-		MOVLW	    0x2F
-		MOVWF	    AUDIO_DELAY
-	LOOP1
-		CLRF	    AUDIO_DELAY2
-	LOOP2
-		DECFSZ	    AUDIO_DELAY2
-		GOTO	    LOOP2
-		DECFSZ	    AUDIO_DELAY
-		GOTO	    LOOP1
-		BANKSEL	    TRISC
+		BCF	    PORTA,0			;ENABLE TRIG0 TO PLAY AUDIO
+		MOVLW	    0x2F			;\
+		MOVWF	    AUDIO_DELAY			;\\
+	LOOP1						;\\\
+		CLRF	    AUDIO_DELAY2		;\\\\
+	LOOP2						;||||RUN THROUGH A DELAY TO ENSURE THAT AUDIO IS PLAYED WHEN FIRING IN THE SEMI-AUTO FIRING MODE
+		DECFSZ	    AUDIO_DELAY2		;////(------------------------------------------------------------------------------------)
+		GOTO	    LOOP2			;/// (NOTE: THE AUDIO BOARD IF VERY SLOW AND AS A RESULT IT NEEDS EXTRA TIME TO GET GOING.)
+		DECFSZ	    AUDIO_DELAY			;//  (      AS A RESULT OF CONSTANTLY TOGGLING IN SEMI-AUTO, IT CANNOT KEEP UP WITH THE   )
+		GOTO	    LOOP1			;/   (      FIRING, WHEN THE BLASTER TRIGGER IS SPAMMED.				  )
+		BANKSEL	    TRISC			;    (------------------------------------------------------------------------------------)
 		BCF	    TRISC,2			;ENABLE OUTPUT DRIVER
 		BANKSEL	    PORTC
-		BCF	    PORTA,0
 		BSF	    PORTC,3			;ENERGIZE SOLENOID
 		CLRF	    TMR1L			;/RESET TMR1 FOR FULL TIMING
 		CLRF	    TMR1H			;\
@@ -103,17 +114,17 @@ SUBROUTINES_CODE CODE
 		BTFSS	    PORTB,0			;VERIFY THAT THE BUTTON WAS PRESSED, AND THAT THE INTERRUPT WAS NOT FROM A TRIGGER RELEASE
 		GOTO	    STOP_FIRING			;TRIGGER WAS BEING RELEASED FOR THE INTERRUPT, CANCEL EVERYTHING
 		BANKSEL	    PORTC
-		BCF	    PORTA,1
-		CLRF	    AUDIO_DELAY
-	LOOP_AUDIO_DELAY
-		DECFSZ	    AUDIO_DELAY
-		GOTO	    LOOP_AUDIO_DELAY
+		BCF	    PORTA,1			;ENABLE TRIGGER1 TO PLAY THE BURST AUDIO FROM THE AUDIO BOARD
+		CLRF	    AUDIO_DELAY                 ;\
+	LOOP_AUDIO_DELAY				;\\PLAY A SHORT DELAY TO KEEP THE BURST AUDIO RELATIVELY IN SYNC WITH THE SHOTS
+		DECFSZ	    AUDIO_DELAY			;//
+		GOTO	    LOOP_AUDIO_DELAY		;/
 		BANKSEL	    TRISC
 		BCF	    TRISC,2			;ENABLE OUTPUT DRIVER FOR PWM
 		BANKSEL	    PORTC
 		BSF	    PORTC,3			;ENERGIZE THE SOLENOID
-		CLRF	    TMR1L			;/RESET TMR1 FOR FULL TIMING
-		CLRF	    TMR1H			;\
+		CLRF	    TMR1L			;\RESET TMR1 FOR FULL TIMING
+		CLRF	    TMR1H			;/
 		BCF	    PIR1,0			;CLEAR TMR1IF
 	POLL_TMR1_BURST1
 		BTFSS	    PIR1,0			;POLL TMR1
@@ -156,7 +167,7 @@ SUBROUTINES_CODE CODE
     
     SET_38KHZ
 		BANKSEL	    CCPR1L
-		MOVLW	    0x19			;SET PW TIME FOR 95%DC
+		MOVLW	    0x19			;SET PW TIME FOR ~95% DUTY CYCLE FOR MAX BRIGHTNESS
 		MOVWF	    CCPR1L		
 		BANKSEL	    PR2				
 		MOVLW	    0x19			;SET PR2 TO 25 FOR 38kHz PERIOD
@@ -166,7 +177,7 @@ SUBROUTINES_CODE CODE
 		GOTO	    TEST_MODE
     SET_56KHZ
 		BANKSEL	    CCPR1L
-		MOVLW	    0x11			;SET PW TIME FOR 95%DC
+		MOVLW	    0x11			;SET PW TIME FOR ~95% DUTY CYCLE FOR MAX BRIGHTNESS
 		MOVWF	    CCPR1L		
 		BANKSEL	    PR2				
 		MOVLW	    0x11			;SET PR2 TO 17 FOR 56kHz PERIOD
