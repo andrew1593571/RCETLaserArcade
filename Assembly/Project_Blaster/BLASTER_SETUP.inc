@@ -1,12 +1,12 @@
 ;************************************************************************************
 ;										    *
-;   Filename:	    16LF1788_SETUP.inc						    *
+;   Filename:	    BLASTER_SETUP.inc						    *
 ;   Date:	    November 5, 2024						    *
-;   File Version:   1								    *
+;   File Version:   2								    *
 ;   Author:	    Alex Wheelock						    *
 ;   Company:	    Idaho State University					    *
-;   Description:    Firmware for setting up a PIC16LF1788 for the laser gun of the  *
-;		    Laser Shooting Game project.				    *
+;   Description:    Firmware for setting up a PIC16F1788 for the laser gun of the  *
+;		    Laser ARCADE project.				    *
 ;										    *
 ;************************************************************************************
 
@@ -14,8 +14,17 @@
 ;										    *
 ;   Revision History:								    *
 ;										    *
-;   1:	Iniitialize file, setup how I think it should be setup for the project.	    *
+;   1:	  (NOV 2024) Got everything for the gun working the way that I think it     *
+;	  should with base features.						    *
+;										    *		
+;   2:	  (APRIL 3, 2025) Added an audio board, and connected all of PORTA, and	    *
+;	  RC7,6,1, & 0 as triggers for the audio board, only RA0 & RA1 are being    *
+;	  used as triggers currently, RC7 toggles in MAIN to ensure the volume is   *
+;	  maxed out.								    *
 ;										    *
+;	  Code was also updated to work properly with the fire select switch that   *
+;	  will be used in the final product.					    *
+;										    *	
 ;************************************************************************************
 		
 ;===============================================================================================================================*
@@ -25,11 +34,11 @@
 ;	7	|	6	|	5	|	4	|	3	|	2	|	1	|	0	*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*	
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
-;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
+;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED		|UNUSED	 	|UNUSED		|UNUSED		*
-;		|		|		|		|		|	 	|		|		*
-;		|		|		|		|		|		|		|		*
+;DRIVES TRIG7	|DRIVES TRIG6	|DRIVES TRIG5	|DRIVES TRIG4	|DRIVES TRIG3	|DRIVES TRIG2 	|DRIVES TRIG1	|DRIVES TRIG0	*
+;OF THE AUDIO	|OF THE AUDIO	|OF THE AUDIO	|OF THE AUDIO	|OF THE AUDIO	|OF THE AUDIO 	|OF THE AUDIO	|OF THE AUDIO	*
+;BOARD		|BOARD		|BOARD		|BOARD		|BOARD		|BOARD		|BOARD		|BOARD		*
 ;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
 		
@@ -42,10 +51,10 @@
 ;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
 ;INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		|INPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	*
-;		|		|		|		|BURST-FIRE	|CONTINUOUS/	|THE FREQUENCY	|TRIGGER BUTTON	*
-;		|		|		|		|MODE SELECT	|FULL-AUTO MODE	|SELECT SWITCH	|		*
-;		|		|		|		|		|SELECT		|		|		*		
+;	     USED FOR		|UNUSED		|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	|INPUT USED FOR	*
+;	   PROGRAMMING		|		|SEMI-AUTO MODE	|BURST-FIRE	|CONTINUOUS/	|THE FREQUENCY	|TRIGGER BUTTON	*
+;	      ONLY		|		|SELECT		|MODE SELECT	|FULL-AUTO MODE	|SELECT SWITCH	|		*
+;				|		|		|		|SELECT		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*
 		
 ;===============================================================================================================================*
@@ -54,12 +63,12 @@
 ;		|		|		|		|		|		|		|		*
 ;	7	|	6	|	5	|	4	|	3	|	2	|	1	|	0	*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*	
-;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	*
+;DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|DIGITAL	|PWM		|PWM		|DIGITAL	*
 ;OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		|OUTPUT		*
 ;---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------*		
-;UNUSED		|UNUSED		|UNUSED		|UNUSED		|OUTPUT USED TO	|OUTPUT USED TO	|UNUSED		|UNUSED		*
-    ;		|		|		|		|CONTROL THE	|CONTROL THE	|		|		*
-;		|		|		|		|SOLENOID	|LASER	    	|		|		*
+;DRIVES VOL+	|DRIVES TRIG10	|DRIVES TRIG9	|UNUSED		|OUTPUT USED TO	|OUTPUT USED TO	|OUTPUT USED TO	|DRIVES TRIG8	*
+;OF THE AUDIO	|OF THE AUDIO	|OF THE AUDIO	|		|CONTROL THE	|CONTROL/DRIVE	|CONTROL/DRIVE 	|OF THE AUDIO	*
+;BOARD		|BOARD		|BOARD		|		|SOLENOID	|LASER1	    	|LASER2		|BOARD		*
 ;		|		|		|		|		|		|		|		*		
 ;-------------------------------------------------------------------------------------------------------------------------------*			
 		
@@ -73,7 +82,6 @@ INITIALIZE
 		MOVWF	    OSCCON
 		BANKSEL	    CLKRCON
 		CLRF	    CLKRCON			;DISABLE CLOCK REFERENCE
-	
 		
 ;*** SFR SETUP **********
  
@@ -159,12 +167,12 @@ INITIALIZE
 
 		BANKSEL	    PORTA
 		MOVLW	    0xFF
-		MOVWF	    PORTA
+		MOVWF	    PORTA			;SET PORTA
 		BANKSEL	    LATA
-		CLRF	    LATA			;CLEAR LATA
+		MOVWF	    LATA			;CLEAR LATA
 		BANKSEL	    TRISA
 		MOVLW	    0x00  
-		MOVWF	    TRISA			;SET PORTA ALL AS INPUT
+		MOVWF	    TRISA			;SET PORTA ALL AS OUTPUTS
 		BANKSEL	    ODCONA
 		CLRF	    ODCONA			;DISABLE PORTA OPEN-DRAIN		
 		BANKSEL	    ANSELA			
@@ -199,10 +207,10 @@ INITIALIZE
 ;*** PORT C SETUP **** 
 		
 		BANKSEL	    PORTC
-		MOVLW	    0xC3
-		MOVWF	    PORTC			;CLEAR PORTC
+		MOVLW	    0xF1
+		MOVWF	    PORTC			;SET ALL OF THE AUDIO BOARD OUTPUTS RC7:5 & RC0, CLEAR THE LASER/SOLENOID OUTPUTS
 		BANKSEL	    LATC
-		CLRF	    LATC			;CLEAR LATC
+		MOVWF	    LATC			;CLEAR LATC
 		BANKSEL	    TRISC
 		MOVLW	    0x00				
 		MOVWF	    TRISC			;SET PORTC ALL AS OUTPUTS
