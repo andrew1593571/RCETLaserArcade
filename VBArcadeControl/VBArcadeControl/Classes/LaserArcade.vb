@@ -181,7 +181,11 @@ Public Class LaserArcade
         verification(1) = &H56 'command byte
 
         If arcadePort.IsOpen Then
-            arcadePort.Write(verification, 0, 2) 'send the verification request
+            Try
+                arcadePort.Write(verification, 0, 2) 'send the verification request
+            Catch ex As Exception
+
+            End Try
         End If
     End Sub
 
@@ -190,8 +194,12 @@ Public Class LaserArcade
     ''' </summary>
     Public Sub StartConnection()
         If Not arcadePort.IsOpen Then 'if the serial port is not already open
-            arcadePort.Open() 'open the port
-            RequestVerification() 'request verification
+            Try
+                arcadePort.Open() 'open the port
+                RequestVerification() 'request verification
+            Catch ex As Exception
+
+            End Try
 
             verificationTimer.Start() 'start a timer for the verification
             connectionTimeoutTimer.Start() 'start a connection timeout
@@ -219,7 +227,11 @@ Public Class LaserArcade
             Case 0 'enable all targets
                 For i = 0 To 7
                     If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
-                        arcadePort.Write(_targets(i).EnableTarget(), 0, 3)
+                        Try
+                            arcadePort.Write(_targets(i).EnableTarget(), 0, 3)
+                        Catch ex As Exception
+
+                        End Try
                         _disableTimers(i).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                         If _targetTimedDisable Then
                             _disableTimers(i).Start()
@@ -227,49 +239,81 @@ Public Class LaserArcade
                     End If
                 Next
             Case 1 'enable slot 1
-                arcadePort.Write(_targets(0).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(0).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(0).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(0).Start()
                 End If
             Case 2 'enable slot 2
-                arcadePort.Write(_targets(1).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(1).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(1).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(1).Start()
                 End If
             Case 3 'enable slot 3
-                arcadePort.Write(_targets(2).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(2).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(2).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(2).Start()
                 End If
             Case 4 'enable slot 4
-                arcadePort.Write(_targets(3).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(3).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(3).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(3).Start()
                 End If
             Case 5 'enable slot 5
-                arcadePort.Write(_targets(4).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(4).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(4).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(4).Start()
                 End If
             Case 6 'enable slot 6
-                arcadePort.Write(_targets(5).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(5).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(5).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(5).Start()
                 End If
             Case 7 'enable slot 7
-                arcadePort.Write(_targets(6).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(6).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(6).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(6).Start()
                 End If
             Case 8 'enable slot 8
-                arcadePort.Write(_targets(7).EnableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(7).EnableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(7).Interval = GetRandomNumberBetween(_disableTimeMaximum, _disableTimeMinimum)
                 If _targetTimedDisable Then
                     _disableTimers(7).Start()
@@ -288,7 +332,11 @@ Public Class LaserArcade
 
         Select Case slot
             Case 0 'enable all targets
-                arcadePort.Write(disableAllCommand, 0, 2)
+                Try
+                    arcadePort.Write(disableAllCommand, 0, 2)
+                Catch ex As Exception
+
+                End Try
                 For i = 0 To 7
                     If _targets(i).ReadyToEnable And arcadePort.IsOpen Then
                         _disableTimers(i).Stop()
@@ -296,28 +344,60 @@ Public Class LaserArcade
                     _targets(i).Enabled = False
                 Next
             Case 1 'enable slot 1
-                arcadePort.Write(_targets(0).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(0).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(0).Stop()
             Case 2 'enable slot 2
-                arcadePort.Write(_targets(1).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(1).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(1).Stop()
             Case 3 'enable slot 3
-                arcadePort.Write(_targets(2).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(2).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(2).Stop()
             Case 4 'enable slot 4
-                arcadePort.Write(_targets(3).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(3).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(3).Stop()
             Case 5 'enable slot 5
-                arcadePort.Write(_targets(4).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(4).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(4).Stop()
             Case 6 'enable slot 6
-                arcadePort.Write(_targets(5).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(5).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(5).Stop()
             Case 7 'enable slot 7
-                arcadePort.Write(_targets(6).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(6).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(6).Stop()
             Case 8 'enable slot 8
-                arcadePort.Write(_targets(7).DisableTarget(), 0, 3)
+                Try
+                    arcadePort.Write(_targets(7).DisableTarget(), 0, 3)
+                Catch ex As Exception
+
+                End Try
                 _disableTimers(7).Stop()
         End Select
     End Sub
@@ -325,7 +405,7 @@ Public Class LaserArcade
     ''' <summary>
     ''' sets the address for and enables a random target
     ''' </summary>
-    Sub EnableRandomTarget()
+    Public Sub EnableRandomTarget()
         Dim targetSlots As Integer
 
         'only use up to 7 target slots
@@ -338,8 +418,12 @@ Public Class LaserArcade
         If arcadePort.IsOpen Then
             For i = 0 To targetSlots
                 If Not _targets(i).Enabled Then 'only attempt changing the address if the target is not enabled
-                    arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4) 'change the target address
-                    EnableTarget(i + 1) 'enable the target
+                    Try
+                        arcadePort.Write(_targets(i).ChangeAddress(GetRandomNumberBetween(_numberOfTargets, 1)), 0, 4) 'change the target address
+                        EnableTarget(i + 1) 'enable the target
+                    Catch ex As Exception
+
+                    End Try
                     Exit Sub
                 End If
             Next
@@ -362,7 +446,11 @@ Public Class LaserArcade
                 Exit Sub 'skip everything if the device is verified and there are not enough bytes to read
             End If
             'read three bytes at a time
-            arcadePort.Read(readBytes, 0, 3)
+            Try
+                arcadePort.Read(readBytes, 0, 3)
+            Catch ex As Exception
+
+            End Try
 
             'based on the scoring player, raise the associated event
             Select Case readBytes(2)
@@ -381,7 +469,11 @@ Public Class LaserArcade
 
         Else
             'if the device has not yet been verified, read the entire buffer and look for verification
-            arcadePort.Read(readBytes, 0, bytesToRead)
+            Try
+                arcadePort.Read(readBytes, 0, bytesToRead)
+            Catch ex As Exception
+
+            End Try
             For i = 0 To bytesToRead - 1 'for every byte in the read
                 If readBytes(i) = &H24 And i + 2 <= bytesToRead - 1 Then 'if the byte is a $ and there are two more bytes remaining to check
                     If readBytes(i + 1) = &H4C And readBytes(i + 2) = &H41 Then
