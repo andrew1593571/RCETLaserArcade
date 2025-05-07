@@ -1908,7 +1908,7 @@
 			)
 		)
 	)
-	(global_label "+7.4V"
+	(global_label "+12V"
 		(shape input)
 		(at 119.38 83.82 180)
 		(fields_autoplaced yes)
@@ -1920,7 +1920,7 @@
 		)
 		(uuid "f2fd09f4-a11a-49fd-8cb5-b76a87c10228")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 110.71 83.82 0)
+			(at 111.3148 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
