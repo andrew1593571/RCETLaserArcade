@@ -616,7 +616,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "C:\\Users\\andre\\GitRepos\\Laser-Arcade-Project\\KiCad\\ISU_TITLEBLOCK_A.kicad_wks",
-    "plot_directory": "",
+    "plot_directory": "C:/Users/andre/OneDrive/School/ISU/SP25/RCET3375 - Lab/Project/Master/",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
     "spice_model_current_sheet_as_root": true,

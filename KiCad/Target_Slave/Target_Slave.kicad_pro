@@ -520,7 +520,7 @@
       "plot": "Slave_Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../../OneDrive/School/ISU/SP25/RCET3375 - Lab/Project/PCB Images/Target_Slave.step",
       "svg": "",
       "vrml": ""
     },

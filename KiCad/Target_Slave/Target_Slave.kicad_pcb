@@ -3499,7 +3499,6 @@
 		)
 	)
 	(footprint "0_AKeller_Footprints:M3 Mounting"
-		(locked yes)
 		(layer "F.Cu")
 		(uuid "5db361a3-975c-4ab3-a3f1-52082b8bb101")
 		(at 238.125 86.995)
