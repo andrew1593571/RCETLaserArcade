@@ -29,11 +29,18 @@ Public Class LaserArcade
     ''' <param name="address"></param>
     Public Event PlayerTwoScore(ByVal address As Byte)
 
+    ''' <summary>
+    ''' Raised when the COM port disconnects unexpectedly
+    ''' </summary>
+    ''' <param name="message"></param>
+    Public Event UnexpectedDisconnect(ByVal message As String)
+
     '######______Object With Events Declarations______######
 
     Private WithEvents arcadePort As New SerialPort
     Private WithEvents verificationTimer As New Timer
     Private WithEvents connectionTimeoutTimer As New Timer
+    Private WithEvents unexpectedDisconnectTimer As New Timer
 
     '######______Class Properties and variables______######
 
@@ -143,6 +150,7 @@ Public Class LaserArcade
         'sets default timer intervals
         verificationTimer.Interval = 500
         connectionTimeoutTimer.Interval = 10000
+        unexpectedDisconnectTimer.Interval = 1000
 
         'set the disableTime from 5 to 10 seconds as default
         _disableTimeMaximum = 10000
@@ -201,6 +209,7 @@ Public Class LaserArcade
 
             End Try
 
+            unexpectedDisconnectTimer.Start()
             verificationTimer.Start() 'start a timer for the verification
             connectionTimeoutTimer.Start() 'start a connection timeout
         End If
@@ -526,5 +535,21 @@ Public Class LaserArcade
                 Exit Sub
             End If
         Next
+    End Sub
+
+    ''' <summary>
+    ''' Checks that the serial port is still open. Raises the UnexpectedDisconnect Event if not.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub unexpectedDisconnectTimer_Tick(sender As Object, e As EventArgs) Handles unexpectedDisconnectTimer.Tick
+        If Not arcadePort.IsOpen Then
+            connectionTimeoutTimer.Stop() 'stop the timeout timer
+            verificationTimer.Stop() 'stop the verification timer
+            _verified = False
+            unexpectedDisconnectTimer.Stop()
+
+            RaiseEvent UnexpectedDisconnect("Laser Arcade Disconnected. COM port closed.")
+        End If
     End Sub
 End Class

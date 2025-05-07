@@ -179,6 +179,7 @@ Public Class ArcadeControlForm
                 laserArcade.DisableTarget(0) 'disable all targets
                 gameInProgress = False
                 CountdownLabel.Text = "Game Over"
+                StartStopGameButton.Text = "Start Game"
             End If
         End If
     End Sub
@@ -241,6 +242,16 @@ Public Class ArcadeControlForm
 
     End Sub
 
+    ''' <summary>
+    ''' Occurs when the laserArcade class raises the DeviceVerificationFailed event. 
+    ''' Changes the labels and buttons back to a disconnected state and alerts the user
+    ''' </summary>
+    ''' <param name="message"></param>
+    Private Sub laserArcade_UnexpectedDisconnect(message As String) Handles laserArcade.UnexpectedDisconnect
+        UpdateSerialControls(False) 'update the labels and buttons
+        MsgBox(message) 'alert the user
+    End Sub
+
     '######_____Form Event Handlers______######
 
     ''' <summary>
@@ -269,6 +280,7 @@ Public Class ArcadeControlForm
         ConfigurationStatusStripLabel.Text = "Default Configuration"
 
         ScoreUpdateTimer.Start()
+        COMPortTimer.Start()
 
     End Sub
 

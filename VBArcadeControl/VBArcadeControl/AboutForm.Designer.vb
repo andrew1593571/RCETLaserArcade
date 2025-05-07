@@ -69,7 +69,7 @@ Partial Class AboutForm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "AboutForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AboutForm"
+        Me.Text = "About"
         Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
