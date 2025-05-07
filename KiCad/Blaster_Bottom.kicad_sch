@@ -3806,7 +3806,7 @@
 		)
 		(uuid "95a1fe82-97d0-427b-a0d2-683e17876025")
 	)
-	(text "R4-R8\n330Ω"
+	(text "R4-R8\n1kΩ"
 		(exclude_from_sim no)
 		(at 65.532 98.552 0)
 		(effects
@@ -4432,7 +4432,7 @@
 			)
 		)
 	)
-	(global_label "+7.4V"
+	(global_label "+12V"
 		(shape input)
 		(at 60.96 180.34 0)
 		(fields_autoplaced yes)
@@ -4444,7 +4444,7 @@
 		)
 		(uuid "a09924dd-8b35-4b17-a7bb-b5f82023a449")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 69.63 180.34 0)
+			(at 69.0252 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4454,7 +4454,7 @@
 			)
 		)
 	)
-	(global_label "+7.4V"
+	(global_label "+12V"
 		(shape input)
 		(at 138.43 193.04 180)
 		(fields_autoplaced yes)
@@ -4466,7 +4466,7 @@
 		)
 		(uuid "a34c480a-a5fc-4479-958f-e755a47468fc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 129.76 193.04 0)
+			(at 130.3648 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4476,7 +4476,7 @@
 			)
 		)
 	)
-	(global_label "+7.4V"
+	(global_label "+12V"
 		(shape input)
 		(at 138.43 190.5 180)
 		(fields_autoplaced yes)
@@ -4488,7 +4488,7 @@
 		)
 		(uuid "a40fa49e-7bf6-44f0-9689-a76bc216fe76")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 129.76 190.5 0)
+			(at 130.3648 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6177,7 +6177,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "330Ω"
+		(property "Value" "1kΩ"
 			(at 80.01 99.06 90)
 			(effects
 				(font
@@ -7184,7 +7184,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "330Ω"
+		(property "Value" "1kΩ"
 			(at 68.58 98.806 90)
 			(effects
 				(font
@@ -7368,7 +7368,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "330Ω"
+		(property "Value" "1kΩ"
 			(at 74.93 99.06 90)
 			(effects
 				(font
@@ -7587,7 +7587,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "330Ω"
+		(property "Value" "1kΩ"
 			(at 85.09 99.06 90)
 			(effects
 				(font
@@ -7729,7 +7729,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "330Ω"
+		(property "Value" "1kΩ"
 			(at 90.17 99.06 90)
 			(effects
 				(font
