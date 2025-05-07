@@ -524,7 +524,7 @@
       "svg": "",
       "vrml": ""
     },
-    "page_layout_descr_file": ""
+    "page_layout_descr_file": "${LASERARCADE_KICAD}/ISU_TITLEBLOCK_A.kicad_wks"
   },
   "schematic": {
     "annotate_start_num": 0,
