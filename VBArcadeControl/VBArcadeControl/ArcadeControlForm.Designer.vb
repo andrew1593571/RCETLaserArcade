@@ -23,6 +23,7 @@ Partial Class ArcadeControlForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ArcadeControlForm))
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.SerialStatusStripSplitButton = New System.Windows.Forms.ToolStripSplitButton()
         Me.COMPortComboBox = New System.Windows.Forms.ToolStripComboBox()
@@ -155,7 +156,7 @@ Partial Class ArcadeControlForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'StartStopGameButton
@@ -293,6 +294,7 @@ Partial Class ArcadeControlForm
         Me.Controls.Add(Me.TableLayoutPanel)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TopMenuStrip)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.TopMenuStrip
         Me.Name = "ArcadeControlForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

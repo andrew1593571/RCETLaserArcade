@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("VBArcadeControl")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("VBArcadeControl")>
+<Assembly: AssemblyTitle("RCET Laser Arcade")>
+<Assembly: AssemblyDescription("Control software for the RCET Laser Arcade Project.")>
+<Assembly: AssemblyCompany("Idaho State University")>
+<Assembly: AssemblyProduct("Laser Arcade Project")>
 <Assembly: AssemblyCopyright("Copyright ©  2025")>
 <Assembly: AssemblyTrademark("")>
 

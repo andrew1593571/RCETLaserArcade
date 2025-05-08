@@ -270,7 +270,7 @@ Public Class ArcadeControlForm
         End If
 
         'set default configuration
-        laserArcade.NumberOfTargets = 1 'single target
+        laserArcade.NumberOfTargets = 9 'nine targets
         laserArcade.TimedDisable = True 'targets turn off with timer
         gameTime = 60 '60 second gametime
         pointOverrides = defaultOverrides 'address 0x00 is worth 0 points
