@@ -1,11 +1,10 @@
 ﻿Option Strict On
 Option Explicit On
 
+'Laser Arcade Project
 'Andrew Keller
-'RCET3371
 'Spring 2025
-'Game Of War
-'https://github.com/andrew1593571/RCET3371.git
+'https://github.com/AlexWheelock/Laser-Arcade-Project.git
 
 Public Class AboutForm
     Private Sub OkButton_Click(sender As Object, e As EventArgs) Handles OkButton.Click
