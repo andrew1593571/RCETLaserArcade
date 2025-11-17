@@ -1,20 +1,25 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "02eec64f-a83b-4a1b-8283-18554be5a423")
 	(paper "A")
 	(title_block
 		(title "Laser Arcade Master")
-		(date "2025-04-17")
-		(rev "A")
+		(date "2025-11-17")
+		(rev "B")
 		(company "Idaho State University")
+		(comment 1 "Andrew Keller")
 	)
 	(lib_symbols
 		(symbol "Device:Battery_Cell"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -97,7 +102,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0.762) (xy 0 0)
+						(xy 0 1.778) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -109,7 +114,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 1.778) (xy 0 2.54)
+						(xy 0 0.762) (xy 0 0)
 					)
 					(stroke
 						(width 0)
@@ -182,11 +187,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C_Polarized_Small_US"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -291,9 +301,9 @@
 					)
 				)
 				(arc
-					(start 1.524 -0.762)
+					(start -1.524 -0.762)
 					(mid 0 -0.3734)
-					(end -1.524 -0.762)
+					(end 1.524 -0.762)
 					(stroke
 						(width 0.3048)
 						(type default)
@@ -341,11 +351,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C_Small"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0.254)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -415,10 +430,10 @@
 			(symbol "C_Small_0_1"
 				(polyline
 					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
+						(xy -1.524 0.508) (xy 1.524 0.508)
 					)
 					(stroke
-						(width 0.3302)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -427,10 +442,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0.3048)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
@@ -476,11 +491,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:LED_Filled"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -548,42 +568,6 @@
 			(symbol "LED_Filled_0_1"
 				(polyline
 					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
 						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
 					)
 					(stroke
@@ -604,6 +588,42 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.27) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 			)
@@ -645,10 +665,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Libraries:+5V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -743,11 +766,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Libraries:R_Custom"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -865,6 +893,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
@@ -944,7 +973,8 @@
 			(symbol "GND_1_1"
 				(pin power_in line
 					(at 0 0 270)
-					(length 0) hide
+					(length 0)
+					(hide yes)
 					(name "GND"
 						(effects
 							(font
@@ -961,6 +991,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 	)
 	(junction
@@ -974,6 +1005,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9b6a6283-64fe-4e40-8fd7-ff8a82e95ef2")
+	)
+	(junction
+		(at 163.83 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a2871a29-c80d-4ebb-b97d-415fc8ae98b9")
+	)
+	(junction
+		(at 180.34 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c354d6d1-747b-4c84-b20a-0e420989017f")
 	)
 	(junction
 		(at 113.03 90.17)
@@ -999,6 +1042,16 @@
 	)
 	(wire
 		(pts
+			(xy 193.04 90.17) (xy 193.04 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30e4a457-b5d7-409f-a3f7-ce1e9e2cbb06")
+	)
+	(wire
+		(pts
 			(xy 113.03 91.44) (xy 113.03 90.17)
 		)
 		(stroke
@@ -1016,6 +1069,16 @@
 			(type default)
 		)
 		(uuid "6a6494b9-54bf-4911-931a-434350185aad")
+	)
+	(wire
+		(pts
+			(xy 163.83 90.17) (xy 180.34 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76c664b7-9b6d-4303-902d-dc52b3eda6de")
 	)
 	(wire
 		(pts
@@ -1059,6 +1122,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 90.17) (xy 193.04 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfac9f7d-0395-4811-acaa-d50053e2b1bd")
+	)
+	(wire
+		(pts
 			(xy 148.59 90.17) (xy 163.83 90.17)
 		)
 		(stroke
@@ -1086,6 +1159,16 @@
 			(type default)
 		)
 		(uuid "f3661362-9702-4161-bb97-b96d7e3e8a6e")
+	)
+	(wire
+		(pts
+			(xy 180.34 92.71) (xy 180.34 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa18ccd5-7a75-4422-b980-8b06a287b5e1")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -1219,6 +1302,73 @@
 			(project "Target"
 				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
 					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 180.34 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2188f0c4-5f23-48b1-8457-f400491b5c93")
+		(property "Reference" "#PWR04"
+			(at 180.34 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 180.34 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.34 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180.34 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 180.34 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "651e1777-cabf-4604-ac01-2f05117dd558")
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -1508,7 +1658,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "617abea6-fcf0-4000-9395-9e277d228e74")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR06"
 			(at 113.03 105.41 0)
 			(effects
 				(font
@@ -1559,7 +1709,144 @@
 		(instances
 			(project "Target"
 				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
-					(reference "#PWR04")
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 193.04 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "63937544-d830-4b06-a1a6-c20a0543020f")
+		(property "Reference" "#PWR05"
+			(at 193.04 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 193.04 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 193.04 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 193.04 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 193.04 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3c90bedd-b9e4-4bb8-8e9b-c75b822851f9")
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 193.04 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d5f2fb57-1b34-42f0-b82b-f8cb6ee2b385")
+		(property "Reference" "C5"
+			(at 195.58 93.9862 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 195.58 96.5262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 193.04 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 193.04 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 193.04 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ea9ab46e-b96b-4cf9-8ce9-e5e8b7e1df47")
+		)
+		(pin "1"
+			(uuid "1906d1db-92fa-4e98-880c-380212294e48")
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -1575,7 +1862,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d683cf28-3efc-490f-b5b7-63cf288b11ef")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR07"
 			(at 163.83 115.57 0)
 			(effects
 				(font
@@ -1626,7 +1913,77 @@
 		(instances
 			(project "Target"
 				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
-					(reference "#PWR05")
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_Small_US")
+		(at 180.34 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d8a82533-81eb-477b-b544-0d48df525170")
+		(property "Reference" "C4"
+			(at 182.88 93.5481 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "220uF"
+			(at 182.88 96.0881 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+			(at 180.34 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 180.34 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor, small US symbol"
+			(at 180.34 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2980aeff-8e68-4e76-bb8d-de0d9e989177")
+		)
+		(pin "2"
+			(uuid "9c0b2909-e74c-4ad6-ad52-d6d5e8f6869d")
+		)
+		(instances
+			(project "Target"
+				(path "/b95a4fbb-e866-40f1-8b06-3d5c3eea26d9/0e3f4d82-cc09-4ba7-85db-e6aa39e63df5"
+					(reference "C4")
 					(unit 1)
 				)
 			)

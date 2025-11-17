@@ -1,0 +1,485 @@
+#include <xc.inc>
+
+    
+;Below variables are defined within C and are at the below registers.
+_SENDLEDRED equ 0x20
+_SENDLEDBLUE equ 0x21
+_SENDLEDGREEN equ 0x22
+_LEDNUMBER equ 0x23
+_LEDCOUNTER equ 0x24
+ 
+    
+;These two lines are used to reference the SENDLED subroutine asm in C
+psect   sendledfunc,local,class=CODE,delta=2 ; PIC10/12/16
+global _SENDLED ; extern of SENDLED function goes in C
+
+;Send all bytes of data for as many connected LEDs as in LEDNUMBER
+_SENDLED:
+    BANKSEL _LEDNUMBER
+    MOVF _LEDNUMBER, W
+    MOVWF _LEDCOUNTER
+
+LEDLOOP:
+    ;Green bit 7
+    BTFSC _SENDLEDGREEN, 7
+    GOTO GREENBIT7_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT6
+GREENBIT7_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT6:
+    BTFSC _SENDLEDGREEN, 6
+    GOTO GREENBIT6_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT5
+GREENBIT6_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT5:
+    BTFSC _SENDLEDGREEN, 5
+    GOTO GREENBIT5_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT4
+GREENBIT5_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT4:
+    BTFSC _SENDLEDGREEN, 4
+    GOTO GREENBIT4_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT3
+GREENBIT4_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT3:
+    BTFSC _SENDLEDGREEN, 3
+    GOTO GREENBIT3_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT2
+GREENBIT3_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT2:
+    BTFSC _SENDLEDGREEN, 2
+    GOTO GREENBIT2_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT1
+GREENBIT2_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT1:
+    BTFSC _SENDLEDGREEN, 1
+    GOTO GREENBIT1_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO GREENBIT0
+GREENBIT1_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+GREENBIT0:
+    BTFSC _SENDLEDGREEN, 0
+    GOTO GREENBIT0_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT7
+GREENBIT0_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+
+REDBIT7:
+    BTFSC _SENDLEDRED, 7
+    GOTO REDBIT7_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT6
+REDBIT7_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT6:
+    BTFSC _SENDLEDRED, 6
+    GOTO REDBIT6_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT5
+REDBIT6_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT5:
+    BTFSC _SENDLEDRED, 5
+    GOTO REDBIT5_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT4
+REDBIT5_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT4:
+    BTFSC _SENDLEDRED, 4
+    GOTO REDBIT4_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT3
+REDBIT4_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT3:
+    BTFSC _SENDLEDRED, 3
+    GOTO REDBIT3_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT2
+REDBIT3_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT2:
+    BTFSC _SENDLEDRED, 2
+    GOTO REDBIT2_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT1
+REDBIT2_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT1:
+    BTFSC _SENDLEDRED, 1
+    GOTO REDBIT1_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO REDBIT0
+REDBIT1_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+REDBIT0:
+    BTFSC _SENDLEDRED, 0
+    GOTO REDBIT0_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT7
+REDBIT0_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+
+BLUEBIT7:
+    BTFSC _SENDLEDBLUE, 7
+    GOTO BLUEBIT7_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT6
+BLUEBIT7_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT6:
+    BTFSC _SENDLEDBLUE, 6
+    GOTO BLUEBIT6_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT5
+BLUEBIT6_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT5:
+    BTFSC _SENDLEDBLUE, 5
+    GOTO BLUEBIT5_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT4
+BLUEBIT5_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT4:
+    BTFSC _SENDLEDBLUE, 4
+    GOTO BLUEBIT4_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT3
+BLUEBIT4_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT3:
+    BTFSC _SENDLEDBLUE, 3
+    GOTO BLUEBIT3_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT2
+BLUEBIT3_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT2:
+    BTFSC _SENDLEDBLUE, 2
+    GOTO BLUEBIT2_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT1
+BLUEBIT2_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT1:
+    BTFSC _SENDLEDBLUE, 1
+    GOTO BLUEBIT1_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO BLUEBIT0
+BLUEBIT1_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+BLUEBIT0:
+    BTFSC _SENDLEDBLUE, 0
+    GOTO BLUEBIT0_HIGH
+    NOP
+    BSF PORTA, 0
+    NOP
+    NOP
+    BCF PORTA, 0
+    NOP
+    GOTO LOOPBACK
+BLUEBIT0_HIGH:
+    BSF PORTA, 0
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BCF PORTA, 0
+    
+LOOPBACK:
+    DECFSZ _LEDCOUNTER
+    GOTO LEDLOOP
+    
+    RETURN
