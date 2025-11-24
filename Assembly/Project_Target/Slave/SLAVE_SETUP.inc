@@ -1,9 +1,9 @@
 ;************************************************************************************
 ;										    *
 ;   Filename:	    SLAVE_SETUP.inc						    *
-;   Date:	    April 23, 2025						    *
-;   File Version:   2								    *
-;   Author:	    Alex Wheelock and Andrew Keller				    *
+;   Date:	    Novemeber 17, 2025						    *
+;   File Version:   3								    *
+;   Author:	    Andrew Keller, Rudy Earnest, Angel Nava, and Alex Villagran	    *
 ;   Company:	    Idaho State University					    *
 ;   Description:    Firmware for setting up a PIC16F1788 for the target slave of    *
 ;		    the Laser Shooting Game project.				    *
@@ -19,6 +19,7 @@
 ;   2:	I2C communications for enabling/disabling the target as well as reporting   *
 ;       any player hits to the target when the target is enabled.		    *
 ;										    *
+;   3:	Converting to new assembler and changing some setup.			    *
 ;************************************************************************************
 		
 ;===============================================================================================================================*
@@ -64,177 +65,196 @@
 ;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*
 ;		|		|		|		|		|		|		|		*		
-;-------------------------------------------------------------------------------------------------------------------------------*		
-		
-INITIALIZE_CODE	CODE		
-INITIALIZE	
-	
-;*** INTOSC SETUP *******
-	
-		BANKSEL	    OSCCON
-		MOVLW	    0x7A			;ENABLE INTOSC, SET TO 16MHz
-		MOVWF	    OSCCON
-		BANKSEL	    CLKRCON
-		CLRF	    CLKRCON			;DISABLE CLOCK REFERENCE
-		
-;*** SET OPTION_REG: ****
-		
-		BANKSEL	    OPTION_REG
-		BCF	    OPTION_REG, PS0		;\\
-		BCF	    OPTION_REG, PS1		; >>PRESCALER RATIO SET 1:1
-		BCF	    OPTION_REG, PS2		;//
-		BSF	    OPTION_REG, PSA		;PRESCALER ASSIGNED TO WDT 
-		BCF	    OPTION_REG, TMR0SE		;TMR0 EDGE SET RISING
-		BCF	    OPTION_REG, TMR0CS		;TMR0 CLOCK SOURCE SET TO INTERNAL
-		BSF	    OPTION_REG, INTEDG		;RB0/INT SET TO RISING EDGE
-		BSF	    OPTION_REG, NOT_WPUEN	;WEAK PULLUP ENABLED
-		
-;*** SET INTCON REG: ****
-		
-		BANKSEL INTCON
-		BSF	    INTCON, IOCIE		;ENABLE IOC INTERUPT
-		BCF	    INTCON, INTE		;DISABLE INT EXTERNAL INTERUPT
-		BSF	    INTCON, PEIE		;ENABLE PERIPHERAL INTERUPTS
-		BSF	    INTCON, GIE			;ENABLE ALL UNMASKED INTERUPTS
-		
-;*** SET PIE1-4 REG: *****
-		
-		BANKSEL	    PIE1
-		MOVLW	    0x08
-		MOVWF	    PIE1			;DISABLE ALL PIE1 INTERUPTS, EXCEPT SSP1F
-		BANKSEL	    PIE2
-		CLRF	    PIE2			;DISABLE ALL PIE2 INTERUPTS
-		BANKSEL	    PIE3
-		CLRF	    PIE3			;DISABLE ALL PIE3 INTERUPTS
-		BANKSEL	    PIE4
-		CLRF	    PIE4			;DISABLE ALL PIE4 INTERUPTS
-		
-;*** CLEAR INTERUPT FLAGS ***
-		
-		BANKSEL	    PIR1
-		CLRF	    PIR1			;CLEAR ALL PIR1 INTERUPT FLAGS
-		BANKSEL	    PIR2
-		CLRF	    PIR2			;CLEAR ALL PIR2 INTERUPT FLAGS
-		BANKSEL	    PIR3
-		CLRF	    PIR3			;CLEAR ALL PIR3 INTERUPT FLAGS
-		BANKSEL	    PIR4
-		CLRF	    PIR4			;CLEAR ALL PIR4 INTERUPT FLAGS			
-		
-;*** ALTERNATE PIN FUNCTION *****
-		
-		BANKSEL	    APFCON1
-		CLRF	    APFCON1			;SELECTS PORT MAPPING
-		CLRF	    APFCON2			;SEE DATASHEET (pg 132-133) FOR MAPPING WITH BOTH CLEARED
-		
-;*** TMR1 SETUP ****
-		
-		BANKSEL	    T1CON
-		MOVLW	    0xA8			;ENABLE & SELECT TMR1 LP OSCILLATOR, SET PRESCALE TO 1:4, DISABLE TMR1 AT THIS POINT
-		BANKSEL	    T1GCON
-		CLRF	    T1GCON			;DISABLE TMR1 GATE
- 
-;*** PORT A SETUP **** PORT A SET AS LOGIC INPUT (I2C ADDRESS)
+;-------------------------------------------------------------------------------------------------------------------------------*
 
-		BANKSEL	    PORTA
-		MOVLW	    0xFF
-		MOVWF	    PORTA			;CLEAR PORTA
-		BANKSEL	    LATA
-		MOVLW	    0xFF			;CLEAR LATA
-		MOVWF	    LATA
-		BANKSEL	    TRISA
-		MOVLW	    0xFF  
-		MOVWF	    TRISA			;SET PORTA ALL AS INPUTS
-		BANKSEL	    ODCONA
-		CLRF	    ODCONA			;DISABLE PORTA OPEN-DRAIN		
-		BANKSEL	    ANSELA			
-		CLRF	    ANSELA			;SET PORTA ALL AS DIGITAL INPUT
-		BANKSEL	    SLRCONA
-		CLRF	    SLRCONA			;SET THE SLEW RATE FOR PORT A TO MAXIMUM
-		BANKSEL	    IOCAP
-		MOVLW	    0x00
-		MOVWF	    IOCAP
-		BANKSEL	    IOCAN
-		CLRF	    IOCAN
-		
-;*** PORT B SETUP **** PORT B USED AS LOGIC INPUT AND OUTPUT
-		
-		BANKSEL	    PORTB
-		MOVLW	    B'00011100'
-		MOVWF	    PORTB			;CLEAR PORTB	
-		BANKSEL	    LATB
-		CLRF	    LATB			;CLEAR LATB
-		BANKSEL	    TRISB
-		MOVLW	    B'00000011'				
-		MOVWF	    TRISB			;SET PORTB ACCORDING TO BITMAP
-		BANKSEL	    ODCONB
-		CLRF	    ODCONB			;DISABLE PORTB OPEN-DRAIN
-		BANKSEL	    ANSELB
-		CLRF	    ANSELB			;MAKE PORTB DIGITAL INPUTS
-		BANKSEL	    SLRCONB
-		CLRF	    SLRCONB			;SET THE SLEW RATE FOR PORT B TO MAXIMUM
-		BANKSEL	    IOCBP
-		MOVLW	    0x00			;DISABLE PORTB IOC FOR POSITIVE EDGES
-		MOVWF	    IOCBP
-		BANKSEL	    IOCBN
-		MOVLW	    0x03			;ENABLE PORTB IOC FOR NEGATIVE EDGES ON RB0 AND RB1
-		MOVWF	    IOCBN
-		BANKSEL	    INLVLB
-		CLRF	    INLVLB			;SET PORTB INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)	    	    
-		
-;*** PORT C SETUP **** 
-		
-		BANKSEL	    PORTC
-		CLRF	    PORTC			;CLEAR PORTC
-		BANKSEL	    LATC
-		CLRF	    LATC			;CLEAR LATC
-		BANKSEL	    TRISC
-		MOVLW	    0xFF				
-		MOVWF	    TRISC			;SET PORTC ALL AS INPUTS
-		BANKSEL	    ODCONC
-		CLRF	    ODCONC			;DISABLE PORTC OPEN-DRAIN
-		BANKSEL	    ANSELC
-		CLRF	    ANSELC			;MAKE PORTC ALL DIGITAL I/O
-		BANKSEL	    SLRCONC
-		CLRF	    SLRCONC			;SET THE SLEW RATE FOR PORT C TO MAXIMUM
-		BANKSEL	    IOCCP
-		MOVLW	    0x00			;DISALBE PORTC IOC FOR POSITIVE EDGES
-		MOVWF	    IOCCP
-		BANKSEL	    IOCCN
-		MOVLW	    0x00			;DISABLE PORTC IOC FOR NEGATIVE EDGES
-		MOVWF	    IOCCN
-		BANKSEL	    INLVLC
-		CLRF	    INLVLC			;SET PORTC INPUT THRESHOLD TO TTL (IGNORED NOISE BETTER FOR TRIGGER INPUT)
-		
-;*** I2C SETUP ****
-		BANKSEL	    PORTA
-		MOVFW	    PORTA
-		ANDLW	    B'11111110'			;IGNORE RA0 VALUE
-		BANKSEL	    SSPADD		
-		MOVWF	    SSPADD			;SET I2C ADDRESS ACCORDING TO SWITCHES
-		BANKSEL	    SSPCON
-		MOVLW	    0x16			;SET TO I2C 7-BIT ADDRESS SLAVE MODE
-		MOVWF	    SSPCON			;
-		BSF	    SSPCON,5			;ENABLE SERIAL PORT FOR I2C
-		BANKSEL	    SSPCON2
-		MOVLW	    0x80
-		MOVWF	    SSPCON2
-		BANKSEL	    SSPCON3
-		CLRF	    SSPCON3
-		BANKSEL	    SSPSTAT
-		MOVLW	    0xC0
-		MOVWF	    SSPSTAT
-		
-;*** BOOT CODE ****
-		
-		BANKSEL	    PORTA
-		CLRF	    TARGET_STATUS		;CLEAR TARGET_STATUS TO PREVENT INACCURATE SCORE
-		CLRF	    ACTIVE			;ENSURE TARGET STARTS DISABLED	    
-		BANKSEL	    INTCON  
-		BCF	    INTCON,0
-		BANKSEL	    IOCAF
-		CLRF	    IOCAF
-		BCF	    INTCON,IOCIF		;CLEAR IOCIF
-		BANKSEL	    PORTA
-		
-		
-		RETURN					;RETURN TO .asm FILE
+;EEPROM Memory Map
+     ;**** Do not under any circumstances ****
+     ;**** Use EEPROM row 0 it is evil ****
+    
+;The byte at address 0x10 is used to store the I2C address of the target slave device.
+;The byte at address 0x11 is used to store the static red value
+;The byte at address 0x12 is used to store the static green value
+;The byte at address 0x13 is used to store the static blue value
+     
+;The byte at address 0x20 is used to store the player 1 red value.
+;The byte at address 0x21 is used to store the player 1 green value.
+;The byte at address 0x22 is used to store the player 1 blue value.
+;The byte at address 0x23 is used to store the player 2 red value.
+;The byte at address 0x24 is used to store the player 2 green value.
+;The byte at address 0x25 is used to store the player 2 blue value.
+;The byte at address 0x26 is used to store the player 3 red value.
+;The byte at address 0x27 is used to store the player 3 green value.
+;The byte at address 0x28 is used to store the player 3 blue value.
+;The byte at address 0x29 is used to store the player 4 red value.
+;The byte at address 0x2A is used to store the player 4 green value.
+;The byte at address 0x2B is used to store the player 4 blue value.
+
+#include <xc.inc>
+    
+;RAM Variables
+  ;EEPROM Variables
+  EEPROM_ADDR   EQU 0x20
+  EEPROM_DATA   EQU 0x21
+  EEPROM_SAVE   EQU 0x22
+  ;Status Registers
+  TARGET_STATUS EQU 0x23
+  ACTIVE        EQU 0x24
+  ;I2C Variables
+  RECEIVED_DATA EQU 0x25
+  ;Player Variables
+  P1_R          EQU 0x26
+  P2_R          EQU 0x27
+  P3_R          EQU 0x28
+  P4_R          EQU 0x29
+  P1_G          EQU 0x2A
+  P2_G          EQU 0x2B
+  P3_G          EQU 0x2C
+  P4_G          EQU 0x2D
+  P1_B          EQU 0x2E
+  P2_B          EQU 0x2F
+  P3_B          EQU 0x30
+  P4_B          EQU 0x31
+  ;LED Variables
+  _SENDLEDRED   EQU 0x32
+  _SENDLEDBLUE  EQU 0x33
+  _SENDLEDGREEN EQU 0x34
+  _LEDNUMBER    EQU 0x35
+  _LEDCOUNTER   EQU 0x36
+PSECT code
+ global Setup
+Setup:
+;*** INTOSC SETUP ***
+  BANKSEL   OSCCON
+  MOVLW	    0xF8
+  MOVWF	    OSCCON
+  BANKSEL   CLKRCON
+  CLRF	    CLKRCON
+  
+;*** OPTION_REG SETUP ***  
+  BANKSEL   OPTION_REG
+  MOVLW	    0x48
+  MOVWF	    OPTION_REG
+  
+;*** INTCON REG SETUP ***
+  BANKSEL   INTCON
+  BCF	    INTCON,3
+  BCF	    INTCON,4
+  BSF	    INTCON,6
+  BCF	    INTCON,7
+  
+;*** PIE1-4 SETUP ***
+  BANKSEL   PIE1
+  MOVLW	    0X08
+  MOVWF	    PIE1
+  BANKSEL   PIE2
+  CLRF	    PIE2
+  BANKSEL   PIE3
+  CLRF	    PIE3
+  BANKSEL   PIE4
+  CLRF	    PIE4
+  
+;*** CLEAR INTERUPT FLAGS ***
+  BANKSEL   PIR1
+  CLRF	    PIR1
+  BANKSEL   PIR2
+  CLRF	    PIR2
+  BANKSEL   PIR3
+  CLRF	    PIR3
+  BANKSEL   PIR4
+  CLRF	    PIR4
+  
+;*** ALTERNATE PIN FUNCTION ***
+  BANKSEL   APFCON1
+  CLRF	    APFCON1
+  CLRF	    APFCON2
+  
+;*** TMR1 SETUP ***
+  BANKSEL   T1CON
+  MOVLW	    0XA8
+  MOVWF	    T1CON
+  BANKSEL   T1GCON
+  CLRF	    T1GCON
+  
+;*** PORTA SETUP ***
+  BANKSEL   PORTA
+  CLRF	    PORTA
+  BANKSEL   LATA
+  CLRF	    LATA
+  BANKSEL   TRISA
+  MOVLW	    0XF0
+  MOVWF	    TRISA
+  BANKSEL   ODCONA
+  CLRF	    ODCONA
+  BANKSEL   ANSELA
+  CLRF	    ANSELA
+  BANKSEL   SLRCONA
+  CLRF	    SLRCONA
+  BANKSEL   IOCAP
+  CLRF	    IOCAP
+  BANKSEL   IOCAN
+  CLRF	    IOCAN
+  
+;*** PORTB SETUP ***
+  BANKSEL   PORTB
+  CLRF	    PORTB
+  BANKSEL   LATB
+  CLRF	    LATB
+  BANKSEL   TRISB
+  MOVLW	    0X3F
+  MOVWF	    TRISB
+  BANKSEL   ODCONB
+  CLRF	    ODCONB
+  BANKSEL   ANSELB
+  CLRF	    ANSELB
+  BANKSEL   SLRCONB
+  CLRF	    SLRCONB
+  BANKSEL   INLVLB
+  CLRF	    INLVLB
+  
+;*** PORTC SETUP ***
+  BANKSEL   PORTC
+  CLRF	    PORTC
+  BANKSEL   LATC
+  CLRF	    LATC
+  BANKSEL   TRISC
+  MOVLW	    0X9A
+  MOVWF	    TRISC
+  BANKSEL   ODCONC
+  CLRF	    ODCONC
+  BANKSEL   ANSELC
+  CLRF	    ANSELC
+  BANKSEL   SLRCONC
+  CLRF	    SLRCONC
+  BANKSEL   IOCCP
+  CLRF	    IOCCP
+  BANKSEL   IOCCN
+  CLRF	    IOCCN
+  BANKSEL   INLVLC
+  CLRF	    INLVLC
+  
+;*** I2C SETUP ***
+  BANKSEL   PORTA
+  MOVLW	    0x00
+  MOVWF	    EEPROM_ADDR
+  CALL	    Read_EEPROM
+  BANKSEL   PORTA
+  MOVF	    EEPROM_SAVE,0
+  XORLW	    0XFF
+  BTFSC	    ZERO
+  CALL	    _FIRSTTIMESETUP
+  BANKSEL   SSP1ADD
+  MOVWF	    SSP1ADD
+  BANKSEL   SSP1STAT
+  BSF	    SSP1STAT,7
+  BCF	    SSP1STAT,6
+  BANKSEL   SSP1CON1
+  MOVLW	    0x26
+  MOVWF	    SSP1CON1
+  BANKSEL   SSP1CON2
+  BSF	    SSP1CON2,7
+  BCF	    SSP1CON2,0
+
+;*** UART SETUP ***
+; This will be added in future revisions.
+
+  RETURN
