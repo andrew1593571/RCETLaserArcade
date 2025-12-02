@@ -101,6 +101,13 @@
   ACTIVE        EQU 0x24
   ;I2C Variables
   RECEIVED_DATA EQU 0x25
+  I2C_Color_Count   EQU 0x37
+   // For the flags bit 0 means that I2C color protocol is enabled
+   // Bit 1 means that Player 1's color is being changed
+   // Bit 2 means that Player 2's color is being changed
+   // Bit 3 means that Player 3's color is being changed
+   // Bit 4 means that Player 4's color is being changed
+  I2C_ColorFlag EQU 0x38
   ;Player Variables
   P1_R          EQU 0x26
   P2_R          EQU 0x27
@@ -233,28 +240,99 @@ Setup:
   CLRF	    INLVLC
   
 ;*** I2C SETUP ***
-  BANKSEL   PORTA
-  MOVLW	    0x00
-  MOVWF	    EEPROM_ADDR
-  CALL	    Read_EEPROM
-  BANKSEL   PORTA
-  MOVF	    EEPROM_SAVE,0
-  XORLW	    0XFF
-  BTFSC	    ZERO
-  CALL	    _FIRSTTIMESETUP
-  BANKSEL   SSP1ADD
-  MOVWF	    SSP1ADD
-  BANKSEL   SSP1STAT
-  BSF	    SSP1STAT,7
-  BCF	    SSP1STAT,6
-  BANKSEL   SSP1CON1
-  MOVLW	    0x26
-  MOVWF	    SSP1CON1
-  BANKSEL   SSP1CON2
-  BSF	    SSP1CON2,7
-  BCF	    SSP1CON2,0
+    BANKSEL	PORTA
+    MOVLW	0x10
+    MOVWF	EEPROM_ADDR
+    CALL	Read_EEPROM
+    BANKSEL	PORTA
+    MOVF	EEPROM_SAVE,0
+    XORLW	0XFF
+    BTFSC	ZERO
+    CALL	_FIRSTTIMESETUP
+    MOVLW	0x10
+    MOVWF	EEPROM_ADDR
+    CALL	Read_EEPROM
+    MOVF	EEPROM_SAVE,0
+    MOVLW	0x20
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P1_R
+    MOVLW	0x21
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P1_G
+    MOVLW	0x22
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P1_B
+    MOVLW	0x23
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P2_R
+    MOVLW	0x24
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P2_G
+    MOVLW	0x25
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P2_B
+    MOVLW	0x26
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P3_R
+    MOVLW	0x27
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P3_G
+    MOVLW	0x28
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P3_B
+    MOVLW	0x29
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P4_R
+    MOVLW	0x2A
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P4_G
+    MOVLW	0x2B
+    MOVWF	EEPROM_ADDR
+    MOVF	EEPROM_SAVE,0
+    MOVWF	P4_B
+    BANKSEL	SSP1ADD
+    MOVWF	SSP1ADD
+    BANKSEL	SSP1STAT
+    BSF		SSP1STAT,7
+    BCF		SSP1STAT,6
+    BANKSEL	SSP1CON1
+    MOVLW	0x26
+    MOVWF	SSP1CON1
+    BANKSEL	SSP1CON2
+    BSF		SSP1CON2,7
+    BCF		SSP1CON2,0
 
 ;*** UART SETUP ***
-; This will be added in future revisions.
-
+  BANKSEL   TRISB
+  BCF	    TRISB,6
+  BSF	    TRISB,7
+  BANKSEL   APFCON1
+  BSF	    TXSEL	;Maps TX to RB6
+  BSF	    RXSEL	;Maps Rx to RB7
+  BANKSEL   BAUD1CON
+  BCF	    BRG16	;8-bit baud rate
+  BANKSEL   TX1STA
+  BCF	    BRGH	;low speed baud rate
+  BCF	    SYNC	;Asynch mode
+  BANKSEL   SP1BRGL
+  MOVLW	    207		;Calculated value for 2400 baud
+  MOVWF	    SP1BRGL	;Moves it to the baud gen
+  BANKSEL   RC1STA
+  BSF	    SPEN	;Serial Port Enable
+  BCF	    RX9		;Select 8-bit operation
+  BSF	    CREN	;Enables Continuous Receive
+  BANKSEL   PIE1
+  BSF	    RCIE	;Enables EUSART Receive Interrupts
+  
   RETURN

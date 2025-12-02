@@ -42,17 +42,9 @@ PSECT isrVect,class=CODE,delta=2
 PSECT code
 isr_Vect:
   BANKSEL   PIR1
-  CLRF	    PIR1
-  BANKSEL   PIR2
-  CLRF	    PIR2
-  BANKSEL   PIR3
-  CLRF	    PIR3
-  BANKSEL   PIR4
-  CLRF	    PIR4
-    Retfie
-;    BANKSEL	PIR1
-;    BTFSC	PIR1,3
-;    CALL	RECEIVE
+  BTFSC	    SSP1IF
+  CALL	    RECEIVE
+  Retfie
  
 MAIN:
     BANKSEL	PORTA

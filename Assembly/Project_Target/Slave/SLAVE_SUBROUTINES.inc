@@ -51,6 +51,8 @@ RECEIVE:
 	;TESTS THE RECEIVED DATA AGAINST THE KNOWN ENABLE AND DISABLE COMMANDS
 	SAVE_DATA:
 	    BANKSEL	PORTA
+	    BTFSC	I2C_ColorFlag,0
+	    CALL	CHANGE_COLOR
 	    MOVF	RECEIVED_DATA,0
 	    XORLW	0X45
 	    BTFSC	ZERO	    ;IF RECEIVED BYTE IS ENABLE COMMAND, SET TARGET TO ACTIVE
@@ -59,7 +61,195 @@ RECEIVE:
 	    XORLW	0X44
 	    BTFSC	ZERO	    ;IF RECEIVED BYTE IS DISABLE COMMAND, SET TARGET TO INACTIVE
 	    BCF		ACTIVE, 0
+	    MOVF	RECEIVED_DATA,0
+	    XORLW	0X43
+	    BTFSC	ZERO
+	    CALL	CHANGE_COLOR
 	    RETURN
+	    
+	CHANGE_COLOR:
+	    BSF		I2C_ColorFlag,0
+	    INCF	I2C_Color_Count
+	    MOVF	I2C_Color_Count,0
+	    XORLW	0X01
+	    BTFSC	ZERO
+	    RETURN
+	    MOVF	I2C_Color_Count,0
+	    XORLW	0X02
+	    BTFSC	ZERO
+	    GOTO	Player_Number
+	    MOVF	I2C_Color_Count,0
+	    XORLW	0x03
+	    BTFSC	ZERO
+	    GOTO	Green
+	    MOVF	I2C_Color_Count,0
+	    XORLW	0x04
+	    BTFSC	ZERO
+	    GOTO	Red
+	    MOVF	I2C_Color_Count,0
+	    XORLW	0x05
+	    BTFSC	ZERO
+	    GOTO	Blue
+	    BCF		I2C_ColorFlag,0
+	    CLRF	I2C_Color_Count
+	    RETURN
+	    
+	    //Sets the flag in accordance
+	    //to what player color is being changed
+	    Player_Number:
+	    MOVF	RECEIVED_DATA,0
+	    XORLW	0x01
+	    BTFSC	ZERO
+	    BSF		I2C_ColorFlag,1
+	    MOVF	RECEIVED_DATA,0
+	    XORLW	0x02
+	    BTFSC	ZERO
+	    BSF		I2C_ColorFlag,2
+	    MOVF	RECEIVED_DATA,0
+	    XORLW	0x03
+	    BTFSC	ZERO
+	    BSF		I2C_ColorFlag,3
+	    MOVF	RECEIVED_DATA,0
+	    XORLW	0x04
+	    BTFSC	ZERO
+	    BSF		I2C_ColorFlag,4
+	    RETURN
+	    
+	    //For changing Green color based
+	    //off of player number
+	    Green:
+	    BTFSC	I2C_ColorFlag,1
+	    GOTO	Player1_Green
+	    BTFSC	I2C_ColorFlag,2
+	    GOTO	Player2_Green
+	    BTFSC	I2C_ColorFlag,3
+	    GOTO	Player3_Green
+	    BTFSC	I2C_ColorFlag,4
+	    GOTO	Player4_Green
+	    RETURN
+	    Player1_Green:
+	    MOVLW	0x21
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P1_G
+	    Call	Write_EEPROM
+	    RETURN
+	    Player2_Green:
+	    MOVLW	0x24
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P2_G
+	    Call	Write_EEPROM
+	    RETURN
+	    Player3_Green:
+	    MOVLW	0x27
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P3_G
+	    Call	Write_EEPROM
+	    RETURN
+	    Player4_Green:
+	    MOVLW	0x2A
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P4_G
+	    Call	Write_EEPROM
+	    RETURN
+	    
+	    //For changing the red color based off of
+	    //Player number
+	    Red:
+	    BTFSC	I2C_ColorFlag,1
+	    GOTO	Player1_RED
+	    BTFSC	I2C_ColorFlag,2
+	    GOTO	Player2_RED
+	    BTFSC	I2C_ColorFlag,3
+	    GOTO	Player3_RED
+	    BTFSC	I2C_ColorFlag,4
+	    GOTO	Player4_RED
+	    RETURN
+	    Player1_RED:
+	    MOVLW	0x20
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P1_R
+	    Call	Write_EEPROM
+	    RETURN
+	    Player2_RED:
+	    MOVLW	0x23
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P2_R
+	    Call	Write_EEPROM
+	    RETURN
+	    Player3_RED:
+	    MOVLW	0x26
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P3_R
+	    Call	Write_EEPROM
+	    RETURN
+	    Player4_RED:
+	    MOVLW	0x29
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P4_R
+	    Call	Write_EEPROM
+	    RETURN
+	    
+	    //For changing the Blue color
+	    //based off of player number
+	    Blue:
+	    BTFSC	I2C_ColorFlag,1
+	    GOTO	Player1_Blue
+	    BTFSC	I2C_ColorFlag,2
+	    GOTO	Player2_Blue
+	    BTFSC	I2C_ColorFlag,3
+	    GOTO	Player3_Blue
+	    BTFSC	I2C_ColorFlag,4
+	    GOTO	Player4_Blue
+	    RETURN
+	    Player1_Blue:
+	    MOVLW	0x22
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P1_B
+	    Call	Write_EEPROM
+	    RETURN
+	    Player2_Blue:
+	    MOVLW	0x25
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P2_B
+	    Call	Write_EEPROM
+	    RETURN
+	    Player3_Blue:
+	    MOVLW	0x28
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P3_B
+	    Call	Write_EEPROM
+	    RETURN
+	    Player4_Blue:
+	    MOVLW	0x2B
+	    MOVWF	EEPROM_ADDR
+	    MOVF	RECEIVED_DATA,0
+	    MOVWF	EEPROM_DATA
+	    MOVWF	P4_B
+	    Call	Write_EEPROM
+	    RETURN
+	    
     
 	;TRANSMIT THE CURRENT TARGET STATUS BACK TO THE MASTER IF A READ WAS RECEIVED
 	TRANSMIT_STATUS:
@@ -160,7 +350,7 @@ Write_EEPROM:
 	    MOVLW	0xAA
 	    MOVWF	EECON2
 	    BSF		WR
-Loop:	    BSF		GIE
+    Loop:   BSF		GIE
 	    BCF		WREN
 	    BTFSC	WR
 	    GOTO	Loop
@@ -219,6 +409,7 @@ _FIRSTTIMESETUP:
 	    ;All player colors will initally be white because the EEPROM inits
 	    ;to FF in all registers when programming the pic with
 	    ;clear memory enabled
+	    
 	    RETURN
 	    
 	
