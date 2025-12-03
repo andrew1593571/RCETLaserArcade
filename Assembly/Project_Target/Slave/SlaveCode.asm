@@ -44,6 +44,10 @@ isr_Vect:
   BANKSEL   PIR1
   BTFSC	    SSP1IF
   CALL	    RECEIVE
+  BTFSC	    RCIF
+  CALL	    EUSART_RX
+  BTFSC	    TXIF
+  CALL	    EUSART_TX
   Retfie
  
 MAIN:
