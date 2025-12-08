@@ -75,6 +75,7 @@
 ;The byte at address 0x11 is used to store the static red value
 ;The byte at address 0x12 is used to store the static green value
 ;The byte at address 0x13 is used to store the static blue value
+;The byte at address 0x14 is used to store the LED number value
      
 ;The byte at address 0x20 is used to store the player 1 red value.
 ;The byte at address 0x21 is used to store the player 1 green value.
@@ -88,6 +89,21 @@
 ;The byte at address 0x29 is used to store the player 4 red value.
 ;The byte at address 0x2A is used to store the player 4 green value.
 ;The byte at address 0x2B is used to store the player 4 blue value.
+     
+;The byte at address 0x30 is used to store the Positions Output byte
+;The byte at address 0x31 is used to store the high byte of servo 1 enabled
+;The byte at address 0x32 is used to store the low byte of servo 1 enabled
+;The byte at address 0x33 is used to store the high byte of servo 1 disabled
+;The byte at address 0x34 is used to store the low byte of servo 1 disabled
+;The byte at address 0x35 is used to store the high byte of servo 2 enabled
+;The byte at address 0x36 is used to store the low byte of servo 2 enabled
+;The byte at address 0x37 is used to store the high byte of servo 2 disabled
+;The byte at address 0x38 is used to store the low byte of servo 2 disabled
+;The byte at address 0x39 is used to store the high byte of servo 3 enabled
+;The byte at address 0x3A is used to store the low byte of servo 3 enabled
+;The byte at address 0x3B is used to store the high byte of servo 3 disabled
+;The byte at address 0x3C is used to store the low byte of servo 3 disabled
+;The byte at address 0x3D is used to store the flag for the stepper motor
 
 #include <xc.inc>
     
@@ -140,7 +156,21 @@
    EU_FLAG	EQU 0X3B
    EU_COUNTER	EQU 0X3C
    EU_TXFLAG	EQU 0X3D
-   
+   PLAYER_HIT	EQU 0X4B
+   //MOTOR VARIABLES
+   CAL_POS	EQU 0X3E
+   S1E_PH	EQU 0X3F
+   S1E_PL	EQU 0X40
+   S1D_PH	EQU 0X41
+   S1D_PL	EQU 0X42
+   S2E_PH	EQU 0X43
+   S2E_PL	EQU 0X44
+   S2D_PH	EQU 0X45
+   S2D_PL	EQU 0X46
+   S3E_PH	EQU 0X47
+   S3E_PL	EQU 0X48
+   S3D_PH	EQU 0X49
+   S3D_PL	EQU 0X4A
 PSECT code
  global Setup
 Setup:
@@ -349,4 +379,63 @@ Setup:
   BANKSEL   PIE1
   BSF	    RCIE	;Enables EUSART Receive Interrupts
   
+  ;*** PSMC SETUP ***
+  BANKSEL   PSMC1OEN
+  MOVLW	    0X01
+  MOVWF	    PSMC1OEN
+  BANKSEL   PSMC2OEN
+  MOVWF	    PSMC2OEN
+  BANKSEL   PSMC3OEN
+  MOVWF	    PSMC3OEN
+  BANKSEL   TRISC
+  BCF	    RC0
+  BCF	    RC5
+  BCF	    RC6
+  
+  BANKSEL   PSMC1CLK
+  MOVLW	    0X20
+  MOVWF	    PSMC1CLK
+  BANKSEL   PSMC2CLK
+  MOVWF	    PSMC2CLK
+  BANKSEL   PSMC3CLK
+  MOVWF	    PSMC3CLK
+  
+  BANKSEL   PSMC1PRL
+  MOVLW	    0X40
+  MOVWF	    PSMC1PRL
+  BANKSEL   PSMC2PRL
+  MOVWF	    PSMC2PRL
+  BANKSEL   PSMC3PRL
+  MOVWF	    PSMC3PRL
+  MOVLW	    0X9C
+  BANKSEL   PSMC1PRH
+  MOVWF	    PSMC1PRH
+  BANKSEL   PSMC2PRH
+  MOVWF	    PSMC2PRH
+  BANKSEL   PSMC3PRH
+  MOVWF	    PSMC3PRH
+  
+  BANKSEL   PSMC1DCL
+  MOVLW	    0X10
+  MOVWF	    PSMC1DCL
+  BANKSEL   PSMC2DCL
+  MOVWF	    PSMC2DCL
+  BANKSEL   PSMC3DCL
+  MOVWF	    PSMC3DCL
+  
+  MOVLW	    0X4E
+  BANKSEL   PSMC1DCH
+  MOVWF	    PSMC1DCH
+  BANKSEL   PSMC2DCH
+  MOVWF	    PSMC2DCH
+  BANKSEL   PSMC3DCH
+  MOVWF	    PSMC3DCH
+  
+  BANKSEL   PSMC1CON
+  MOVLW	    0X80
+  MOVWF	    PSMC1CON
+  BANKSEL   PSMC2CON
+  MOVWF	    PSMC2CON
+  BANKSEL   PSMC3CON
+  MOVWF	    PSMC3CON
   RETURN
