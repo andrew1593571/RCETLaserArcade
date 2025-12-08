@@ -42,6 +42,7 @@ PSECT isrVect,class=CODE,delta=2
 PSECT code
 isr_Vect:
   BANKSEL   PIR1
+  CLRF	    PIR1
   BTFSC	    SSP1IF
   CALL	    RECEIVE
   BTFSC	    RCIF
