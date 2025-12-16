@@ -347,6 +347,20 @@ Public Class UARTController
         'Remember the address we are requesting
         _lastI2CReadAddress = addr
 
+        'We will clear "stale" bytes so we parse only THIS response
+        If serialPortJimmy.BytesToRead > 0 Then
+            serialPortJimmy.DiscardInBuffer()
+        End If
+
+        'Packet: "$R" + addr
+        SendPacket(
+            Asc("$"c),
+            Asc("R"c),
+            addr)
+
+        'Immediately parse the incoming response
+        ParseI2CReadResponse()
+
     End Sub
 
 
@@ -355,10 +369,6 @@ Public Class UARTController
     'Only in the calibration menu
     'Read current settings for troubleshooting
 
-    'IMPORTANT:
-    'THIS SECTION ONLY SENDS A READ SETTINGS COMMAND IT CURRENTLY
-    'DOES NOT RECEIVE THE RESPONSE, TO MAKE THINGS EASIER,
-    'DUMP THE DATA INTO CONFIG. DONT TRY TO PARSE DATA HERE
 
     Public Sub SendReadSettings()
         If Not EnsureCanSend(UartCommand.ReadSettings) Then Exit Sub
@@ -426,6 +436,18 @@ Public Class UARTController
 #End Region
 
 #Region "==============DATA PARSING==============="
+    ' ReadI2C Response Parser 9000
+    '
+    'Expected responses (Table 8.2.4):
+    '  -Blaster: $ U
+    '  -Slave:   $ U
+    '  -Master Failed:  $ F
+    '  -Master Success: $ R [I2C Data Byte]
+    '
+    'On '$' we read the following byte
+    'if the byte = 'R', then we read one more byte (data).
+    Private Sub ParseI2CReadResponse()
 
+    End Sub
 #End Region
 End Class
