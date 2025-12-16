@@ -1,5 +1,10 @@
 ﻿Module UARTTestModule
-
+    'This is a simple test module to demonstrate the UARTController class, can be removed/deleted.
+    'To use:
+    'Go to Project -> VBArcadeControl Properties -> Application -> Startup Form and set it to "UARTTestModule"
+    'Deselect "Enable application framework"
+    'Run the project and output will be shown in the console terminal
+    'It's used to verify that the UART Controller class is working as expected
     Sub Main()
         Console.WriteLine("UART Test Module Starting...")
 

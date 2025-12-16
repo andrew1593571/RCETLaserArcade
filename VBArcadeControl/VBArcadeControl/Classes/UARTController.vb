@@ -62,6 +62,15 @@ Public Class UARTController
     'Invalid-command & invalid-address events
     Public Event UnsupportedCommand(commandName As String, device As ConnectedDeviceType)
     Public Event InvalidI2CAddress(address As Byte)
+
+    'Track I2C address we last requested 
+    Private _lastI2CReadAddress As Byte
+
+    'ReadI2C parse result events
+    Public Event I2CReadSuccess(address As Byte, data As Byte)    'Master success: $ R [data]
+    Public Event I2CReadFailed(address As Byte, reason As Char)   'Unable ($U) or Failed ($F)
+    Public Event I2CReadParseFailed(reason As String)             'Timeout or malformed
+
 #End Region
 
 #Region "==============CONSTRUCTOR==============="
@@ -335,11 +344,9 @@ Public Class UARTController
 
         If Not EnsureCanSend(UartCommand.I2CRead) Then Exit Sub
 
-        'Packet: "$R" + addr
-        SendPacket(
-            Asc("$"c),
-            Asc("R"c),
-            addr)
+        'Remember the address we are requesting
+        _lastI2CReadAddress = addr
+
     End Sub
 
 
@@ -419,17 +426,6 @@ Public Class UARTController
 #End Region
 
 #Region "==============DATA PARSING==============="
-    'TO DO LIST:
-    'New obj needs to be created to serve as a container for the settings
-    'We dont need to interpret the data but will need to have a check, $ !, !
-    'If the byte does not start and end with that, lets assume parse failed
-    'Create new event for failed parse event
-    'update read settings?
-
-    '=====================
-    'BlasterSettings Class
-
-    'This will serve as a data container for the Blaster ReadSettings:
 
 #End Region
 End Class
