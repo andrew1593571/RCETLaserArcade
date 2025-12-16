@@ -447,6 +447,11 @@ Public Class UARTController
     'On '$' we read the following byte
     'if the byte = 'R', then we read one more byte (data).
     Private Sub ParseI2CReadResponse()
+        If serialPortJimmy Is Nothing OrElse Not serialPortJimmy.IsOpen Then
+            RaiseEvent I2CReadParseFailed("Serial port not open.")
+            Exit Sub
+        End If
+
 
     End Sub
 #End Region
