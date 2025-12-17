@@ -447,11 +447,59 @@ Public Class UARTController
     'On '$' we read the following byte
     'if the byte = 'R', then we read one more byte (data).
     Private Sub ParseI2CReadResponse()
+
         If serialPortJimmy Is Nothing OrElse Not serialPortJimmy.IsOpen Then
             RaiseEvent I2CReadParseFailed("Serial port not open.")
             Exit Sub
         End If
 
+        Try
+            'Step 1: Read the first byte (should be "$"0
+            Dim b As Integer
+            Do
+                b = serialPortJimmy.ReadByte() 'waits until byte or a timeout occurs
+                If b = -1 Then
+                    RaiseEvent I2CReadParseFailed("No data received.")
+                    Exit Sub
+                End If
+            Loop While CByte() <> Asc("$"c)
+
+            Dim readByte As Byte = CByte(serialPortJimmy.ReadByte())
+            Dim readChar As Char = Chr(readByte)
+
+            Select Case readChar
+                Case "U"c
+
+                    'Unable (Blaster/Slave)
+                    RaiseEvent I2CReadFailed(_lastI2CReadAddress, "U")
+                Case "F"c
+
+                    'Failed (Master)
+                    RaiseEvent I2CReadFailed(_lastI2CReadAddress, "F")
+                Case "R"c
+
+                    'Master Success → read one more byte (data)
+                    Dim dataByte As Byte = CByte(serialPortJimmy.ReadByte())
+                    RaiseEvent I2CReadSuccess(_lastI2CReadAddress, dataByte)
+
+                Case Else
+
+                    'Unexpected Response
+                    RaiseEvent I2CReadParseFailed(
+                        "ReadI2C parse failed: Unknown response code '" & readChar &
+                        "' (0x" & readByte.ToString("X2") & ").")
+
+            End Select
+
+        Catch ex As TimeoutException
+
+            RaiseEvent I2CReadParseFailed("ReadI2C parse failed: Timed out waiting for response.")
+
+        Catch ex As Exception
+
+            RaiseEvent I2CReadParseFailed("ReadI2C parse failed: " & ex.Message)
+
+        End Try
 
     End Sub
 #End Region
