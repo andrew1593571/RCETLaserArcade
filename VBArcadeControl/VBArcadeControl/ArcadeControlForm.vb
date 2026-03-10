@@ -416,4 +416,8 @@ Public Class ArcadeControlForm
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         AboutForm.Show()
     End Sub
+
+    Private Sub TopMenuStrip_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles TopMenuStrip.ItemClicked
+
+    End Sub
 End Class

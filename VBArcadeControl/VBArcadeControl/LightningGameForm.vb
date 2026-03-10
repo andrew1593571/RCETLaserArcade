@@ -42,14 +42,14 @@
         'UARTController.sendupdateplayercolor(Player1.playernumber,Player1.green,Player1.red,Player1.blue)
     End Sub
 
-    Private Sub Player1PictureBox_Click(sender As Object, e As EventArgs) Handles Player1PictureBox.Click
-        Dim result As DialogResult = ColorDialog1.ShowDialog()
-        Player1.red = ColorDialog1.Color.R
-        Player1.green = ColorDialog1.Color.G
-        Player1.blue = ColorDialog1.Color.B
-        Player1PictureBox.BackColor = ColorDialog1.Color
-        'UARTController.sendupdateplayercolor(Player1.playernumber,Player1.green,Player1.red,Player1.blue)
-    End Sub
+    'Private Sub Player1PictureBox_Click(sender As Object, e As EventArgs) Handles Player1PictureBox.Click
+    '    Dim result As DialogResult = ColorDialog1.ShowDialog()
+    '    Player1.red = ColorDialog1.Color.R
+    '    Player1.green = ColorDialog1.Color.G
+    '    Player1.blue = ColorDialog1.Color.B
+    '    Player1PictureBox.BackColor = ColorDialog1.Color
+    '    'UARTController.sendupdateplayercolor(Player1.playernumber,Player1.green,Player1.red,Player1.blue)
+    'End Sub
 
     Private Function SeperateColorFromARB(Value As String) As Double
         Dim num As String()

@@ -1,4 +1,7 @@
-﻿'→
+﻿'Alexis Villagran
+'Laser Arcade Project
+'Fall 2025
+'
 '===============================
 'UARTController Class
 '
@@ -462,7 +465,7 @@ Public Class UARTController
                     RaiseEvent I2CReadParseFailed("No data received.")
                     Exit Sub
                 End If
-            Loop While CByte() <> Asc("$"c)
+            Loop While CByte(b) <> Asc("$"c)
 
             Dim readByte As Byte = CByte(serialPortJimmy.ReadByte())
             Dim readChar As Char = Chr(readByte)
