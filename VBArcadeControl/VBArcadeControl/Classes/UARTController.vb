@@ -72,7 +72,7 @@ Public Class UARTController
     Private _lastPolledAddress As Byte = 0
 
     'Receive buffer – accumulates incoming bytes until we have a full 3-byte packet
-    Private _receiveBuffer(2) As Byte
+    Private _receiveBuffer(3) As Byte
     Private _receiveIndex As Integer = 0
 
     'Parse events
@@ -401,7 +401,71 @@ Public Class UARTController
             Asc("E"c))
     End Sub
 
+    Public Sub SendI2CColorChange(addr As Byte, player As Byte, Optional R As Byte = 0, Optional G As Byte = 0, Optional B As Byte = 0)
+        If addr > 127 Then
+            RaiseEvent InvalidI2CAddress(addr)
+            Exit Sub
+        End If
 
+        'If Not EnsureCanSend(UartCommand.I2CRead) Then Exit Sub
+
+        'Packet: "$W" + addr + "A"
+        SendPacket(
+            Asc("$"c),
+            Asc("W"c),
+            addr,
+            Asc("C"c))
+    End Sub
+
+    Public Sub SendI2COverwrite(addr As Byte, player As Byte)
+        If addr > 127 Then
+            RaiseEvent InvalidI2CAddress(addr)
+            Exit Sub
+        End If
+
+        Dim hexPlayer As Byte
+        Select Case player
+            Case 1
+                hexPlayer = &H31
+            Case 2
+                hexPlayer = &H32
+            Case 3
+                hexPlayer = &H33
+            Case 4
+                hexPlayer = &H34
+        End Select
+
+        'Packet: "$W" + addr + "A"
+        SendPacket(
+            Asc("$"c),
+            Asc("W"c),
+            addr,
+            hexPlayer)
+    End Sub
+
+    '====MASTER: $G B or D ====
+
+    Public Sub SendGameMode(mode As Boolean)
+        'If Not EnsureCanSend(UartCommand.I2CRead) Then Exit Sub
+
+        SendPacket(
+                Asc("$"c),
+                Asc("G"c))
+
+        'If mode = True Then
+        'Packet: "$GB"
+        'SendPacket(
+        'Asc("$"c),
+        'Asc("G"c),
+        'Asc("B"c))
+        'Else
+        'Packet: "$GD"
+        'SendPacket(
+        'Asc("$"c),
+        'Asc("G"c),
+        'Asc("D"c))
+        'End If
+    End Sub
 
     '====MASTER: $W addr D====
 
@@ -424,6 +488,8 @@ Public Class UARTController
             addr,
             Asc("D"c))
     End Sub
+
+
 
 
     '====SLAVE/BLASTER: $S====
@@ -559,8 +625,8 @@ Public Class UARTController
             Return
         End If
 
-        ' 3-byte packet: "$ R PLAYER#" = Target hit response
-        If _receiveIndex = 3 Then
+        ' 4-byte packet: "$ R ADRESS PLAYER#" = Target hit response
+        If _receiveIndex = 4 Then
             ParsePacket()
             _receiveIndex = 0
         End If
@@ -580,7 +646,8 @@ Public Class UARTController
     Private Sub ParsePacket()
         Dim byte0 As Byte = _receiveBuffer(0)  ' "$"
         Dim byte1 As Byte = _receiveBuffer(1)  ' "R"
-        Dim byte2 As Byte = _receiveBuffer(2)  ' PLAYER#
+        Dim byte2 As Byte = _receiveBuffer(2)  ' ADRESS#
+        Dim byte3 As Byte = _receiveBuffer(3)  ' PLAYER#
 
         'Byte 1 must be "R"
         If byte1 <> Asc("R"c) Then
@@ -589,15 +656,22 @@ Public Class UARTController
             Return
         End If
 
-        'Byte 2 must be a player number 1–4
-        If byte2 < 1 OrElse byte2 > 4 Then
+        'Byte 2 must be a Target 1-127
+        If byte2 > 127 Then
             RaiseEvent ParseFailed(
-                "Player number out of range: " & byte2.ToString() & " (expected 1–4)")
+                "Player number out of range: " & byte2.ToString() & " (expected 1–127)")
+            Return
+        End If
+
+        'Byte 3 must be a player number 1–4
+        If byte3 < 1 OrElse byte3 > 4 Then
+            RaiseEvent ParseFailed(
+                "Player number out of range: " & byte3.ToString() & " (expected 1–4)")
             Return
         End If
 
         'Packet is valid – raise TargetHit with the remembered address and the player number
-        RaiseEvent TargetHit(_lastPolledAddress, byte2)
+        RaiseEvent TargetHit(byte2, byte3)
     End Sub
 
 

@@ -96,7 +96,7 @@ Partial Class SlaveConfigurationForm
         Me.FormLayoutPanel.Controls.Add(Me.SaveButton, 0, 6)
         Me.FormLayoutPanel.Controls.Add(Me.ServoLayoutPanel, 0, 4)
         Me.FormLayoutPanel.Location = New System.Drawing.Point(16, 15)
-        Me.FormLayoutPanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FormLayoutPanel.Margin = New System.Windows.Forms.Padding(4)
         Me.FormLayoutPanel.Name = "FormLayoutPanel"
         Me.FormLayoutPanel.RowCount = 7
         Me.FormLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 123.0!))
@@ -119,7 +119,7 @@ Partial Class SlaveConfigurationForm
         Me.TableLayoutPanel1.Controls.Add(Me.Servo2DISGroupBox, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Servo1DISGroupBox, 0, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(4, 431)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -132,9 +132,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo3DISGroupBox.Controls.Add(Me.Servo3DISTrackBar)
         Me.Servo3DISGroupBox.Location = New System.Drawing.Point(484, 4)
-        Me.Servo3DISGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3DISGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo3DISGroupBox.Name = "Servo3DISGroupBox"
-        Me.Servo3DISGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3DISGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo3DISGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo3DISGroupBox.TabIndex = 11
         Me.Servo3DISGroupBox.TabStop = False
@@ -146,10 +146,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo3DISTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo3DISTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3DISTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo3DISTrackBar.Maximum = 1000
         Me.Servo3DISTrackBar.Name = "Servo3DISTrackBar"
-        Me.Servo3DISTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo3DISTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo3DISTrackBar.TabIndex = 0
         '
         'Servo2DISGroupBox
@@ -158,9 +158,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo2DISGroupBox.Controls.Add(Me.Servo2DISTrackBar)
         Me.Servo2DISGroupBox.Location = New System.Drawing.Point(244, 4)
-        Me.Servo2DISGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2DISGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo2DISGroupBox.Name = "Servo2DISGroupBox"
-        Me.Servo2DISGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2DISGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo2DISGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo2DISGroupBox.TabIndex = 10
         Me.Servo2DISGroupBox.TabStop = False
@@ -172,10 +172,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo2DISTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo2DISTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2DISTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo2DISTrackBar.Maximum = 1000
         Me.Servo2DISTrackBar.Name = "Servo2DISTrackBar"
-        Me.Servo2DISTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo2DISTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo2DISTrackBar.TabIndex = 0
         '
         'Servo1DISGroupBox
@@ -184,9 +184,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo1DISGroupBox.Controls.Add(Me.Servo1DISTrackBar)
         Me.Servo1DISGroupBox.Location = New System.Drawing.Point(4, 4)
-        Me.Servo1DISGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1DISGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo1DISGroupBox.Name = "Servo1DISGroupBox"
-        Me.Servo1DISGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1DISGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo1DISGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo1DISGroupBox.TabIndex = 9
         Me.Servo1DISGroupBox.TabStop = False
@@ -198,10 +198,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo1DISTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo1DISTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1DISTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo1DISTrackBar.Maximum = 1000
         Me.Servo1DISTrackBar.Name = "Servo1DISTrackBar"
-        Me.Servo1DISTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo1DISTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo1DISTrackBar.TabIndex = 0
         '
         'LEDNumberGroupBox
@@ -210,9 +210,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LEDNumberGroupBox.Controls.Add(Me.LEDNumberTextBox)
         Me.LEDNumberGroupBox.Location = New System.Drawing.Point(4, 195)
-        Me.LEDNumberGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LEDNumberGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.LEDNumberGroupBox.Name = "LEDNumberGroupBox"
-        Me.LEDNumberGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LEDNumberGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.LEDNumberGroupBox.Size = New System.Drawing.Size(720, 60)
         Me.LEDNumberGroupBox.TabIndex = 8
         Me.LEDNumberGroupBox.TabStop = False
@@ -224,7 +224,7 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LEDNumberTextBox.Location = New System.Drawing.Point(13, 23)
-        Me.LEDNumberTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.LEDNumberTextBox.Margin = New System.Windows.Forms.Padding(4)
         Me.LEDNumberTextBox.Name = "LEDNumberTextBox"
         Me.LEDNumberTextBox.Size = New System.Drawing.Size(697, 22)
         Me.LEDNumberTextBox.TabIndex = 0
@@ -240,7 +240,7 @@ Partial Class SlaveConfigurationForm
         Me.TitleLayoutPanel.Controls.Add(Me.TitleLabel, 0, 0)
         Me.TitleLayoutPanel.Controls.Add(Me.Label1, 0, 1)
         Me.TitleLayoutPanel.Location = New System.Drawing.Point(4, 4)
-        Me.TitleLayoutPanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TitleLayoutPanel.Margin = New System.Windows.Forms.Padding(4)
         Me.TitleLayoutPanel.Name = "TitleLayoutPanel"
         Me.TitleLayoutPanel.RowCount = 2
         Me.TitleLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
@@ -283,9 +283,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.I2CAddressGroupBox.Controls.Add(Me.I2CAddressTextBox)
         Me.I2CAddressGroupBox.Location = New System.Drawing.Point(4, 127)
-        Me.I2CAddressGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.I2CAddressGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.I2CAddressGroupBox.Name = "I2CAddressGroupBox"
-        Me.I2CAddressGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.I2CAddressGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.I2CAddressGroupBox.Size = New System.Drawing.Size(720, 60)
         Me.I2CAddressGroupBox.TabIndex = 2
         Me.I2CAddressGroupBox.TabStop = False
@@ -297,7 +297,7 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.I2CAddressTextBox.Location = New System.Drawing.Point(13, 23)
-        Me.I2CAddressTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.I2CAddressTextBox.Margin = New System.Windows.Forms.Padding(4)
         Me.I2CAddressTextBox.Name = "I2CAddressTextBox"
         Me.I2CAddressTextBox.Size = New System.Drawing.Size(697, 22)
         Me.I2CAddressTextBox.TabIndex = 0
@@ -317,9 +317,9 @@ Partial Class SlaveConfigurationForm
         Me.PlayerColorsGroupBox.Controls.Add(Me.PlayerColorButton)
         Me.PlayerColorsGroupBox.Controls.Add(Me.PlayerOneColorPictureBox)
         Me.PlayerColorsGroupBox.Location = New System.Drawing.Point(4, 263)
-        Me.PlayerColorsGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerColorsGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerColorsGroupBox.Name = "PlayerColorsGroupBox"
-        Me.PlayerColorsGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerColorsGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.PlayerColorsGroupBox.Size = New System.Drawing.Size(720, 92)
         Me.PlayerColorsGroupBox.TabIndex = 6
         Me.PlayerColorsGroupBox.TabStop = False
@@ -368,7 +368,7 @@ Partial Class SlaveConfigurationForm
         'PlayerFourColorPictureBox
         '
         Me.PlayerFourColorPictureBox.Location = New System.Drawing.Point(432, 46)
-        Me.PlayerFourColorPictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerFourColorPictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerFourColorPictureBox.Name = "PlayerFourColorPictureBox"
         Me.PlayerFourColorPictureBox.Size = New System.Drawing.Size(133, 30)
         Me.PlayerFourColorPictureBox.TabIndex = 4
@@ -377,7 +377,7 @@ Partial Class SlaveConfigurationForm
         'PlayerThreeColorPictureBox
         '
         Me.PlayerThreeColorPictureBox.Location = New System.Drawing.Point(291, 46)
-        Me.PlayerThreeColorPictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerThreeColorPictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerThreeColorPictureBox.Name = "PlayerThreeColorPictureBox"
         Me.PlayerThreeColorPictureBox.Size = New System.Drawing.Size(133, 30)
         Me.PlayerThreeColorPictureBox.TabIndex = 3
@@ -386,7 +386,7 @@ Partial Class SlaveConfigurationForm
         'PlayerTwoColorPictureBox
         '
         Me.PlayerTwoColorPictureBox.Location = New System.Drawing.Point(149, 46)
-        Me.PlayerTwoColorPictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerTwoColorPictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerTwoColorPictureBox.Name = "PlayerTwoColorPictureBox"
         Me.PlayerTwoColorPictureBox.Size = New System.Drawing.Size(133, 30)
         Me.PlayerTwoColorPictureBox.TabIndex = 2
@@ -395,7 +395,7 @@ Partial Class SlaveConfigurationForm
         'PlayerColorButton
         '
         Me.PlayerColorButton.Location = New System.Drawing.Point(573, 46)
-        Me.PlayerColorButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerColorButton.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerColorButton.Name = "PlayerColorButton"
         Me.PlayerColorButton.Size = New System.Drawing.Size(135, 30)
         Me.PlayerColorButton.TabIndex = 1
@@ -405,7 +405,7 @@ Partial Class SlaveConfigurationForm
         'PlayerOneColorPictureBox
         '
         Me.PlayerOneColorPictureBox.Location = New System.Drawing.Point(8, 46)
-        Me.PlayerOneColorPictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayerOneColorPictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayerOneColorPictureBox.Name = "PlayerOneColorPictureBox"
         Me.PlayerOneColorPictureBox.Size = New System.Drawing.Size(133, 30)
         Me.PlayerOneColorPictureBox.TabIndex = 0
@@ -416,7 +416,7 @@ Partial Class SlaveConfigurationForm
         Me.SaveButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SaveButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SaveButton.Location = New System.Drawing.Point(524, 510)
-        Me.SaveButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SaveButton.Margin = New System.Windows.Forms.Padding(4)
         Me.SaveButton.MaximumSize = New System.Drawing.Size(200, 62)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(200, 62)
@@ -434,7 +434,7 @@ Partial Class SlaveConfigurationForm
         Me.ServoLayoutPanel.Controls.Add(Me.Servo2ENGroupBox, 1, 0)
         Me.ServoLayoutPanel.Controls.Add(Me.Servo1ENGroupBox, 0, 0)
         Me.ServoLayoutPanel.Location = New System.Drawing.Point(4, 363)
-        Me.ServoLayoutPanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ServoLayoutPanel.Margin = New System.Windows.Forms.Padding(4)
         Me.ServoLayoutPanel.Name = "ServoLayoutPanel"
         Me.ServoLayoutPanel.RowCount = 1
         Me.ServoLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -447,9 +447,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo3ENGroupBox.Controls.Add(Me.Servo3ENTrackBar)
         Me.Servo3ENGroupBox.Location = New System.Drawing.Point(484, 4)
-        Me.Servo3ENGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3ENGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo3ENGroupBox.Name = "Servo3ENGroupBox"
-        Me.Servo3ENGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3ENGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo3ENGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo3ENGroupBox.TabIndex = 11
         Me.Servo3ENGroupBox.TabStop = False
@@ -461,10 +461,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo3ENTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo3ENTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo3ENTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo3ENTrackBar.Maximum = 1000
         Me.Servo3ENTrackBar.Name = "Servo3ENTrackBar"
-        Me.Servo3ENTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo3ENTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo3ENTrackBar.TabIndex = 0
         '
         'Servo2ENGroupBox
@@ -473,9 +473,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo2ENGroupBox.Controls.Add(Me.Servo2ENTrackBar)
         Me.Servo2ENGroupBox.Location = New System.Drawing.Point(244, 4)
-        Me.Servo2ENGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2ENGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo2ENGroupBox.Name = "Servo2ENGroupBox"
-        Me.Servo2ENGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2ENGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo2ENGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo2ENGroupBox.TabIndex = 10
         Me.Servo2ENGroupBox.TabStop = False
@@ -487,10 +487,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo2ENTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo2ENTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo2ENTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo2ENTrackBar.Maximum = 1000
         Me.Servo2ENTrackBar.Name = "Servo2ENTrackBar"
-        Me.Servo2ENTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo2ENTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo2ENTrackBar.TabIndex = 0
         '
         'Servo1ENGroupBox
@@ -499,9 +499,9 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo1ENGroupBox.Controls.Add(Me.Servo1ENTrackBar)
         Me.Servo1ENGroupBox.Location = New System.Drawing.Point(4, 4)
-        Me.Servo1ENGroupBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1ENGroupBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo1ENGroupBox.Name = "Servo1ENGroupBox"
-        Me.Servo1ENGroupBox.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1ENGroupBox.Padding = New System.Windows.Forms.Padding(4)
         Me.Servo1ENGroupBox.Size = New System.Drawing.Size(232, 52)
         Me.Servo1ENGroupBox.TabIndex = 9
         Me.Servo1ENGroupBox.TabStop = False
@@ -513,10 +513,10 @@ Partial Class SlaveConfigurationForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Servo1ENTrackBar.Location = New System.Drawing.Point(9, 22)
-        Me.Servo1ENTrackBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Servo1ENTrackBar.Margin = New System.Windows.Forms.Padding(4)
         Me.Servo1ENTrackBar.Maximum = 1000
         Me.Servo1ENTrackBar.Name = "Servo1ENTrackBar"
-        Me.Servo1ENTrackBar.Size = New System.Drawing.Size(215, 55)
+        Me.Servo1ENTrackBar.Size = New System.Drawing.Size(215, 56)
         Me.Servo1ENTrackBar.TabIndex = 0
         '
         'SlaveConfigurationForm
@@ -526,7 +526,7 @@ Partial Class SlaveConfigurationForm
         Me.ClientSize = New System.Drawing.Size(760, 606)
         Me.Controls.Add(Me.FormLayoutPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "SlaveConfigurationForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SlaveConfigurationForm"

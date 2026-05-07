@@ -62,6 +62,11 @@ Partial Class MemoryGame
         Me.TargetsHitTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TimerRoundPass = New System.Windows.Forms.Timer(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.StatusTextBox = New System.Windows.Forms.TextBox()
+        Me.TurnPictureBox = New System.Windows.Forms.PictureBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.PlayerTurnTextBox = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +92,7 @@ Partial Class MemoryGame
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TurnPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StartButton
@@ -470,11 +476,63 @@ Partial Class MemoryGame
         '
         Me.TimerRoundPass.Interval = 2500
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 192)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 16)
+        Me.Label4.TabIndex = 36
+        Me.Label4.Text = "Status"
+        '
+        'StatusTextBox
+        '
+        Me.StatusTextBox.Location = New System.Drawing.Point(12, 211)
+        Me.StatusTextBox.Name = "StatusTextBox"
+        Me.StatusTextBox.ReadOnly = True
+        Me.StatusTextBox.Size = New System.Drawing.Size(161, 22)
+        Me.StatusTextBox.TabIndex = 37
+        Me.StatusTextBox.Text = "Ready"
+        '
+        'TurnPictureBox
+        '
+        Me.TurnPictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.BIcon
+        Me.TurnPictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
+        Me.TurnPictureBox.Location = New System.Drawing.Point(17, 270)
+        Me.TurnPictureBox.Name = "TurnPictureBox"
+        Me.TurnPictureBox.Size = New System.Drawing.Size(58, 58)
+        Me.TurnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.TurnPictureBox.TabIndex = 40
+        Me.TurnPictureBox.TabStop = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(3, 242)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(46, 16)
+        Me.Label5.TabIndex = 39
+        Me.Label5.Text = "Player"
+        '
+        'PlayerTurnTextBox
+        '
+        Me.PlayerTurnTextBox.Location = New System.Drawing.Point(55, 242)
+        Me.PlayerTurnTextBox.Name = "PlayerTurnTextBox"
+        Me.PlayerTurnTextBox.ReadOnly = True
+        Me.PlayerTurnTextBox.Size = New System.Drawing.Size(33, 22)
+        Me.PlayerTurnTextBox.TabIndex = 38
+        Me.PlayerTurnTextBox.Text = "1"
+        '
         'MemoryGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.TurnPictureBox)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.PlayerTurnTextBox)
+        Me.Controls.Add(Me.StatusTextBox)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TargetsHitTextBox)
         Me.Controls.Add(Me.Label2)
@@ -537,6 +595,7 @@ Partial Class MemoryGame
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TurnPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -581,4 +640,9 @@ Partial Class MemoryGame
     Friend WithEvents TargetsHitTextBox As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents TimerRoundPass As Timer
+    Friend WithEvents Label4 As Label
+    Friend WithEvents StatusTextBox As TextBox
+    Friend WithEvents TurnPictureBox As PictureBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents PlayerTurnTextBox As TextBox
 End Class

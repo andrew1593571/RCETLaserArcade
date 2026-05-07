@@ -3,6 +3,7 @@
     Private _initalizing As Boolean = True
     Private _shouldClose As Boolean = False
 
+
     ''' <summary>
     ''' update the available COM ports in the selection dropdown
     ''' </summary>
@@ -28,12 +29,10 @@
     Private Sub COMPortComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles COMPortComboBox.SelectedIndexChanged
         If _initalizing Then Return
         If (SelectedDevice.Connect(COMPortComboBox.Text)) And SelectedDevice.DeviceVerified Then
-            'selected device Is a valid Laser Arcade device
             Select Case SelectedDevice.DeviceType
                 Case UARTController.ConnectedDeviceType.Master
                     If MsgBox($"Successfully connected to the Laser Arcade Master at {COMPortComboBox.Text}.{vbNewLine}Would you like to pick a game?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                         Dim GamePickerForm As New GamePicker(SelectedDevice)
-
                         GamePickerForm.Show()
                         Me.Hide()
                     End If

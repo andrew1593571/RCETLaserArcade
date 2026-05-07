@@ -38,82 +38,84 @@ Partial Class TestTargetStatus
         Me.DisableButton = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ResultLabel = New System.Windows.Forms.TextBox()
+        Me.ColorChangeButton = New System.Windows.Forms.Button()
+        Me.OverwriteButton = New System.Windows.Forms.Button()
+        Me.OverwriteTextBox = New System.Windows.Forms.TextBox()
+        Me.ReturnButton = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'RecievedTargetData
         '
-        Me.RecievedTargetData.Location = New System.Drawing.Point(440, 24)
-        Me.RecievedTargetData.Margin = New System.Windows.Forms.Padding(2)
+        Me.RecievedTargetData.Location = New System.Drawing.Point(587, 30)
+        Me.RecievedTargetData.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RecievedTargetData.Name = "RecievedTargetData"
         Me.RecievedTargetData.ReadOnly = True
-        Me.RecievedTargetData.Size = New System.Drawing.Size(152, 20)
+        Me.RecievedTargetData.Size = New System.Drawing.Size(201, 22)
         Me.RecievedTargetData.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(438, 8)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Location = New System.Drawing.Point(584, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 13)
+        Me.Label1.Size = New System.Drawing.Size(66, 16)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Raw Data"
         '
         'ReadButton
         '
-        Me.ReadButton.Location = New System.Drawing.Point(11, 86)
-        Me.ReadButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.ReadButton.Location = New System.Drawing.Point(12, 106)
+        Me.ReadButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ReadButton.Name = "ReadButton"
-        Me.ReadButton.Size = New System.Drawing.Size(58, 32)
+        Me.ReadButton.Size = New System.Drawing.Size(80, 39)
         Me.ReadButton.TabIndex = 2
         Me.ReadButton.Text = "Read"
         Me.ReadButton.UseVisualStyleBackColor = True
         '
         'AddressTextBox
         '
-        Me.AddressTextBox.Location = New System.Drawing.Point(9, 24)
-        Me.AddressTextBox.Margin = New System.Windows.Forms.Padding(2)
+        Me.AddressTextBox.Location = New System.Drawing.Point(12, 30)
+        Me.AddressTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.AddressTextBox.Name = "AddressTextBox"
-        Me.AddressTextBox.Size = New System.Drawing.Size(121, 20)
+        Me.AddressTextBox.Size = New System.Drawing.Size(160, 22)
         Me.AddressTextBox.TabIndex = 3
         Me.AddressTextBox.Text = "1"
         '
         'WriteTextBox
         '
-        Me.WriteTextBox.Location = New System.Drawing.Point(9, 63)
-        Me.WriteTextBox.Margin = New System.Windows.Forms.Padding(2)
+        Me.WriteTextBox.Location = New System.Drawing.Point(12, 78)
+        Me.WriteTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.WriteTextBox.Name = "WriteTextBox"
-        Me.WriteTextBox.Size = New System.Drawing.Size(121, 20)
+        Me.WriteTextBox.Size = New System.Drawing.Size(160, 22)
         Me.WriteTextBox.TabIndex = 4
         Me.WriteTextBox.Text = "0"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 8)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label2.Location = New System.Drawing.Point(12, 10)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 13)
+        Me.Label2.Size = New System.Drawing.Size(58, 16)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Address"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 48)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label3.Location = New System.Drawing.Point(12, 59)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 13)
+        Me.Label3.Size = New System.Drawing.Size(38, 16)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Write"
         '
         'WriteButton
         '
-        Me.WriteButton.Location = New System.Drawing.Point(71, 86)
-        Me.WriteButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.WriteButton.Location = New System.Drawing.Point(95, 106)
+        Me.WriteButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.WriteButton.Name = "WriteButton"
-        Me.WriteButton.Size = New System.Drawing.Size(58, 32)
+        Me.WriteButton.Size = New System.Drawing.Size(77, 39)
         Me.WriteButton.TabIndex = 7
         Me.WriteButton.Text = "Write"
         Me.WriteButton.UseVisualStyleBackColor = True
@@ -122,10 +124,10 @@ Partial Class TestTargetStatus
         '
         Me.DecimalRadioButton.AutoSize = True
         Me.DecimalRadioButton.Checked = True
-        Me.DecimalRadioButton.Location = New System.Drawing.Point(4, 17)
-        Me.DecimalRadioButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.DecimalRadioButton.Location = New System.Drawing.Point(5, 21)
+        Me.DecimalRadioButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DecimalRadioButton.Name = "DecimalRadioButton"
-        Me.DecimalRadioButton.Size = New System.Drawing.Size(75, 17)
+        Me.DecimalRadioButton.Size = New System.Drawing.Size(95, 20)
         Me.DecimalRadioButton.TabIndex = 9
         Me.DecimalRadioButton.TabStop = True
         Me.DecimalRadioButton.Text = "JellyBeans"
@@ -134,10 +136,10 @@ Partial Class TestTargetStatus
         'HexRadioButton
         '
         Me.HexRadioButton.AutoSize = True
-        Me.HexRadioButton.Location = New System.Drawing.Point(4, 38)
-        Me.HexRadioButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.HexRadioButton.Location = New System.Drawing.Point(5, 47)
+        Me.HexRadioButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.HexRadioButton.Name = "HexRadioButton"
-        Me.HexRadioButton.Size = New System.Drawing.Size(44, 17)
+        Me.HexRadioButton.Size = New System.Drawing.Size(52, 20)
         Me.HexRadioButton.TabIndex = 10
         Me.HexRadioButton.Text = "Hex"
         Me.HexRadioButton.UseVisualStyleBackColor = True
@@ -145,10 +147,10 @@ Partial Class TestTargetStatus
         'AsciiRadioButton
         '
         Me.AsciiRadioButton.AutoSize = True
-        Me.AsciiRadioButton.Location = New System.Drawing.Point(4, 59)
-        Me.AsciiRadioButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.AsciiRadioButton.Location = New System.Drawing.Point(5, 73)
+        Me.AsciiRadioButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.AsciiRadioButton.Name = "AsciiRadioButton"
-        Me.AsciiRadioButton.Size = New System.Drawing.Size(47, 17)
+        Me.AsciiRadioButton.Size = New System.Drawing.Size(57, 20)
         Me.AsciiRadioButton.TabIndex = 11
         Me.AsciiRadioButton.Text = "Ascii"
         Me.AsciiRadioButton.UseVisualStyleBackColor = True
@@ -158,31 +160,31 @@ Partial Class TestTargetStatus
         Me.GroupBox1.Controls.Add(Me.DecimalRadioButton)
         Me.GroupBox1.Controls.Add(Me.AsciiRadioButton)
         Me.GroupBox1.Controls.Add(Me.HexRadioButton)
-        Me.GroupBox1.Location = New System.Drawing.Point(9, 258)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 318)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(118, 98)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox1.Size = New System.Drawing.Size(157, 121)
         Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox1.Text = "Base Selector"
         '
         'EnableButton
         '
-        Me.EnableButton.Location = New System.Drawing.Point(13, 123)
-        Me.EnableButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.EnableButton.Location = New System.Drawing.Point(12, 151)
+        Me.EnableButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.EnableButton.Name = "EnableButton"
-        Me.EnableButton.Size = New System.Drawing.Size(56, 68)
+        Me.EnableButton.Size = New System.Drawing.Size(80, 84)
         Me.EnableButton.TabIndex = 13
         Me.EnableButton.Text = "Enable Target"
         Me.EnableButton.UseVisualStyleBackColor = True
         '
         'DisableButton
         '
-        Me.DisableButton.Location = New System.Drawing.Point(70, 123)
-        Me.DisableButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.DisableButton.Location = New System.Drawing.Point(93, 151)
+        Me.DisableButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DisableButton.Name = "DisableButton"
-        Me.DisableButton.Size = New System.Drawing.Size(56, 68)
+        Me.DisableButton.Size = New System.Drawing.Size(79, 84)
         Me.DisableButton.TabIndex = 14
         Me.DisableButton.Text = "Disable Target"
         Me.DisableButton.UseVisualStyleBackColor = True
@@ -190,25 +192,80 @@ Partial Class TestTargetStatus
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(437, 86)
+        Me.Label4.Location = New System.Drawing.Point(583, 106)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 13)
+        Me.Label4.Size = New System.Drawing.Size(82, 16)
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Result Label"
         '
         'ResultLabel
         '
-        Me.ResultLabel.Location = New System.Drawing.Point(441, 102)
+        Me.ResultLabel.Location = New System.Drawing.Point(588, 126)
+        Me.ResultLabel.Margin = New System.Windows.Forms.Padding(4)
         Me.ResultLabel.Multiline = True
         Me.ResultLabel.Name = "ResultLabel"
-        Me.ResultLabel.Size = New System.Drawing.Size(147, 70)
+        Me.ResultLabel.Size = New System.Drawing.Size(195, 85)
         Me.ResultLabel.TabIndex = 16
+        '
+        'ColorChangeButton
+        '
+        Me.ColorChangeButton.Location = New System.Drawing.Point(12, 240)
+        Me.ColorChangeButton.Name = "ColorChangeButton"
+        Me.ColorChangeButton.Size = New System.Drawing.Size(78, 73)
+        Me.ColorChangeButton.TabIndex = 17
+        Me.ColorChangeButton.Text = "Color Test"
+        Me.ColorChangeButton.UseVisualStyleBackColor = True
+        '
+        'OverwriteButton
+        '
+        Me.OverwriteButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!)
+        Me.OverwriteButton.Location = New System.Drawing.Point(93, 240)
+        Me.OverwriteButton.Name = "OverwriteButton"
+        Me.OverwriteButton.Size = New System.Drawing.Size(79, 73)
+        Me.OverwriteButton.TabIndex = 18
+        Me.OverwriteButton.Text = "Overwrite"
+        Me.OverwriteButton.UseVisualStyleBackColor = True
+        '
+        'OverwriteTextBox
+        '
+        Me.OverwriteTextBox.Location = New System.Drawing.Point(174, 262)
+        Me.OverwriteTextBox.Name = "OverwriteTextBox"
+        Me.OverwriteTextBox.Size = New System.Drawing.Size(100, 22)
+        Me.OverwriteTextBox.TabIndex = 19
+        Me.OverwriteTextBox.Text = "1"
+        '
+        'ReturnButton
+        '
+        Me.ReturnButton.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReturnButton.Location = New System.Drawing.Point(691, 348)
+        Me.ReturnButton.Name = "ReturnButton"
+        Me.ReturnButton.Size = New System.Drawing.Size(92, 90)
+        Me.ReturnButton.TabIndex = 20
+        Me.ReturnButton.Text = "Return to Game Menu"
+        Me.ReturnButton.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(174, 240)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(105, 16)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Player Overwrite"
         '
         'TestTargetStatus
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(600, 366)
+        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.ReturnButton)
+        Me.Controls.Add(Me.OverwriteTextBox)
+        Me.Controls.Add(Me.OverwriteButton)
+        Me.Controls.Add(Me.ColorChangeButton)
         Me.Controls.Add(Me.ResultLabel)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.DisableButton)
@@ -222,7 +279,7 @@ Partial Class TestTargetStatus
         Me.Controls.Add(Me.ReadButton)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.RecievedTargetData)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "TestTargetStatus"
         Me.Text = "TestTargetStatus"
         Me.GroupBox1.ResumeLayout(False)
@@ -248,4 +305,9 @@ Partial Class TestTargetStatus
     Friend WithEvents DisableButton As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents ResultLabel As TextBox
+    Friend WithEvents ColorChangeButton As Button
+    Friend WithEvents OverwriteButton As Button
+    Friend WithEvents OverwriteTextBox As TextBox
+    Friend WithEvents ReturnButton As Button
+    Friend WithEvents Label5 As Label
 End Class

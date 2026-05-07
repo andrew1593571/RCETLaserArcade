@@ -130,4 +130,23 @@ Public Class TestTargetStatus
             ResultLabel.Text = "Command acknowledged by target " & address.ToString()
         End If
     End Sub
+
+    Private Sub ColorChangeButton_Click(sender As Object, e As EventArgs) Handles ColorChangeButton.Click
+        Dim writableAddress As Integer
+        writableAddress = CInt(AddressTextBox.Text) * 2
+        testCOM.SendI2CColorChange(CByte(writableAddress), 1)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles OverwriteButton.Click
+        Dim writableAddress As Integer
+        writableAddress = CInt(AddressTextBox.Text) * 2
+        testCOM.SendI2COverwrite(CByte(writableAddress), CByte(CInt(OverwriteTextBox.Text)))
+    End Sub
+
+    Private Sub ReturnButton_Click(sender As Object, e As EventArgs) Handles ReturnButton.Click
+        Dim GamePickerForm As New GamePicker(testCOM)
+
+        GamePickerForm.Show()
+        Me.Hide()
+    End Sub
 End Class

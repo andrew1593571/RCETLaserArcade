@@ -26,6 +26,9 @@ Partial Class GamePicker
         Me.MemoryButton = New System.Windows.Forms.Button()
         Me.TicTacToeButton = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
+        Me.PictureBoxBreakTheTargets = New System.Windows.Forms.PictureBox()
+        CType(Me.PictureBoxBreakTheTargets, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LightningButton
@@ -64,17 +67,39 @@ Partial Class GamePicker
         Me.Button4.Text = "Test"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'ExitButton
+        '
+        Me.ExitButton.Location = New System.Drawing.Point(713, 387)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(75, 51)
+        Me.ExitButton.TabIndex = 4
+        Me.ExitButton.Text = "E&xit"
+        Me.ExitButton.UseVisualStyleBackColor = True
+        '
+        'PictureBoxBreakTheTargets
+        '
+        Me.PictureBoxBreakTheTargets.Image = Global.VBArcadeControl.My.Resources.Resources.BreakTheTargets
+        Me.PictureBoxBreakTheTargets.Location = New System.Drawing.Point(12, 69)
+        Me.PictureBoxBreakTheTargets.Name = "PictureBoxBreakTheTargets"
+        Me.PictureBoxBreakTheTargets.Size = New System.Drawing.Size(318, 190)
+        Me.PictureBoxBreakTheTargets.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBoxBreakTheTargets.TabIndex = 5
+        Me.PictureBoxBreakTheTargets.TabStop = False
+        '
         'GamePicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.PictureBoxBreakTheTargets)
+        Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.TicTacToeButton)
         Me.Controls.Add(Me.MemoryButton)
         Me.Controls.Add(Me.LightningButton)
         Me.Name = "GamePicker"
         Me.Text = "GamePicker"
+        CType(Me.PictureBoxBreakTheTargets, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -83,4 +108,6 @@ Partial Class GamePicker
     Friend WithEvents MemoryButton As Button
     Friend WithEvents TicTacToeButton As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents ExitButton As Button
+    Friend WithEvents PictureBoxBreakTheTargets As PictureBox
 End Class

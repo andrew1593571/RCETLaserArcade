@@ -136,7 +136,14 @@
     <Compile Include="BlasterConfigurationForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BreakTheTargetGameForm.Designer.vb">
+      <DependentUpon>BreakTheTargetGameForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BreakTheTargetGameForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Classes\ArcadeTarget.vb" />
+    <Compile Include="Classes\GameSounds.vb" />
     <Compile Include="Classes\Player.vb" />
     <Compile Include="Classes\PlayerColors.vb" />
     <Compile Include="Classes\UARTController.vb" />
@@ -214,6 +221,9 @@
     <EmbeddedResource Include="BlasterConfigurationForm.resx">
       <DependentUpon>BlasterConfigurationForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BreakTheTargetGameForm.resx">
+      <DependentUpon>BreakTheTargetGameForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GamePicker.resx">
       <DependentUpon>GamePicker.vb</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +283,51 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bengal.ico" />
+    <None Include="Resources\AIcon.png" />
+    <None Include="Resources\AIconLose.png" />
+    <None Include="Resources\SonicAdventure2LevelClear.wav" />
+    <None Include="Resources\GIcon.png" />
+    <None Include="Resources\GIconLose.png" />
+    <None Include="Resources\ConfirmMenu.wav" />
+    <None Include="Resources\MarioKartFNFDeath.wav" />
+    <None Include="Resources\MegaManDies.wav" />
+    <None Include="Resources\GoSmash.wav" />
+    <None Include="Resources\WarpedAye.wav" />
+    <None Include="Resources\Announcer Break the Targets.wav" />
+    <None Include="Resources\GoodDaySir.wav" />
+    <None Include="Resources\Start.wav" />
+    <None Include="Resources\Nope.wav" />
+    <None Include="Resources\CSConfirm.wav" />
+    <None Include="Resources\TableBroken.wav" />
+    <None Include="Resources\Lego Break Fall Apart.wav" />
+    <None Include="Resources\Sad Trumpet.wav" />
+    <None Include="Resources\SadFahhhh.wav" />
+    <None Include="Resources\OhNo.wav" />
+    <None Include="Resources\main74L.wav" />
+    <None Include="Resources\main2d.wav" />
+    <None Include="Resources\main76L.wav" />
+    <None Include="Resources\main7a.wav" />
+    <None Include="Resources\mainb7.wav" />
+    <None Include="Resources\main90L.wav" />
+    <None Include="Resources\PizzaTaunt.wav" />
+    <None Include="Resources\CupParry.wav" />
+    <None Include="Resources\FDD.wav" />
+    <None Include="Resources\Miss.wav" />
+    <None Include="Resources\AwDangIt.wav" />
+    <None Include="Resources\BreakTheTargets.jpg" />
+    <None Include="Resources\Target.png" />
+    <None Include="Resources\BreakTheTarget.bmp" />
+    <None Include="Resources\Chest_Item.wav" />
+    <None Include="Resources\Connected.wav" />
+    <None Include="Resources\Unconnected.wav" />
+    <None Include="Resources\FamilyFuedBell.wav" />
+    <None Include="Resources\777.wav" />
+    <None Include="Resources\954.wav" />
+    <None Include="Resources\776.wav" />
+    <None Include="Resources\TacoBellBong.wav" />
+    <None Include="Resources\bomb_explode.wav" />
+    <None Include="Resources\Wilhelm.wav" />
+    <None Include="Resources\SmashParry.wav" />
     <None Include="Resources\PIcon.png" />
     <None Include="Resources\BIcon.png" />
     <None Include="Resources\NoIcon.png" />

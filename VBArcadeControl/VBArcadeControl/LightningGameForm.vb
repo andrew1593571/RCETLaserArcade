@@ -100,4 +100,7 @@ Public Class LightningGameForm
         Me.Close()
     End Sub
 
+    Private Sub Player4PictureBox_Click_1(sender As Object, e As EventArgs) Handles Player4PictureBox.Click
+
+    End Sub
 End Class
