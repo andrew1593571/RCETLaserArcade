@@ -47,19 +47,39 @@ Public Class BreakTheTargetGameForm
     End Sub
 
     Sub MakeBreakTheTargetHit(target As Integer, Player As Integer)
-        ConstantReadTimer.Stop()
-        ShootOutTimer.Stop()
-        BreakTheTargetsSound.HitSound()
+        If GameState = True Then
+            ConstantReadTimer.Stop()
+            ShootOutTimer.Stop()
+            BreakTheTargetsSound.HitSound()
 
-        Dim points As Integer
-        points = CInt(PointsTextBox.Text) + 1
-        PointsTextBox.Text = points
+            Dim totalPoints As Integer
+            Dim P1Points As Integer
+            Dim P2Points As Integer
 
-        If ShootOutTimer.Interval > 900 Then
-            ShootOutTimer.Interval = ShootOutTimer.Interval - 100
+            totalPoints = CInt(PointsTextBox.Text) + 1
+            PointsTextBox.Text = totalPoints
+
+            If Player = 1 Then
+                P1PointsTextBox.Visible = True
+                P1PictureBox.Visible = True
+                P1Points = CInt(P1PointsTextBox.Text) + 1
+                P1PointsTextBox.Text = P1Points
+            ElseIf Player = 2 Then
+                P2PointsTextBox.Visible = True
+                P2PictureBox.Visible = True
+                P2Points = CInt(P2PointsTextBox.Text) + 1
+                P2PointsTextBox.Text = P2Points
+            Else
+
+            End If
+
+            If ShootOutTimer.Interval > 900 Then
+                ShootOutTimer.Interval = ShootOutTimer.Interval - 100
+            End If
+            HideTargets()
+            TargetLightUp()
         End If
-        HideTargets()
-        TargetLightUp()
+
     End Sub
 
     Sub TargetLightUp()
@@ -165,8 +185,16 @@ Public Class BreakTheTargetGameForm
         HideTargets()
         TargetTextBox.Text = "0"
         PointsTextBox.Text = "0"
-        TurnPictureBox.Image = My.Resources.GIcon
+        P1PointsTextBox.Text = "0"
+        P2PointsTextBox.Text = "0"
+        P1PointsTextBox.Visible = False
+        P2PointsTextBox.Visible = False
+        P1PictureBox.Visible = False
+        P2PictureBox.Visible = False
+        P1PictureBox.Image = My.Resources.GIcon
+        P2PictureBox.Image = My.Resources.AIcon
         ShootOutTimer.Interval = 5000
+        alreadyLost = False
     End Sub
 
 
@@ -183,6 +211,8 @@ Public Class BreakTheTargetGameForm
         newfont = Me.Width * fontMult
         PlayerTurnTextBox.Font = New Font("Microsoft Sans Serif", newfont)
         PointsTextBox.Font = New Font("Microsoft Sans Serif", newfont)
+        P1PointsTextBox.Font = New Font("Microsoft Sans Serif", newfont)
+        P2PointsTextBox.Font = New Font("Microsoft Sans Serif", newfont)
         TargetTextBox.Font = New Font("Microsoft Sans Serif", newfont)
         Label1.Font = New Font("Microsoft Sans Serif", newfont)
         Label2.Font = New Font("Microsoft Sans Serif", newfont)
@@ -206,16 +236,39 @@ Public Class BreakTheTargetGameForm
         BreakTheTargetsCOM.SendI2CRead(CInt(TargetTextBox.Text) * 2)
     End Sub
 
+    Dim alreadyLost As Boolean
+
     Private Sub ShootOutTimer_Tick(sender As Object, e As EventArgs) Handles ShootOutTimer.Tick
-        ShootOutTimer.Stop()
-        ConstantReadTimer.Stop()
-        TurnPictureBox.Image = My.Resources.GIconLose
-        BreakTheTargetsSound.LoseSound()
-        BreakTheTargetsCOM.SendI2CDisable(0)
-        GameState = False
-        MsgBox("you lose")
-        StartButton.Enabled = True
-        ShootOutTimer.Enabled = False
+        If GameState = True Then
+            ShootOutTimer.Stop()
+            ConstantReadTimer.Stop()
+            BreakTheTargetsSound.LoseSound()
+            BreakTheTargetsCOM.SendI2CDisable(0)
+            GameState = False
+            StartButton.Enabled = True
+            ShootOutTimer.Enabled = False
+
+            If CInt(P1PointsTextBox.Text) > CInt(P2PointsTextBox.Text) And CInt(P2PointsTextBox.Text) > 0 Then
+                P2PictureBox.Image = My.Resources.AIconLose
+                MsgBox("Player 1 Wins")
+            ElseIf CInt(P1PointsTextBox.Text) > CInt(P2PointsTextBox.Text) And CInt(P2PointsTextBox.Text) = 0 Then
+                P1PictureBox.Image = My.Resources.GIconLose
+                MsgBox("You lose")
+            ElseIf CInt(P1PointsTextBox.Text) < CInt(P2PointsTextBox.Text) And CInt(P1PointsTextBox.Text) > 0 Then
+                P1PictureBox.Image = My.Resources.GIconLose
+                MsgBox("Player 2 Wins")
+            ElseIf CInt(P1PointsTextBox.Text) < CInt(P2PointsTextBox.Text) And CInt(P1PointsTextBox.Text) = 0 Then
+                P2PictureBox.Image = My.Resources.AIconLose
+                MsgBox("You lose")
+            Else
+                P2PictureBox.Image = My.Resources.GIconLose
+                P2PictureBox.Image = My.Resources.AIconLose
+                MsgBox("You lose")
+            End If
+
+        End If
+
+
     End Sub
 
     Private Sub ReturnButton_Click(sender As Object, e As EventArgs) Handles ReturnButton.Click

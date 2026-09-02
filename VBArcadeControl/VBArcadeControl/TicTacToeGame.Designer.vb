@@ -73,9 +73,10 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.StartButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.StartButton.Location = New System.Drawing.Point(3, 314)
+        Me.StartButton.Location = New System.Drawing.Point(3, 315)
+        Me.StartButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.StartButton.Name = "StartButton"
-        Me.StartButton.Size = New System.Drawing.Size(90, 90)
+        Me.StartButton.Size = New System.Drawing.Size(90, 93)
         Me.StartButton.TabIndex = 0
         Me.StartButton.Text = "Start Game"
         Me.StartButton.UseVisualStyleBackColor = True
@@ -86,9 +87,10 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ResetButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ResetButton.Location = New System.Drawing.Point(99, 314)
+        Me.ResetButton.Location = New System.Drawing.Point(99, 315)
+        Me.ResetButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ResetButton.Name = "ResetButton"
-        Me.ResetButton.Size = New System.Drawing.Size(90, 90)
+        Me.ResetButton.Size = New System.Drawing.Size(90, 93)
         Me.ResetButton.TabIndex = 1
         Me.ResetButton.Text = "Reset"
         Me.ResetButton.UseVisualStyleBackColor = True
@@ -98,9 +100,10 @@ Partial Class TicTacToeGame
         Me.ReturnButton.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ReturnButton.Location = New System.Drawing.Point(195, 314)
+        Me.ReturnButton.Location = New System.Drawing.Point(195, 315)
+        Me.ReturnButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ReturnButton.Name = "ReturnButton"
-        Me.ReturnButton.Size = New System.Drawing.Size(92, 90)
+        Me.ReturnButton.Size = New System.Drawing.Size(93, 93)
         Me.ReturnButton.TabIndex = 2
         Me.ReturnButton.Text = "Return to Game Menu"
         Me.ReturnButton.UseVisualStyleBackColor = True
@@ -111,7 +114,8 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PlayerTurnTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PlayerTurnTextBox.Location = New System.Drawing.Point(3, 90)
+        Me.PlayerTurnTextBox.Location = New System.Drawing.Point(3, 89)
+        Me.PlayerTurnTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PlayerTurnTextBox.Name = "PlayerTurnTextBox"
         Me.PlayerTurnTextBox.ReadOnly = True
         Me.PlayerTurnTextBox.Size = New System.Drawing.Size(90, 30)
@@ -138,7 +142,8 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TurnsPassedTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TurnsPassedTextBox.Location = New System.Drawing.Point(99, 3)
+        Me.TurnsPassedTextBox.Location = New System.Drawing.Point(99, 2)
+        Me.TurnsPassedTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TurnsPassedTextBox.Name = "TurnsPassedTextBox"
         Me.TurnsPassedTextBox.ReadOnly = True
         Me.TurnsPassedTextBox.Size = New System.Drawing.Size(90, 30)
@@ -164,7 +169,7 @@ Partial Class TicTacToeGame
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(195, 87)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(92, 40)
+        Me.Label3.Size = New System.Drawing.Size(93, 40)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Winner"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -176,6 +181,7 @@ Partial Class TicTacToeGame
         '
         Me.TimerTestRadioButton.AutoSize = True
         Me.TimerTestRadioButton.Location = New System.Drawing.Point(331, 431)
+        Me.TimerTestRadioButton.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TimerTestRadioButton.Name = "TimerTestRadioButton"
         Me.TimerTestRadioButton.Size = New System.Drawing.Size(93, 20)
         Me.TimerTestRadioButton.TabIndex = 19
@@ -207,13 +213,14 @@ Partial Class TicTacToeGame
         Me.TableLayoutPanel1.Controls.Add(Me.PictureBox7, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.PictureBox8, 1, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.PictureBox9, 2, 2)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(304, 3)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(304, 2)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(474, 414)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(474, 416)
         Me.TableLayoutPanel1.TabIndex = 22
         '
         'PictureBox1
@@ -225,9 +232,10 @@ Partial Class TicTacToeGame
         Me.PictureBox1.Enabled = False
         Me.PictureBox1.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox1.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 2)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox1.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
@@ -241,9 +249,10 @@ Partial Class TicTacToeGame
         Me.PictureBox2.Enabled = False
         Me.PictureBox2.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox2.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox2.Location = New System.Drawing.Point(161, 3)
+        Me.PictureBox2.Location = New System.Drawing.Point(161, 2)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox2.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 4
         Me.PictureBox2.TabStop = False
@@ -257,9 +266,10 @@ Partial Class TicTacToeGame
         Me.PictureBox3.Enabled = False
         Me.PictureBox3.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox3.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox3.Location = New System.Drawing.Point(319, 3)
+        Me.PictureBox3.Location = New System.Drawing.Point(319, 2)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox3.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox3.TabIndex = 5
         Me.PictureBox3.TabStop = False
@@ -273,9 +283,10 @@ Partial Class TicTacToeGame
         Me.PictureBox4.Enabled = False
         Me.PictureBox4.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox4.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox4.Location = New System.Drawing.Point(3, 141)
+        Me.PictureBox4.Location = New System.Drawing.Point(3, 140)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox4.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox4.TabIndex = 6
         Me.PictureBox4.TabStop = False
@@ -289,9 +300,10 @@ Partial Class TicTacToeGame
         Me.PictureBox5.Enabled = False
         Me.PictureBox5.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox5.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox5.Location = New System.Drawing.Point(161, 141)
+        Me.PictureBox5.Location = New System.Drawing.Point(161, 140)
+        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox5.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 7
         Me.PictureBox5.TabStop = False
@@ -305,9 +317,10 @@ Partial Class TicTacToeGame
         Me.PictureBox6.Enabled = False
         Me.PictureBox6.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox6.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox6.Location = New System.Drawing.Point(319, 141)
+        Me.PictureBox6.Location = New System.Drawing.Point(319, 140)
+        Me.PictureBox6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox6.Size = New System.Drawing.Size(152, 134)
         Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox6.TabIndex = 8
         Me.PictureBox6.TabStop = False
@@ -321,9 +334,10 @@ Partial Class TicTacToeGame
         Me.PictureBox7.Enabled = False
         Me.PictureBox7.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox7.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox7.Location = New System.Drawing.Point(3, 279)
+        Me.PictureBox7.Location = New System.Drawing.Point(3, 278)
+        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox7.Size = New System.Drawing.Size(152, 136)
         Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox7.TabIndex = 9
         Me.PictureBox7.TabStop = False
@@ -337,9 +351,10 @@ Partial Class TicTacToeGame
         Me.PictureBox8.Enabled = False
         Me.PictureBox8.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox8.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox8.Location = New System.Drawing.Point(161, 279)
+        Me.PictureBox8.Location = New System.Drawing.Point(161, 278)
+        Me.PictureBox8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox8.Size = New System.Drawing.Size(152, 136)
         Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox8.TabIndex = 10
         Me.PictureBox8.TabStop = False
@@ -353,9 +368,10 @@ Partial Class TicTacToeGame
         Me.PictureBox9.Enabled = False
         Me.PictureBox9.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.PictureBox9.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.PictureBox9.Location = New System.Drawing.Point(319, 279)
+        Me.PictureBox9.Location = New System.Drawing.Point(319, 278)
+        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(152, 132)
+        Me.PictureBox9.Size = New System.Drawing.Size(152, 136)
         Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox9.TabIndex = 21
         Me.PictureBox9.TabStop = False
@@ -371,6 +387,7 @@ Partial Class TicTacToeGame
         Me.TableLayoutPanel4.Controls.Add(Me.ControlsGroupBox, 0, 0)
         Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel1, 1, 0)
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(7, 5)
+        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -383,9 +400,11 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ControlsGroupBox.Controls.Add(Me.TableLayoutPanel2)
-        Me.ControlsGroupBox.Location = New System.Drawing.Point(3, 3)
+        Me.ControlsGroupBox.Location = New System.Drawing.Point(3, 2)
+        Me.ControlsGroupBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ControlsGroupBox.Name = "ControlsGroupBox"
-        Me.ControlsGroupBox.Size = New System.Drawing.Size(295, 414)
+        Me.ControlsGroupBox.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ControlsGroupBox.Size = New System.Drawing.Size(295, 416)
         Me.ControlsGroupBox.TabIndex = 26
         Me.ControlsGroupBox.TabStop = False
         '
@@ -408,7 +427,8 @@ Partial Class TicTacToeGame
         Me.TableLayoutPanel2.Controls.Add(Me.StartButton, 0, 5)
         Me.TableLayoutPanel2.Controls.Add(Me.ResetButton, 1, 5)
         Me.TableLayoutPanel2.Controls.Add(Me.ReturnButton, 2, 5)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 4)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 4)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 6
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.36334!))
@@ -417,7 +437,7 @@ Partial Class TicTacToeGame
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.93891!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.22508!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(290, 407)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(291, 410)
         Me.TableLayoutPanel2.TabIndex = 23
         '
         'TurnPictureBox
@@ -427,9 +447,10 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TurnPictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.GIcon
         Me.TurnPictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.TurnPictureBox.Location = New System.Drawing.Point(3, 130)
+        Me.TurnPictureBox.Location = New System.Drawing.Point(3, 129)
+        Me.TurnPictureBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TurnPictureBox.Name = "TurnPictureBox"
-        Me.TurnPictureBox.Size = New System.Drawing.Size(90, 84)
+        Me.TurnPictureBox.Size = New System.Drawing.Size(90, 87)
         Me.TurnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.TurnPictureBox.TabIndex = 14
         Me.TurnPictureBox.TabStop = False
@@ -441,9 +462,10 @@ Partial Class TicTacToeGame
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WinnerPictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.NoIcon
         Me.WinnerPictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.WinnerPictureBox.Location = New System.Drawing.Point(195, 130)
+        Me.WinnerPictureBox.Location = New System.Drawing.Point(195, 129)
+        Me.WinnerPictureBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.WinnerPictureBox.Name = "WinnerPictureBox"
-        Me.WinnerPictureBox.Size = New System.Drawing.Size(92, 84)
+        Me.WinnerPictureBox.Size = New System.Drawing.Size(93, 87)
         Me.WinnerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.WinnerPictureBox.TabIndex = 17
         Me.WinnerPictureBox.TabStop = False
@@ -458,6 +480,7 @@ Partial Class TicTacToeGame
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.TimerTestRadioButton)
         Me.Controls.Add(Me.TableLayoutPanel4)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "TicTacToeGame"
         Me.Text = "TicTacToeGame"
         Me.TableLayoutPanel1.ResumeLayout(False)

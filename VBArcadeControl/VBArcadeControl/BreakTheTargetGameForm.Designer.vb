@@ -52,7 +52,7 @@ Partial Class BreakTheTargetGameForm
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.ControlsGroupBox = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TurnPictureBox = New System.Windows.Forms.PictureBox()
+        Me.P1PictureBox = New System.Windows.Forms.PictureBox()
         Me.PlayerTurnTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.StartButton = New System.Windows.Forms.Button()
@@ -64,6 +64,9 @@ Partial Class BreakTheTargetGameForm
         Me.TargetTextBox = New System.Windows.Forms.TextBox()
         Me.ConstantReadTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ShootOutTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.P2PictureBox = New System.Windows.Forms.PictureBox()
+        Me.P1PointsTextBox = New System.Windows.Forms.TextBox()
+        Me.P2PointsTextBox = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +96,8 @@ Partial Class BreakTheTargetGameForm
         Me.TableLayoutPanel4.SuspendLayout()
         Me.ControlsGroupBox.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.TurnPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.P1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.P2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -507,7 +511,7 @@ Partial Class BreakTheTargetGameForm
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Controls.Add(Me.TurnPictureBox, 0, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.P1PictureBox, 0, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.PlayerTurnTextBox, 0, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.StartButton, 0, 5)
@@ -517,6 +521,9 @@ Partial Class BreakTheTargetGameForm
         Me.TableLayoutPanel2.Controls.Add(Me.PointsTextBox, 1, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label3, 2, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TargetTextBox, 2, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.P2PictureBox, 0, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.P1PointsTextBox, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.P2PointsTextBox, 1, 4)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 4)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 6
@@ -529,19 +536,20 @@ Partial Class BreakTheTargetGameForm
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(290, 407)
         Me.TableLayoutPanel2.TabIndex = 23
         '
-        'TurnPictureBox
+        'P1PictureBox
         '
-        Me.TurnPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.P1PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TurnPictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.GIcon
-        Me.TurnPictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
-        Me.TurnPictureBox.Location = New System.Drawing.Point(3, 130)
-        Me.TurnPictureBox.Name = "TurnPictureBox"
-        Me.TurnPictureBox.Size = New System.Drawing.Size(90, 84)
-        Me.TurnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.TurnPictureBox.TabIndex = 14
-        Me.TurnPictureBox.TabStop = False
+        Me.P1PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.GIcon
+        Me.P1PictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
+        Me.P1PictureBox.Location = New System.Drawing.Point(3, 130)
+        Me.P1PictureBox.Name = "P1PictureBox"
+        Me.P1PictureBox.Size = New System.Drawing.Size(90, 84)
+        Me.P1PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.P1PictureBox.TabIndex = 14
+        Me.P1PictureBox.TabStop = False
+        Me.P1PictureBox.Visible = False
         '
         'PlayerTurnTextBox
         '
@@ -556,6 +564,7 @@ Partial Class BreakTheTargetGameForm
         Me.PlayerTurnTextBox.TabIndex = 12
         Me.PlayerTurnTextBox.Text = "1"
         Me.PlayerTurnTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.PlayerTurnTextBox.Visible = False
         '
         'Label1
         '
@@ -662,6 +671,49 @@ Partial Class BreakTheTargetGameForm
         '
         Me.ShootOutTimer.Interval = 5000
         '
+        'P2PictureBox
+        '
+        Me.P2PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.P2PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.AIcon
+        Me.P2PictureBox.InitialImage = Global.VBArcadeControl.My.Resources.Resources.NoIcon
+        Me.P2PictureBox.Location = New System.Drawing.Point(3, 220)
+        Me.P2PictureBox.Name = "P2PictureBox"
+        Me.P2PictureBox.Size = New System.Drawing.Size(90, 88)
+        Me.P2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.P2PictureBox.TabIndex = 19
+        Me.P2PictureBox.TabStop = False
+        Me.P2PictureBox.Visible = False
+        '
+        'P1PointsTextBox
+        '
+        Me.P1PointsTextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.P1PointsTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.P1PointsTextBox.Location = New System.Drawing.Point(99, 130)
+        Me.P1PointsTextBox.Name = "P1PointsTextBox"
+        Me.P1PointsTextBox.ReadOnly = True
+        Me.P1PointsTextBox.Size = New System.Drawing.Size(90, 30)
+        Me.P1PointsTextBox.TabIndex = 20
+        Me.P1PointsTextBox.Text = "0"
+        Me.P1PointsTextBox.Visible = False
+        '
+        'P2PointsTextBox
+        '
+        Me.P2PointsTextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.P2PointsTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.P2PointsTextBox.Location = New System.Drawing.Point(99, 220)
+        Me.P2PointsTextBox.Name = "P2PointsTextBox"
+        Me.P2PointsTextBox.ReadOnly = True
+        Me.P2PointsTextBox.Size = New System.Drawing.Size(90, 30)
+        Me.P2PointsTextBox.TabIndex = 21
+        Me.P2PointsTextBox.Text = "0"
+        Me.P2PointsTextBox.Visible = False
+        '
         'BreakTheTargetGameForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -701,7 +753,8 @@ Partial Class BreakTheTargetGameForm
         Me.ControlsGroupBox.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.TurnPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.P1PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.P2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -735,7 +788,7 @@ Partial Class BreakTheTargetGameForm
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents ControlsGroupBox As GroupBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-    Friend WithEvents TurnPictureBox As PictureBox
+    Friend WithEvents P1PictureBox As PictureBox
     Friend WithEvents PlayerTurnTextBox As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents StartButton As Button
@@ -747,4 +800,7 @@ Partial Class BreakTheTargetGameForm
     Friend WithEvents ShootOutTimer As Timer
     Friend WithEvents Label3 As Label
     Friend WithEvents TargetTextBox As TextBox
+    Friend WithEvents P2PictureBox As PictureBox
+    Friend WithEvents P1PointsTextBox As TextBox
+    Friend WithEvents P2PointsTextBox As TextBox
 End Class
