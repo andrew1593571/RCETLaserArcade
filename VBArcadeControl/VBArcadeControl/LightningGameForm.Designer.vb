@@ -32,26 +32,26 @@ Partial Class LightningGameForm
         Me.Player1PictureBox = New System.Windows.Forms.PictureBox()
         Me.P1TextBox = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.P2TextBox = New System.Windows.Forms.TextBox()
-        Me.Player2PictureBox = New System.Windows.Forms.PictureBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.P3TextBox = New System.Windows.Forms.TextBox()
-        Me.Player3PictureBox = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.P4TextBox = New System.Windows.Forms.TextBox()
         Me.Player4PictureBox = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.P3TextBox = New System.Windows.Forms.TextBox()
+        Me.Player3PictureBox = New System.Windows.Forms.PictureBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.P2TextBox = New System.Windows.Forms.TextBox()
+        Me.Player2PictureBox = New System.Windows.Forms.PictureBox()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
-        CType(Me.Player3PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.Player4PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.Player3PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -114,7 +114,7 @@ Partial Class LightningGameForm
         Me.P1TextBox.Location = New System.Drawing.Point(84, 223)
         Me.P1TextBox.Name = "P1TextBox"
         Me.P1TextBox.ReadOnly = True
-        Me.P1TextBox.Size = New System.Drawing.Size(17, 30)
+        Me.P1TextBox.Size = New System.Drawing.Size(17, 23)
         Me.P1TextBox.TabIndex = 17
         Me.P1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -144,100 +144,16 @@ Partial Class LightningGameForm
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(767, 426)
         Me.TableLayoutPanel1.TabIndex = 19
         '
-        'GroupBox1
+        'TextBox1
         '
-        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.TextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.P1TextBox)
-        Me.GroupBox1.Controls.Add(Me.Player1PictureBox)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(185, 356)
-        Me.GroupBox1.TabIndex = 20
-        Me.GroupBox1.TabStop = False
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.P2TextBox)
-        Me.GroupBox2.Controls.Add(Me.Player2PictureBox)
-        Me.GroupBox2.Location = New System.Drawing.Point(194, 3)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(185, 356)
-        Me.GroupBox2.TabIndex = 21
-        Me.GroupBox2.TabStop = False
-        '
-        'P2TextBox
-        '
-        Me.P2TextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.P2TextBox.BackColor = System.Drawing.Color.Gray
-        Me.P2TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.P2TextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.P2TextBox.Location = New System.Drawing.Point(89, 223)
-        Me.P2TextBox.Name = "P2TextBox"
-        Me.P2TextBox.ReadOnly = True
-        Me.P2TextBox.Size = New System.Drawing.Size(17, 30)
-        Me.P2TextBox.TabIndex = 17
-        Me.P2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Player2PictureBox
-        '
-        Me.Player2PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Player2PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.UIPlayer2
-        Me.Player2PictureBox.Location = New System.Drawing.Point(6, 21)
-        Me.Player2PictureBox.Name = "Player2PictureBox"
-        Me.Player2PictureBox.Size = New System.Drawing.Size(173, 329)
-        Me.Player2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Player2PictureBox.TabIndex = 0
-        Me.Player2PictureBox.TabStop = False
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.P3TextBox)
-        Me.GroupBox3.Controls.Add(Me.Player3PictureBox)
-        Me.GroupBox3.Location = New System.Drawing.Point(385, 3)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(185, 356)
-        Me.GroupBox3.TabIndex = 21
-        Me.GroupBox3.TabStop = False
-        '
-        'P3TextBox
-        '
-        Me.P3TextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.P3TextBox.BackColor = System.Drawing.Color.Gray
-        Me.P3TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.P3TextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        Me.P3TextBox.Location = New System.Drawing.Point(93, 223)
-        Me.P3TextBox.Name = "P3TextBox"
-        Me.P3TextBox.ReadOnly = True
-        Me.P3TextBox.Size = New System.Drawing.Size(17, 30)
-        Me.P3TextBox.TabIndex = 17
-        Me.P3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Player3PictureBox
-        '
-        Me.Player3PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Player3PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.UIPlayer3
-        Me.Player3PictureBox.Location = New System.Drawing.Point(6, 21)
-        Me.Player3PictureBox.Name = "Player3PictureBox"
-        Me.Player3PictureBox.Size = New System.Drawing.Size(173, 329)
-        Me.Player3PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Player3PictureBox.TabIndex = 0
-        Me.Player3PictureBox.TabStop = False
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!)
+        Me.TextBox1.Location = New System.Drawing.Point(194, 365)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(185, 53)
+        Me.TextBox1.TabIndex = 20
         '
         'GroupBox4
         '
@@ -263,7 +179,7 @@ Partial Class LightningGameForm
         Me.P4TextBox.Location = New System.Drawing.Point(125, 223)
         Me.P4TextBox.Name = "P4TextBox"
         Me.P4TextBox.ReadOnly = True
-        Me.P4TextBox.Size = New System.Drawing.Size(17, 30)
+        Me.P4TextBox.Size = New System.Drawing.Size(17, 23)
         Me.P4TextBox.TabIndex = 17
         Me.P4TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -280,16 +196,100 @@ Partial Class LightningGameForm
         Me.Player4PictureBox.TabIndex = 0
         Me.Player4PictureBox.TabStop = False
         '
-        'TextBox1
+        'GroupBox1
         '
-        Me.TextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!)
-        Me.TextBox1.Location = New System.Drawing.Point(194, 365)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(185, 53)
-        Me.TextBox1.TabIndex = 20
+        Me.GroupBox1.Controls.Add(Me.P1TextBox)
+        Me.GroupBox1.Controls.Add(Me.Player1PictureBox)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(185, 356)
+        Me.GroupBox1.TabIndex = 20
+        Me.GroupBox1.TabStop = False
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.P3TextBox)
+        Me.GroupBox3.Controls.Add(Me.Player3PictureBox)
+        Me.GroupBox3.Location = New System.Drawing.Point(385, 3)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(185, 356)
+        Me.GroupBox3.TabIndex = 21
+        Me.GroupBox3.TabStop = False
+        '
+        'P3TextBox
+        '
+        Me.P3TextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.P3TextBox.BackColor = System.Drawing.Color.Gray
+        Me.P3TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.P3TextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.P3TextBox.Location = New System.Drawing.Point(93, 223)
+        Me.P3TextBox.Name = "P3TextBox"
+        Me.P3TextBox.ReadOnly = True
+        Me.P3TextBox.Size = New System.Drawing.Size(17, 23)
+        Me.P3TextBox.TabIndex = 17
+        Me.P3TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Player3PictureBox
+        '
+        Me.Player3PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Player3PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.UIPlayer3
+        Me.Player3PictureBox.Location = New System.Drawing.Point(6, 21)
+        Me.Player3PictureBox.Name = "Player3PictureBox"
+        Me.Player3PictureBox.Size = New System.Drawing.Size(173, 329)
+        Me.Player3PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Player3PictureBox.TabIndex = 0
+        Me.Player3PictureBox.TabStop = False
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.P2TextBox)
+        Me.GroupBox2.Controls.Add(Me.Player2PictureBox)
+        Me.GroupBox2.Location = New System.Drawing.Point(194, 3)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(185, 356)
+        Me.GroupBox2.TabIndex = 21
+        Me.GroupBox2.TabStop = False
+        '
+        'P2TextBox
+        '
+        Me.P2TextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.P2TextBox.BackColor = System.Drawing.Color.Gray
+        Me.P2TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.P2TextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.P2TextBox.Location = New System.Drawing.Point(89, 223)
+        Me.P2TextBox.Name = "P2TextBox"
+        Me.P2TextBox.ReadOnly = True
+        Me.P2TextBox.Size = New System.Drawing.Size(17, 23)
+        Me.P2TextBox.TabIndex = 17
+        Me.P2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Player2PictureBox
+        '
+        Me.Player2PictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Player2PictureBox.Image = Global.VBArcadeControl.My.Resources.Resources.UIPlayer2
+        Me.Player2PictureBox.Location = New System.Drawing.Point(6, 21)
+        Me.Player2PictureBox.Name = "Player2PictureBox"
+        Me.Player2PictureBox.Size = New System.Drawing.Size(173, 329)
+        Me.Player2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Player2PictureBox.TabIndex = 0
+        Me.Player2PictureBox.TabStop = False
         '
         'LightningGameForm
         '
@@ -302,17 +302,17 @@ Partial Class LightningGameForm
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        CType(Me.Player3PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         CType(Me.Player4PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        CType(Me.Player3PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

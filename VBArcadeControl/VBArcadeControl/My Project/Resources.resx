@@ -136,4 +136,145 @@
   <data name="Bengal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bengal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SmashParry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SmashParry.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bomb_explode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bomb_explode.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Chest_Item" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chest_Item.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Connected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Connected.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FamilyFuedBell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FamilyFuedBell.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TacoBellBong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TacoBellBong.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unconnected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unconnected.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Wilhelm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wilhelm.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_776" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\776.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_777" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\777.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_954" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\954.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BreakTheTargets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BreakTheTargets.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Target" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Target.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AwDangIt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AwDangIt.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FDD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FDD.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Miss.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Announcer_Break_the_Targets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Announcer Break the Targets.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ConfirmMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ConfirmMenu.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CSConfirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CSConfirm.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CupParry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CupParry.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GoodDaySir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoodDaySir.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GoSmash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoSmash.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Lego_Break_Fall_Apart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Lego Break Fall Apart.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="main2d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main2d.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="main74L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main74L.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="main76L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main76L.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="main7a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main7a.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="main90L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main90L.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mainb7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainb7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MarioKartFNFDeath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MarioKartFNFDeath.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MegaManDies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MegaManDies.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nope" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nope.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OhNo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OhNo.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PizzaTaunt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PizzaTaunt.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SadFahhhh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SadFahhhh.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Sad_Trumpet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sad Trumpet.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Start.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TableBroken" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TableBroken.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WarpedAye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WarpedAye.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GIconLose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GIconLose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AIconLose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AIconLose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SonicAdventure2LevelClear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SonicAdventure2LevelClear.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

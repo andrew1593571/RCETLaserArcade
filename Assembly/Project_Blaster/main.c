@@ -167,7 +167,7 @@ void __interrupt() ISR(void){
         
     }
     
-    INTCONbits.GIE = 1; //enable global interrupts
+    //INTCONbits.GIE = 1; enable global interrupts
 }
 
 void main(void){
